@@ -37,29 +37,29 @@ public class ResultTab extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.results_tab);
 
-		ArrayList groupList = new ArrayList();
-		Map groupData1 = new HashMap();
+		ArrayList<Map<String, String>> groupList = new ArrayList<Map<String, String>>();
+		Map<String, String> groupData1 = new HashMap<String, String>();
 		groupData1.put(KEY_FIRSTNAME, "Jean");
 		groupData1.put(KEY_NAME, " Dupond ");
 		groupData1.put(KEY_ISJUIST, "1/2");
 		groupList.add(groupData1);
 
-		Map groupData2 = new HashMap();
+		Map<String, String> groupData2 = new HashMap<String, String>();
 		groupData2.put(KEY_FIRSTNAME, "Capucine");
 		groupData2.put(KEY_NAME, " Durand ");
 		groupData2.put(KEY_ISJUIST, "2/2");
 		groupList.add(groupData2);
 
-		ArrayList childList = new ArrayList();
+		ArrayList<ArrayList<Map<String, String>>> childList = new ArrayList<ArrayList<Map<String, String>>>();
 
-		ArrayList childList1 = new ArrayList();
-		Map childMap1 = new HashMap();
+		ArrayList<Map<String, String>> childList1 = new ArrayList<Map<String, String>>();
+		Map<String, String> childMap1 = new HashMap<String, String>();
 		childMap1.put(KEY_QUESTIONTEXT, "Is een vlinder een vogel ?");
 		childMap1.put(KEY_DATE, "01/06/2012");
 		childMap1.put(KEY_ANSWER, "Ja");
 		childList1.add(childMap1);
 
-		Map childMap2 = new HashMap();
+		Map<String, String> childMap2 = new HashMap<String, String>();
 		childMap2.put(KEY_QUESTIONTEXT, "2+2= ?");
 		childMap2.put(KEY_DATE, "01/06/2012");
 		childMap2.put(KEY_ANSWER, "4");
@@ -67,14 +67,14 @@ public class ResultTab extends Activity {
 
 		childList.add(childList1);
 
-		ArrayList childList2 = new ArrayList();
-		Map childMap21 = new HashMap();
+		ArrayList<Map<String, String>> childList2 = new ArrayList<Map<String, String>>();
+		Map<String, String> childMap21 = new HashMap<String, String>();
 		childMap21.put(KEY_QUESTIONTEXT, "Is een vlinder een vogel ?");
 		childMap21.put(KEY_DATE, "01/06/2012");
 		childMap21.put(KEY_ANSWER, "Nee");
 		childList2.add(childMap21);
 
-		Map childMap22 = new HashMap();
+		Map<String, String> childMap22 = new HashMap<String, String>();
 		childMap22.put(KEY_QUESTIONTEXT, "2+2= ?");
 		childMap22.put(KEY_DATE, "01/06/2012");
 		childMap22.put(KEY_ANSWER, "4");

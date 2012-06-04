@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/gradient_bg_hover"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/questionTextView"
+        android:layout_width="772dp"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:background="@drawable/detail_vragen_roundcorner"
+        android:gravity="center"
+        android:padding="10dip"
+        android:text="Vraag: bv. is een vlinder een vogel ?"
+        android:textColor="@color/whiteColor"
+        android:textSize="16dp"
+                    android:layout_weight="1"
+        
+        android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/dateAnswerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="10dip"
+            android:text="01/06/2012"
+            android:textColor="#040404" />
+
+        <TextView
+            android:id="@+id/answerTextTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="10dip"
+            android:text="@string/NEE"
+            android:textColor="#040404" />
+
+</LinearLayout>

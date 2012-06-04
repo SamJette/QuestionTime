@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_bg_hover"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_bg" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@string/jouwVraag"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/black"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editTextVraag"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@android:color/darker_gray"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:padding="20dp"
+            android:textColor="@color/whiteColor" />
+
+        <!-- android:hint="INPUT TEXT" -->
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="#708090"
+        android:orientation="horizontal"
+        android:padding="0dp" >
+
+        <RadioButton
+            android:id="@+id/radioJaNee"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="#696969"
+            android:checked="true"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="@string/jaNeeVraag"
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:id="@+id/radioMeerKeuzeVraag"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="#696969"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="@string/meerKeuzeVraag"
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:id="@+id/radioInvulTextVraag"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="#696969"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="@string/invulTextVraag"
+            android:textSize="20dp" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/detail_vragen_roundcorner"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/buttonJa"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/one"
+                android:visibility="visible" />
+
+            <EditText
+                android:id="@+id/textViewJa"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.54"
+                android:background="@drawable/detail_vragen_roundcorner"
+                android:gravity="center"
+                android:inputType="text"
+                android:text="@string/JA"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:visibility="visible" />
+
+            <CheckBox
+                android:id="@+id/checkBoxJa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:checked="true"
+                android:onClick="myCheckListener"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/buttonNee"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/two"
+                android:visibility="visible" />
+
+            <EditText
+                android:id="@+id/textViewNee"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@drawable/detail_vragen_roundcorner"
+                android:gravity="center"
+                android:inputType="text"
+                android:text="@string/NEE"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:visibility="visible" />
+
+            <CheckBox
+                android:id="@+id/checkBoxNee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:onClick="myCheckListener"
+                android:text=""
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/button3"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/three"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/textView3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@drawable/detail_vragen_roundcorner"
+                android:gravity="center"
+                android:inputType="text"
+                android:text="@string/three"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/checkBox3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:onClick="myCheckListener"
+                android:text=""
+                android:visibility="invisible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/button4"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/four"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/textView4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@drawable/detail_vragen_roundcorner"
+                android:gravity="center"
+                android:inputType="text"
+                android:text="@string/four"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/checkBox4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:onClick="myCheckListener"
+                android:text=""
+                android:visibility="invisible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/button5"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/five"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/textView5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@drawable/detail_vragen_roundcorner"
+                android:gravity="center"
+                android:inputType="text"
+                android:text="@string/five"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/checkBox5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:onClick="myCheckListener"
+                android:text=""
+                android:visibility="invisible" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/buttonBewaren"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:background="#696969"
+            android:gravity="center"
+            android:onClick="saveTheQuestionOnCLick"
+            android:padding="20dp"
+            android:text="@string/bewaren"
+            android:textSize="25dp" />
+
+        <Button
+            android:id="@+id/buttonCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:background="#696969"
+            android:gravity="center"
+            android:onClick="cancelTheQuestionOnCLick"
+            android:padding="20dp"
+            android:text="@android:string/cancel"
+            android:textSize="25dp" />
+    </LinearLayout>
+
+</LinearLayout>

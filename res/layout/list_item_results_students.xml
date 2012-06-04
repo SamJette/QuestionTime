@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_selector"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/firstnameResults"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:padding="10dip"
+        android:text="@string/firstname"
+        android:textColor="#040404"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/nameResults"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:padding="10dip"
+        android:text="@string/name"
+        android:textColor="#343434" />
+
+    <TextView
+        android:id="@+id/resultsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@drawable/detail_vragen_roundcorner"
+        android:gravity="center"
+        android:padding="10dip"
+        android:text="1/1"
+        android:textColor="@color/whiteColor" />
+
+</LinearLayout>

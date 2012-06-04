@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayoutTabLeerlingen"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#F2F2F2"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textViewSettingsLeerlingen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20dip"
+            android:text="@string/editDataStudent"
+            android:textColor="#010101"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+        
+                <Button
+            android:id="@+id/buttonDone"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="#9e9e9e"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:onClick="doneEditStudentList"
+            android:text="@android:string/ok"
+            android:textColor="#000000" />
+        
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listViewTabLeerlingen"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:divider="#b5b5b5"
+        android:dividerHeight="1dp"
+        android:listSelector="@drawable/list_selector" >
+    </ListView>
+
+</LinearLayout>

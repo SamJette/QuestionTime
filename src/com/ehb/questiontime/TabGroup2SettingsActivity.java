@@ -3,13 +3,11 @@ package com.ehb.questiontime;
 import android.content.Intent;
 import android.os.Bundle;
 
-public class TabGroup1QuestionActivity extends TabGroupActivity {
-
+public class TabGroup2SettingsActivity extends TabGroupActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		startChildActivity("QuestionTab", new Intent(this, QuestionTab.class));
+		startChildActivity("SettingsTab", new Intent(this, SettingsTab.class));
 
 	}
 

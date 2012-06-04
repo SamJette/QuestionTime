@@ -52,5 +52,7 @@
     <string name="eenVraag">Een vraag ?</string>
     <string name="firstname">Voornaam</string>
         <string name="name">Naam</string>
-    
+        <string name="editDataStudent">Gegevens leerlingen bewerken</string>
+                <string name="sendDataStudent">Gegevens leerlingen verzenden</string>
+        
 </resources>

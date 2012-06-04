@@ -46,7 +46,7 @@ public class MainActivity extends TabActivity {
 
 		tabHost.addTab(spec);
 
-		intent = new Intent().setClass(this, SettingsTab.class);
+		intent = new Intent().setClass(this, TabGroup2SettingsActivity.class);
 		spec = tabHost.newTabSpec("Instellingen")
 				.setIndicator(myTabTextView("Instellingen")).setContent(intent);
 		tabHost.addTab(spec);

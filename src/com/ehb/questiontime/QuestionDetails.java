@@ -140,7 +140,7 @@ public class QuestionDetails extends Activity implements
 
 		/** return to QuestionTab view **/
 		Intent intent = new Intent(getParent(), QuestionTab.class);
-		TabGroupQuestionActivity parentactivity = (TabGroupQuestionActivity) getParent();
+		TabGroupActivity parentactivity = (TabGroupActivity) getParent();
 		parentactivity.startChildActivity("VragenTab", intent);
 
 	}
@@ -150,7 +150,7 @@ public class QuestionDetails extends Activity implements
 
 		/** return to QuestionTab view **/
 		Intent intent = new Intent(getParent(), QuestionTab.class);
-		TabGroupQuestionActivity parentactivity = (TabGroupQuestionActivity) getParent();
+		TabGroupActivity parentactivity = (TabGroupActivity) getParent();
 		parentactivity.startChildActivity("VragenTab", intent);
 
 	}
@@ -264,7 +264,7 @@ public class QuestionDetails extends Activity implements
 			if (checkJa1.isChecked()) {
 				checkNee2.setChecked(false);
 
-			} else if (!isJaNeeVraag) {
+			} else if (!checkJa1.isChecked()) {
 				checkNee2.setChecked(true);
 
 			}
@@ -294,7 +294,7 @@ public class QuestionDetails extends Activity implements
 	public void onBackPressed() {
 		/** return to QuestionTab view **/
 		Intent intent = new Intent(getParent(), QuestionTab.class);
-		TabGroupQuestionActivity parentactivity = (TabGroupQuestionActivity) getParent();
+		TabGroupActivity parentactivity = (TabGroupActivity) getParent();
 		parentactivity.startChildActivity("VragenTab", intent);
 
 	}

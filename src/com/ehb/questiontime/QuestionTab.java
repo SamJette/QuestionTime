@@ -124,10 +124,9 @@ public class QuestionTab extends Activity implements OnItemClickListener {
 	/** onClick - button "Add Question" **/
 	public void onClick(View v) {
 		// Intent i = new Intent(VragenTab.this, VragenDetails.class);
-
 		// startActivityForResult(i, ACTIVITY_DETAIL);
 		Intent intent = new Intent(getParent(), QuestionDetails.class);
-		TabGroupQuestionActivity parentactivity = (TabGroupQuestionActivity) getParent();
+		TabGroupActivity parentactivity = (TabGroupActivity) getParent();
 		parentactivity.startChildActivity("QuestionDetails", intent);
 
 	}
@@ -152,7 +151,7 @@ public class QuestionTab extends Activity implements OnItemClickListener {
 		intent.putExtra(KEY_ANTWOORDTEXT, questions.get(position).answerText);
 
 		Log.d("demo", "question text=" + questions.get(position).questionText);
-		TabGroupQuestionActivity parentactivity = (TabGroupQuestionActivity) getParent();
+		TabGroupActivity parentactivity = (TabGroupActivity) getParent();
 		parentactivity.startChildActivity("VragenDetails", intent);
 
 	}

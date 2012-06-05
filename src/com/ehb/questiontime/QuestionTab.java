@@ -12,6 +12,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
@@ -214,15 +215,30 @@ public class QuestionTab extends Activity {
 
 		switch (item.getItemId()) {
 		case DELETE_ID:
-			Toast.makeText(getApplicationContext(), "Delete the question",
-					Toast.LENGTH_LONG).show();
+
+			AlertDialog alertDialog = new AlertDialog.Builder(getParent())
+					.create();
+			alertDialog.setTitle("Verwijderen...");
+			alertDialog.setMessage("Bent U zeker ?");
+			alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					// here you can add functions
+				}
+			});
+			alertDialog.setButton2("Cancel",
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							return;
+						}
+					});
+
+			alertDialog.setIcon(R.drawable.logo_test2);
+			alertDialog.show();
+			// Toast.makeText(getApplicationContext(), "Delete the question",
+			// Toast.LENGTH_LONG).show();
 			break;
 
 		case PUSH_ID:
-			// AdapterView.AdapterContextMenuInfo info =
-			// (AdapterView.AdapterContextMenuInfo) item
-			// .getMenuInfo();
-			// int index = info.position;
 
 			Push(item);
 		}

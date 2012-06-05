@@ -11,6 +11,7 @@ import android.app.TabActivity;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -29,16 +30,24 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
 import com.loopj.android.http.RequestParams;
 
-
 /**
  * 
- * @author Patricia Meeremans, Kristof Polleunis, Anderson Muela, Collin Koolenbrander<br>
+ * @author Patricia Meeremans, Kristof Polleunis, Anderson Muela, Collin
+ *         Koolenbrander<br>
  * @version 1.0<br>
- * 04-juni-2012<br>
+ *          04-juni-2012<br>
  */
 
 public class MainActivity extends TabActivity {
 	/** Called when the activity is first created. */
+
+	/** variables for the shared prefs */
+	static final String KEY_USERNAME = "username";
+	static final String KEY_PASSWORD = "password";
+	static final String KEY_CLASSID = "classId";
+
+	public static final String PREFS_NAME = "LoginPrefs";
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -127,6 +136,8 @@ public class MainActivity extends TabActivity {
 	}
 
 	private void showAccessPopUpDialog() {
+		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+
 		final AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
 		helpBuilder.setTitle(R.string._loginscreen_title);
 		helpBuilder.setMessage(R.string._login_message);
@@ -140,7 +151,16 @@ public class MainActivity extends TabActivity {
 		inputName.setSingleLine();
 		inputName.setWidth(200);
 		inputName.setInputType(InputType.TYPE_CLASS_TEXT);
-		inputName.setText("");
+
+		// editor.putString("teacher[email]", inputUserTxt);
+		// editor.putString("teacher[password]", inputPasswordTxt);
+		// editor.putString("teacher[classid]", inputClassTxt);
+
+		String emailLogin = settings.getString("teacher[email]", null);
+		if (emailLogin == null)
+			inputName.setText("");
+		else
+			inputName.setText(emailLogin);
 
 		final TextView LabelClass = new TextView(this);
 		LabelClass.setWidth(100);
@@ -200,7 +220,7 @@ public class MainActivity extends TabActivity {
 		helpBuilder.setPositiveButton(R.string._login,
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-						/**Do nothing but close the dialog*/
+						/** Do nothing but close the dialog */
 						String inputUserTxt = inputName.getText().toString();
 						String inputPasswordTxt = inputPass.getText()
 								.toString();
@@ -210,6 +230,15 @@ public class MainActivity extends TabActivity {
 						params.put("teacher[email]", inputUserTxt);
 						params.put("teacher[password]", inputPasswordTxt);
 						params.put("teacher[classid]", inputClassTxt);
+
+						SharedPreferences settings = getSharedPreferences(
+								PREFS_NAME, 0);
+						SharedPreferences.Editor editor = settings.edit();
+						editor.putString("teacher[email]", inputUserTxt);
+						editor.putString("teacher[password]", inputPasswordTxt);
+						editor.putString("teacher[classid]", inputClassTxt);
+
+						editor.commit();
 
 						try {
 							login(params);
@@ -234,8 +263,10 @@ public class MainActivity extends TabActivity {
 
 		helpDialog.show();
 
-		helpDialog.getWindow().setLayout(450, 430); /** Controlling width and
-													 height*/
+		helpDialog.getWindow().setLayout(450, 430);
+		/**
+		 * Controlling width and height
+		 */
 	}
 
 	public void login(RequestParams params) throws JSONException {

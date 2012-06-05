@@ -17,5 +17,3 @@ local.properties
 
 # other
 .DS_Store
-
-gen/com/ehb/questiontime/R.java

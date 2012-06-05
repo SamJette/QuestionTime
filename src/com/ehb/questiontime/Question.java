@@ -8,6 +8,9 @@ public class Question {
 	public String questionText;
 	public String teachersID;
 	public String isGepusht;
+	public String createdDate;
+	public String deleteDate;
+	public String updateDate;
 
 	public int answerID;
 	public ArrayList<Answer> answers;

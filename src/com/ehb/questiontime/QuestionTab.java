@@ -80,7 +80,7 @@ public class QuestionTab extends Activity {
 
 			@Override
 			public void onStart() {
-				dialog = ProgressDialog.show(QuestionTab.this, "Loading",
+				dialog = ProgressDialog.show(QuestionTab.this.getParent(), "Loading",
 						"Data loading", true, true, new OnCancelListener() {
 							public void onCancel(DialogInterface dialog) {
 								dialog.dismiss();

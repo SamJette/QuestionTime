@@ -7,7 +7,9 @@ import org.xml.sax.helpers.DefaultHandler;
 public class QuestionDetailParser extends DefaultHandler {
 
 	public ArrayList<Question> questions;
+	@SuppressWarnings("unused")
 	private Question tempQuestion;
+	@SuppressWarnings("unused")
 	private StringBuilder builder;
 
 	/** XML node keys **/

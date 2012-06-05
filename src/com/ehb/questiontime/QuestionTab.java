@@ -7,7 +7,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -22,7 +21,6 @@ import android.util.Log;
 import android.util.Xml;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,7 +34,6 @@ import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-
 
 public class QuestionTab extends Activity {
 	/** XML node keys **/
@@ -64,7 +61,7 @@ public class QuestionTab extends Activity {
 	}
 
 	/** method to refresh the question list via the menu **/
-	
+
 	public void refreshQuestionList() {
 
 		questionListing();
@@ -86,7 +83,7 @@ public class QuestionTab extends Activity {
 
 			@Override
 			public void onStart() {
-				dialog = ProgressDialog.show(QuestionTab.this.getParent(), "Loading",
+				dialog = ProgressDialog.show(getParent(), "Loading",
 						"Data loading", true, true, new OnCancelListener() {
 							public void onCancel(DialogInterface dialog) {
 								dialog.dismiss();
@@ -101,8 +98,8 @@ public class QuestionTab extends Activity {
 
 				ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
 
-				/**create an instance of our parser*/
-				
+				/** create an instance of our parser */
+
 				QuestionParser parser = new QuestionParser();
 
 				SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -136,8 +133,7 @@ public class QuestionTab extends Activity {
 					e.printStackTrace();
 				}
 				questions = parser.questions;
-				 Log.d("demo", "Questions in the getQuestions()= " +
-				 questions);
+				Log.d("demo", "Questions in the getQuestions()= " + questions);
 
 				for (int i = 0; i < questions.size(); i++) {
 					Question temp = questions.get(i);
@@ -244,36 +240,39 @@ public class QuestionTab extends Activity {
 	public void onPushButtonClick(View v) {
 		Toast.makeText(getApplicationContext(), "Push the question",
 				Toast.LENGTH_LONG).show();
-				//Push(MenuItem item);
-		
+		// Push(MenuItem item);
 
 	}
-	public void Push(MenuItem item ) {
+
+	public void Push(MenuItem item) {
 
 		RequestParams params = new RequestParams();
-		
-		String id = ""+ item.getItemId();//Als we weten welke vraag het is
-		
+
+		String id = "" + item.getItemId();// Als we weten welke vraag het is
+
 		params.put("question[ispushed]", "1");
-		
-		RestClient.put("questions/"+id, params, new JsonHttpResponseHandler() {
-			private ProgressDialog dialog;
 
-			public void onStart() {
-				dialog = ProgressDialog.show(QuestionTab.this, "Loading",
-						"Data loading", true, true, new OnCancelListener() {
-							public void onCancel(DialogInterface dialog) {
-								dialog.dismiss();
-							}
-						});
-			}
+		RestClient.put("questions/" + id, params,
+				new JsonHttpResponseHandler() {
+					private ProgressDialog dialog;
 
-			@Override
-			public void onSuccess(JSONObject response) {
-				//go the resultspage
-				Log.d("success","pushed");
-			}
-		});
+					@Override
+					public void onStart() {
+						dialog = ProgressDialog.show(QuestionTab.this,
+								"Loading", "Data loading", true, true,
+								new OnCancelListener() {
+									public void onCancel(DialogInterface dialog) {
+										dialog.dismiss();
+									}
+								});
+					}
+
+					@Override
+					public void onSuccess(JSONObject response) {
+						// go the resultspage
+						Log.d("success", "pushed");
+					}
+				});
 
 	}
 

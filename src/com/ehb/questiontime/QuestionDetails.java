@@ -120,8 +120,8 @@ public class QuestionDetails extends Activity implements
 		aQuestion.answerText = answerText;
 		questions.add(aQuestion);
 
-		/**ja/Nee vraag **/
-		
+		/** ja/Nee vraag **/
+
 		if (isJaNeeVraag) {
 			Log.d("demo", "isJaNeeVraag");
 
@@ -146,7 +146,7 @@ public class QuestionDetails extends Activity implements
 
 	}
 
-		/** method to cancel and return to the Question tab **/
+	/** method to cancel and return to the Question tab **/
 	public void cancelTheQuestionOnCLick(View v) {
 
 		/** return to QuestionTab view **/
@@ -259,7 +259,7 @@ public class QuestionDetails extends Activity implements
 	}
 
 	/** method for the checkboxes **/
-	
+
 	public void myCheckListener(View v) {
 		if (isJaNeeVraag) {
 			if (checkJa1.isChecked()) {
@@ -299,4 +299,5 @@ public class QuestionDetails extends Activity implements
 		parentactivity.startChildActivity("VragenTab", intent);
 
 	}
+
 }

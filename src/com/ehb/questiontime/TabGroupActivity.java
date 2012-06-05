@@ -51,8 +51,9 @@ public class TabGroupActivity extends ActivityGroup {
 
 	@Override
 	public void onBackPressed() {
-		TabGroupActivity parentActivity = (TabGroupActivity) getParent();
-		parentActivity.onBackPressed();
+		// TabGroupActivity parentActivity = (TabGroupActivity) getParent();
+		// parentActivity.onBackPressed();
+		finishFromChild(getParent());
 
 	}
 

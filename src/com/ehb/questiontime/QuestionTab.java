@@ -23,6 +23,7 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnCreateContextMenuListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -31,7 +32,7 @@ import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
-public class QuestionTab extends Activity implements OnItemClickListener {
+public class QuestionTab extends Activity {
 	/** XML node keys **/
 	static final String KEY_ROW = "row"; // parent node
 	static final String KEY_DATA = "data";
@@ -151,25 +152,47 @@ public class QuestionTab extends Activity implements OnItemClickListener {
 				myListview.setAdapter(adapter);
 
 				/** to create a Context Menu for the "long press" **/
-				myListview.setOnCreateContextMenuListener(this);
+				myListview
+						.setOnCreateContextMenuListener(new OnCreateContextMenuListener() {
+
+							/** long press to delete, to copy, to push ? .... **/
+							@Override
+							public void onCreateContextMenu(ContextMenu menu,
+									View v, ContextMenuInfo menuInfo) {
+								// super.onCreateContextMenu(menu, v, menuInfo);
+								menu.setHeaderTitle("CONTEXT MENU");
+								menu.add(0, DELETE_ID, 0, R.string.menu_delete);
+							}
+						});
 				myListview.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 				/** click on an item in the listView **/
 
-				myListview.setOnItemClickListener(this);
+				myListview.setOnItemClickListener(new OnItemClickListener() {
+
+					/** click on a row **/
+					@Override
+					public void onItemClick(AdapterView<?> arg0, View view,
+							int position, long arg3) {
+						Intent intent = new Intent(getParent(),
+								QuestionDetails.class);
+
+						intent.putExtra(KEY_QUESTION,
+								questions.get(position).questionText);
+
+						Log.d("demo",
+								"question text="
+										+ questions.get(position).questionText);
+						TabGroupActivity parentactivity = (TabGroupActivity) getParent();
+						parentactivity.startChildActivity("VragenDetails",
+								intent);
+
+					}
+				});
 
 				System.out.println(response);
 			}
 		});
 
-	}
-
-	/** long press to delete, to copy, to push ? .... **/
-	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v,
-			ContextMenuInfo menuInfo) {
-		super.onCreateContextMenu(menu, v, menuInfo);
-		menu.setHeaderTitle("CONTEXT MENU");
-		menu.add(0, DELETE_ID, 0, R.string.menu_delete);
 	}
 
 	/** one of the Context Item is selected **/
@@ -209,20 +232,6 @@ public class QuestionTab extends Activity implements OnItemClickListener {
 	protected void onActivityResult(int requestCode, int resultCode,
 			Intent intent) {
 		super.onActivityResult(requestCode, resultCode, intent);
-	}
-
-	/** click on a row **/
-	@Override
-	public void onItemClick(AdapterView<?> arg0, View view, int position,
-			long arg3) {
-		Intent intent = new Intent(getParent(), QuestionDetails.class);
-
-		intent.putExtra(KEY_QUESTION, questions.get(position).questionText);
-
-		Log.d("demo", "question text=" + questions.get(position).questionText);
-		TabGroupActivity parentactivity = (TabGroupActivity) getParent();
-		parentactivity.startChildActivity("VragenDetails", intent);
-
 	}
 
 	/** the push button clicker **/

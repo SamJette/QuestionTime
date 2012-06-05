@@ -9,39 +9,64 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="20dip"
         android:text="@string/settingsString"
         android:textColor="#040404"
         android:textSize="30dp"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/buttonLeerkracht"
-        android:layout_width="400dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:background="@drawable/detail_vragen_roundcorner"
-        android:gravity="center"
-        android:text="Login - password" />
+        android:gravity="center" >
 
-    <Button
-        android:id="@+id/buttonGegevensWijzigen"
-        android:layout_width="400dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:background="@drawable/detail_vragen_roundcorner"
-        android:gravity="center"
-        android:text="@string/editDataStudent" />
+        <Button
+            android:id="@+id/buttonLeerkracht"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:background="@drawable/detail_vragen_roundcorner"
+            android:gravity="center"
+            android:text="@string/loginPasswordTeacher" />
 
-    <Button
-        android:id="@+id/buttonGegevensVerzenden"
-        android:layout_width="400dp"
+        <Button
+            android:id="@+id/buttonAfmelden"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:background="@drawable/detail_vragen_roundcorner"
+            android:gravity="center"
+            android:text="@string/afmelden" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:background="@drawable/detail_vragen_roundcorner"
-        android:gravity="center"
-        android:text="Gegevens leerlingen verzenden" />
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/buttonGegevensWijzigen"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:background="@drawable/detail_vragen_roundcorner"
+            android:gravity="center"
+            android:text="@string/editDataStudent" />
+
+        <Button
+            android:id="@+id/buttonGegevensVerzenden"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:background="@drawable/detail_vragen_roundcorner"
+            android:gravity="center"
+            android:text="Gegevens leerlingen verzenden" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,12 +1,7 @@
 package com.ehb.questiontime;
 
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.PersistentCookieStore;
-import com.loopj.android.http.RequestParams;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -14,8 +9,8 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.app.TabActivity;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.DialogInterface.OnCancelListener;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -30,6 +25,10 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.PersistentCookieStore;
+import com.loopj.android.http.RequestParams;
+
 public class MainActivity extends TabActivity {
 	/** Called when the activity is first created. */
 	@Override
@@ -39,9 +38,8 @@ public class MainActivity extends TabActivity {
 		PersistentCookieStore myCookieStore = new PersistentCookieStore(this);
 		RestClient.client.setCookieStore(myCookieStore);
 
-
 		/** action bar **/
-		
+
 		ActionBar actionBar = getActionBar();
 		actionBar.setTitle("Question Time");
 		actionBar.hide();
@@ -67,7 +65,7 @@ public class MainActivity extends TabActivity {
 
 		tabHost.addTab(spec);
 
-		intent = new Intent().setClass(this, SettingsTab.class);
+		intent = new Intent().setClass(this, TabGroup2SettingsActivity.class);
 		spec = tabHost.newTabSpec("Instellingen")
 				.setIndicator(myTabTextView("Instellingen")).setContent(intent);
 		tabHost.addTab(spec);
@@ -111,9 +109,10 @@ public class MainActivity extends TabActivity {
 		}
 		return false;
 	}
-	
+
 	/** login **/
-	
+
+	@Override
 	protected void onStart() {
 		super.onStart();
 		showAccessPopUpDialog();
@@ -192,6 +191,7 @@ public class MainActivity extends TabActivity {
 
 		helpBuilder.setPositiveButton(R.string._login,
 				new DialogInterface.OnClickListener() {
+					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// Do nothing but close the dialog
 						String inputUserTxt = inputName.getText().toString();
@@ -241,6 +241,7 @@ public class MainActivity extends TabActivity {
 			private String _email;
 			private String _allowed = null;
 
+			@Override
 			public void onStart() {
 				dialog = ProgressDialog.show(MainActivity.this, "Loading",
 						"Data Loading", true, true, new OnCancelListener() {

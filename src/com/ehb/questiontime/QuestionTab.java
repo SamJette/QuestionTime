@@ -31,8 +31,6 @@ public class QuestionTab extends Activity implements OnItemClickListener {
 	private ListView m_listview;
 
 	private static final int DELETE_ID = Menu.FIRST + 1;
-	private static final int PUSH_ID = Menu.FIRST + 2;
-	private static final int COPY_ID = Menu.FIRST + 3;
 
 	public Question aQuestion;
 	public ArrayList<Question> questions = new ArrayList<Question>();
@@ -90,7 +88,6 @@ public class QuestionTab extends Activity implements OnItemClickListener {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		menu.setHeaderTitle("CONTEXT MENU");
 		menu.add(0, DELETE_ID, 0, R.string.menu_delete);
-		menu.add(0, COPY_ID, 0, android.R.string.copy);
 	}
 
 	/** one of the Context Item is selected **/
@@ -105,14 +102,6 @@ public class QuestionTab extends Activity implements OnItemClickListener {
 		switch (item.getItemId()) {
 		case DELETE_ID:
 			Toast.makeText(getApplicationContext(), "Delete the question",
-					Toast.LENGTH_LONG).show();
-			break;
-		case PUSH_ID:
-			Toast.makeText(getApplicationContext(), "Push the question",
-					Toast.LENGTH_LONG).show();
-			break;
-		case COPY_ID:
-			Toast.makeText(getApplicationContext(), "Copy the question",
 					Toast.LENGTH_LONG).show();
 			break;
 

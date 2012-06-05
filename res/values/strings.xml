@@ -10,8 +10,7 @@
     <string name="vragenSetLijstString">VragenSetLijst</string>
     <string name="leerlingenLijstString">Leerlingen Lijst</string>
     <string name="resultatenString">Resultaten Lijst</string>
-        <string name="settingsString">Instellingen</string>
-    
+    <string name="settingsString">Instellingen</string>
     <string name="vraag_edit_vraag">Vraag</string>
     <string name="vraag_edit_antwoord">Antwoord</string>
     <string name="vraag_edit_confirm">Bewaren</string>
@@ -51,8 +50,10 @@
     <string name="jaNeeVraag">Ja/Nee vraag ?</string>
     <string name="eenVraag">Een vraag ?</string>
     <string name="firstname">Voornaam</string>
-        <string name="name">Naam</string>
-        <string name="editDataStudent">Gegevens leerlingen bewerken</string>
-                <string name="sendDataStudent">Gegevens leerlingen verzenden</string>
-        
+    <string name="name">Naam</string>
+    <string name="editDataStudent">Gegevens leerlingen bewerken</string>
+    <string name="sendDataStudent">Gegevens leerlingen verzenden</string>
+    <string name="loginPasswordTeacher">Login/wachtwoord veranderen</string>
+    <string name="afmelden">Afmelden</string>
+
 </resources>

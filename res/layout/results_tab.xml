@@ -11,6 +11,8 @@
         android:layout_height="wrap_content"
         android:text="@string/resultatenString"
             android:textColor="#040404"
+                    android:padding="20dip"
+            
         android:textSize="30dp"
         android:textStyle="bold" />
     

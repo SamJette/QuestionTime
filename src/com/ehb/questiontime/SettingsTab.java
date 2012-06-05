@@ -8,12 +8,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class SettingsTab extends Activity implements OnClickListener {
 
 	private Button buttonTeachers;
 	private Button buttonEditDataStudent;
 	private Button buttonSendDataStudent;
+	private Button buttonAfmelden;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +25,12 @@ public class SettingsTab extends Activity implements OnClickListener {
 		buttonTeachers = (Button) findViewById(R.id.buttonLeerkracht);
 		buttonEditDataStudent = (Button) findViewById(R.id.buttonGegevensWijzigen);
 		buttonSendDataStudent = (Button) findViewById(R.id.buttonGegevensVerzenden);
+		buttonAfmelden = (Button) findViewById(R.id.buttonAfmelden);
 
 		buttonEditDataStudent.setOnClickListener(this);
 		buttonSendDataStudent.setOnClickListener(this);
 		buttonTeachers.setOnClickListener(this);
+		buttonAfmelden.setOnClickListener(this);
 
 	}
 
@@ -82,6 +86,9 @@ public class SettingsTab extends Activity implements OnClickListener {
 			Intent i = new Intent(getParent(), SettingsStudentSend.class);
 			TabGroupActivity pactivity = (TabGroupActivity) getParent();
 			pactivity.startChildActivity("SettingsStudentSend", i);
+
+		case R.id.buttonAfmelden:
+			Toast.makeText(this, "Afmelden", Toast.LENGTH_LONG);
 
 		}
 	}

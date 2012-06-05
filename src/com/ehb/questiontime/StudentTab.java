@@ -148,10 +148,10 @@ public class StudentTab extends Activity {
 					Log.d("demo", "is on line= " + temp.isOnLine);
 					if (temp.isOnLine.equalsIgnoreCase("1")) {
 						map.put(KEY_IMAGE_ISONLINE,
-								com.ehb.questiontime.R.drawable.vert);
+								com.ehb.questiontime.R.drawable.online);
 					} else {
 						map.put(KEY_IMAGE_ISONLINE,
-								com.ehb.questiontime.R.drawable.orange);
+								com.ehb.questiontime.R.drawable.offline);
 					}
 
 					listItem.add(map);

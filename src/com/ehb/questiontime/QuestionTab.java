@@ -57,15 +57,15 @@ public class QuestionTab extends Activity {
 		questionListing();
 	}
 
-	/** method to refresh the student list via the menu **/
+	/** method to refresh the question list via the menu **/
 	
-	public void refreshStudentList() {
+	public void refreshQuestionList() {
 
 		questionListing();
 
 	}
 
-	/** method to refresh the student list via the button **/
+	/** method to refresh the question list via the button **/
 
 	public void refreshQuestionList(View v) {
 
@@ -130,8 +130,8 @@ public class QuestionTab extends Activity {
 					e.printStackTrace();
 				}
 				questions = parser.questions;
-				// Log.d("demo", "Students in the getStudents()= " +
-				// students);
+				 Log.d("demo", "Questions in the getQuestions()= " +
+				 questions);
 
 				for (int i = 0; i < questions.size(); i++) {
 					Question temp = questions.get(i);
@@ -157,7 +157,6 @@ public class QuestionTab extends Activity {
 						.setOnCreateContextMenuListener(new OnCreateContextMenuListener() {
 
 							/** long press to delete, to copy, to push ? .... **/
-							@Override
 							public void onCreateContextMenu(ContextMenu menu,
 									View v, ContextMenuInfo menuInfo) {
 								// super.onCreateContextMenu(menu, v, menuInfo);
@@ -171,7 +170,6 @@ public class QuestionTab extends Activity {
 				myListview.setOnItemClickListener(new OnItemClickListener() {
 
 					/** click on a row **/
-					@Override
 					public void onItemClick(AdapterView<?> arg0, View view,
 							int position, long arg3) {
 						Intent intent = new Intent(getParent(),

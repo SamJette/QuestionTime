@@ -7,6 +7,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
@@ -20,6 +22,7 @@ import android.util.Log;
 import android.util.Xml;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,6 +34,9 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
 
 public class QuestionTab extends Activity {
 	/** XML node keys **/
@@ -156,7 +162,7 @@ public class QuestionTab extends Activity {
 				myListview
 						.setOnCreateContextMenuListener(new OnCreateContextMenuListener() {
 
-							/** long press to delete, to copy, to push ? .... **/
+							/** long press to delete ? .... **/
 							public void onCreateContextMenu(ContextMenu menu,
 									View v, ContextMenuInfo menuInfo) {
 								// super.onCreateContextMenu(menu, v, menuInfo);
@@ -238,6 +244,36 @@ public class QuestionTab extends Activity {
 	public void onPushButtonClick(View v) {
 		Toast.makeText(getApplicationContext(), "Push the question",
 				Toast.LENGTH_LONG).show();
+				//Push(MenuItem item);
+		
+
+	}
+	public void Push(MenuItem item ) {
+
+		RequestParams params = new RequestParams();
+		
+		String id = ""+ item.getItemId();//Als we weten welke vraag het is
+		
+		params.put("question[ispushed]", "1");
+		
+		RestClient.put("questions/"+id, params, new JsonHttpResponseHandler() {
+			private ProgressDialog dialog;
+
+			public void onStart() {
+				dialog = ProgressDialog.show(QuestionTab.this, "Loading",
+						"Data loading", true, true, new OnCancelListener() {
+							public void onCancel(DialogInterface dialog) {
+								dialog.dismiss();
+							}
+						});
+			}
+
+			@Override
+			public void onSuccess(JSONObject response) {
+				//go the resultspage
+				Log.d("success","pushed");
+			}
+		});
 
 	}
 

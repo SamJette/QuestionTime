@@ -31,15 +31,15 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 public class StudentTab extends Activity {
 
-	// dialog onItemClick
+	/** dialog onItemClick **/
 	static final private int STUDENT_DIALOG = 1;
 
-	// other variables
+	/** other variables **/
 	public Student aStudent;
 	private ListView myListView;
 	public ArrayList<Student> students;
 
-	// keys
+	/** keys **/
 	static final String KEY_ROW = "row"; // parent node
 	static final String KEY_DATA = "data";
 	static final String KEY_ID = "ID";

@@ -130,7 +130,7 @@ public class QuestionTab extends Activity implements OnItemClickListener {
 		super.onActivityResult(requestCode, resultCode, intent);
 	}
 
-	// click on a row
+	/** click on a row **/
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View view, int position,
 			long arg3) {

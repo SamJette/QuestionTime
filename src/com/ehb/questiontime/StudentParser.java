@@ -11,7 +11,7 @@ public class StudentParser extends DefaultHandler {
 	private Student tempStudent;
 	private StringBuilder builder;
 
-	// XML node keys
+	/** XML node keys **/
 	static final String KEY_ROW = "row"; // parent node
 	static final String KEY_DATA = "data";
 	static final String KEY_ID = "ID";

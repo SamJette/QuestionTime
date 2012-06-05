@@ -89,7 +89,7 @@ public class QuestionDetails extends Activity implements
 
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
-			String vragenText = extras.getString(QuestionTab.KEY_VRAGENTEXT);
+			String vragenText = extras.getString(QuestionTab.KEY_QUESTION);
 			Log.d("demo", "Bundel: vragen Text in detail view: " + vragenText);
 			if (vragenText != null) {
 				editQuestionText.setText(vragenText);

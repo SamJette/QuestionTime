@@ -47,7 +47,8 @@ public class QuestionTab extends Activity {
 
 	private ListView myListview;
 
-	private static final int DELETE_ID = Menu.FIRST + 1;
+	private static final int DELETE_ID = Menu.FIRST;
+	private static final int PUSH_ID = Menu.FIRST + 1;
 
 	public Question aQuestion;
 	public ArrayList<Question> questions = new ArrayList<Question>();
@@ -164,6 +165,7 @@ public class QuestionTab extends Activity {
 								// super.onCreateContextMenu(menu, v, menuInfo);
 								menu.setHeaderTitle("CONTEXT MENU");
 								menu.add(0, DELETE_ID, 0, R.string.menu_delete);
+								menu.add(0, PUSH_ID, 0, R.string.push);
 							}
 						});
 				myListview.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
@@ -174,6 +176,10 @@ public class QuestionTab extends Activity {
 					/** click on a row **/
 					public void onItemClick(AdapterView<?> arg0, View view,
 							int position, long arg3) {
+
+						Log.w("TAG", "onItemClick clicked position :"
+								+ position);
+
 						Intent intent = new Intent(getParent(),
 								QuestionDetails.class);
 
@@ -188,6 +194,7 @@ public class QuestionTab extends Activity {
 								intent);
 
 					}
+
 				});
 
 				System.out.println(response);
@@ -210,6 +217,14 @@ public class QuestionTab extends Activity {
 			Toast.makeText(getApplicationContext(), "Delete the question",
 					Toast.LENGTH_LONG).show();
 			break;
+
+		case PUSH_ID:
+			// AdapterView.AdapterContextMenuInfo info =
+			// (AdapterView.AdapterContextMenuInfo) item
+			// .getMenuInfo();
+			// int index = info.position;
+
+			Push(item);
 		}
 
 		return super.onContextItemSelected(item);
@@ -246,9 +261,17 @@ public class QuestionTab extends Activity {
 
 	public void Push(MenuItem item) {
 
+		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
+				.getMenuInfo();
+		int index = info.position;
+
+		Log.d("demo", "index= " + index);
+		Log.d("demo", "getItemId()= " + item.getItemId());
+
 		RequestParams params = new RequestParams();
 
-		String id = "" + item.getItemId();// Als we weten welke vraag het is
+		// String id = "" + item.getItemId();// Als we weten welke vraag het is
+		String id = "" + index;
 
 		params.put("question[ispushed]", "1");
 
@@ -258,8 +281,8 @@ public class QuestionTab extends Activity {
 
 					@Override
 					public void onStart() {
-						dialog = ProgressDialog.show(QuestionTab.this,
-								"Loading", "Data loading", true, true,
+						dialog = ProgressDialog.show(getParent(), "Loading",
+								"Data loading", true, true,
 								new OnCancelListener() {
 									public void onCancel(DialogInterface dialog) {
 										dialog.dismiss();

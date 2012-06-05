@@ -90,8 +90,8 @@ public class QuestionDetailParser extends DefaultHandler {
 
 	@Override
 	public void startDocument() throws SAXException {
-		// TODO Auto-generated method stub
-		super.startDocument();
+		questions = new ArrayList<Question>();
+
 	}
 
 	@Override

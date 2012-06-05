@@ -3,12 +3,12 @@ package com.ehb.questiontime;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class SettingsTab extends Activity implements OnClickListener {
 
@@ -16,6 +16,7 @@ public class SettingsTab extends Activity implements OnClickListener {
 	private Button buttonEditDataStudent;
 	private Button buttonSendDataStudent;
 	private Button buttonAfmelden;
+	public static final String PREFS_NAME = "LoginPrefs";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +86,16 @@ public class SettingsTab extends Activity implements OnClickListener {
 			pactivity.startChildActivity("SettingsStudentSend", i);
 
 		case R.id.buttonAfmelden:
-			Toast.makeText(this, "Afmelden", Toast.LENGTH_LONG);
+			Log.d("demo", "onClickChangeDataStudents - buttonAfmelden");
+
+			SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+			SharedPreferences.Editor editor = settings.edit();
+			editor.remove("teacher[email]");
+			editor.remove("teacher[password]");
+			editor.remove("teacher[classid]");
+
+			editor.commit();
+			finish();
 
 		}
 	}

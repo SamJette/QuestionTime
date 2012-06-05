@@ -152,10 +152,6 @@ public class MainActivity extends TabActivity {
 		inputName.setWidth(200);
 		inputName.setInputType(InputType.TYPE_CLASS_TEXT);
 
-		// editor.putString("teacher[email]", inputUserTxt);
-		// editor.putString("teacher[password]", inputPasswordTxt);
-		// editor.putString("teacher[classid]", inputClassTxt);
-
 		String emailLogin = settings.getString("teacher[email]", null);
 		if (emailLogin == null)
 			inputName.setText("");
@@ -170,7 +166,12 @@ public class MainActivity extends TabActivity {
 		inputClass.setSingleLine();
 		inputClass.setWidth(200);
 		inputClass.setInputType(InputType.TYPE_CLASS_TEXT);
-		inputClass.setText("");
+
+		String classId = settings.getString("teacher[classid]", null);
+		if (classId == null)
+			inputClass.setText("");
+		else
+			inputClass.setText(classId);
 
 		final TextView LabelPass = new TextView(this);
 		LabelPass.setWidth(100);
@@ -181,7 +182,12 @@ public class MainActivity extends TabActivity {
 		inputPass.setWidth(200);
 		inputPass.setInputType(InputType.TYPE_CLASS_TEXT
 				| InputType.TYPE_TEXT_VARIATION_PASSWORD);
-		inputPass.setText("");
+
+		String password = settings.getString("teacher[password]", null);
+		if (password == null)
+			inputPass.setText("");
+		else
+			inputPass.setText(password);
 
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
 				RelativeLayout.LayoutParams.WRAP_CONTENT,

@@ -58,6 +58,7 @@ public class QuestionTab extends Activity {
 	}
 
 	/** method to refresh the student list via the menu **/
+	
 	public void refreshStudentList() {
 
 		questionListing();
@@ -81,7 +82,6 @@ public class QuestionTab extends Activity {
 			public void onStart() {
 				dialog = ProgressDialog.show(QuestionTab.this, "Loading",
 						"Data loading", true, true, new OnCancelListener() {
-							@Override
 							public void onCancel(DialogInterface dialog) {
 								dialog.dismiss();
 							}
@@ -95,7 +95,8 @@ public class QuestionTab extends Activity {
 
 				ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
 
-				// create an instance of our parser
+				/**create an instance of our parser*/
+				
 				QuestionParser parser = new QuestionParser();
 
 				SAXParserFactory factory = SAXParserFactory.newInstance();

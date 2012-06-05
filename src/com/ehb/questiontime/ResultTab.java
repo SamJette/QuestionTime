@@ -30,7 +30,8 @@ public class ResultTab extends Activity {
 	public static final ArrayList<Result> results = new ArrayList<Result>();
 	public static final ArrayList<Answer> answers = new ArrayList<Answer>();
 
-	// private ArrayList<Result> resultArray
+	/** private ArrayList<Result> resultArray */
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub

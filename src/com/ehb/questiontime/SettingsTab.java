@@ -40,7 +40,6 @@ public class SettingsTab extends Activity implements OnClickListener {
 		super.onActivityResult(requestCode, resultCode, intent);
 	}
 
-	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.buttonLeerkracht:
@@ -54,7 +53,6 @@ public class SettingsTab extends Activity implements OnClickListener {
 					.findViewById(R.id.buttonBewaren);
 			buttonBewaren.setOnClickListener(new OnClickListener() {
 
-				@Override
 				public void onClick(View v) {
 					dialog.dismiss();
 				}
@@ -64,7 +62,6 @@ public class SettingsTab extends Activity implements OnClickListener {
 					.findViewById(R.id.buttonCancel);
 			buttonCancel.setOnClickListener(new OnClickListener() {
 
-				@Override
 				public void onClick(View v) {
 					dialog.dismiss();
 				}

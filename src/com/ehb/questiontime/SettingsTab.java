@@ -1,9 +1,17 @@
 package com.ehb.questiontime;
 
+import org.json.JSONObject;
+
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.DialogInterface.OnCancelListener;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -95,8 +103,30 @@ public class SettingsTab extends Activity implements OnClickListener {
 			editor.remove("teacher[classid]");
 
 			editor.commit();
-			finish();
-
+			Logout();
+			
 		}
+	}
+
+	public void Logout() {
+		RestClient.get("logout", null,new JsonHttpResponseHandler() {
+			
+			public void onStart() {
+				Log.d("logout", "started");
+			}
+
+			public void onSuccess() {
+				// go the resultspage
+				Log.d("logout", "logout");
+				finish();
+				
+			}
+			public void onFailure() {
+				// go the resultspage
+				Log.d("logout", "failed");
+				finish();
+				
+			}
+		});
 	}
 }

@@ -61,7 +61,7 @@ public class QuestionDetails extends Activity implements
 	Button button5;
 
 	public Question aQuestion;
-	// public Answer anAnswer;
+	public Answer anAnswer;
 
 	// public ArrayList<Question> questions = new ArrayList<Question>();
 	// public ArrayList<Answer> answers = new ArrayList<Answer>();
@@ -184,23 +184,60 @@ public class QuestionDetails extends Activity implements
 						aQuestion = parser.tempQuestion;
 						editQuestionText.setText(aQuestion.questionText);
 
-						aQuestion.answers = parser.answers;
+						// aQuestion.answers = parser.answers;
+						anAnswer = parser.tempAnswer;
 
-						Log.d("demo",
-								"answers size = " + aQuestion.answers.size());
+						// Log.d("demo",
+						// "answers size = " + aQuestion.answers.size());
+						Log.d("demo", "answer text = " + anAnswer.answerText);
+						editJa1InvulVraag.setText(anAnswer.answerText);
 
-						for (int i = 0; i < aQuestion.answers.size(); i++) {
-							Answer temp = aQuestion.answers.get(i);
-							if (temp.answerText.equals(null)) {
-								editJa1InvulVraag
-										.setText("geen antwoord gevonden");
+						if (aQuestion.isOpen.equalsIgnoreCase("1")) {
+							/*
+							 * isInvulVraag = true; isJaNeeVraag = false;
+							 * isMeerKeuzeVraag = false;
+							 */
+
+							radioInvulVraag.setChecked(true);
+							radioJaNeeVraag.setChecked(false);
+							radioMeerKeuzeVraag.setChecked(false);
+						} else {
+							if (anAnswer.answerText.equalsIgnoreCase("Ja")
+									|| anAnswer.answerText
+											.equalsIgnoreCase("Nee")) {
+								/*
+								 * isInvulVraag = false; isJaNeeVraag = true;
+								 * isMeerKeuzeVraag = false;
+								 */
+
+								radioInvulVraag.setChecked(false);
+								radioJaNeeVraag.setChecked(true);
+								radioMeerKeuzeVraag.setChecked(false);
+
 							} else {
-								Log.d("demo", "answers = " + temp.answerText);
-								editJa1InvulVraag.setText(temp.answerText);
+								/*
+								 * isInvulVraag = false; isJaNeeVraag = false;
+								 * isMeerKeuzeVraag = true;
+								 */
+								radioInvulVraag.setChecked(false);
+								radioJaNeeVraag.setChecked(false);
+								radioMeerKeuzeVraag.setChecked(true);
 
 							}
-
 						}
+
+						// editNee2.setVisibility(View.INVISIBLE);
+						// buttonNee2.setVisibility(View.INVISIBLE);
+						// checkNee2.setVisibility(View.INVISIBLE);
+
+						/*
+						 * for (int i = 0; i < aQuestion.answers.size(); i++) {
+						 * Answer temp = aQuestion.answers.get(i); Log.d("demo",
+						 * "answers = " + temp.answerText);
+						 * editJa1InvulVraag.setText(temp.answerText);
+						 * 
+						 * }
+						 */
 
 					}
 				});
@@ -338,9 +375,9 @@ public class QuestionDetails extends Activity implements
 
 		} else if (isInvulVraag) {
 			editJa1InvulVraag.setVisibility(View.VISIBLE);
-			editJa1InvulVraag.setHint("Enter the answer here");
-			editJa1InvulVraag.setHintTextColor(R.color.whiteColor);
-			editJa1InvulVraag.setText("");
+			// editJa1InvulVraag.setHint("Enter the answer here");
+			// editJa1InvulVraag.setHintTextColor(R.color.whiteColor);
+			// editJa1InvulVraag.setText("");
 			editNee2.setVisibility(View.INVISIBLE);
 			checkJa1.setVisibility(View.INVISIBLE);
 			checkNee2.setVisibility(View.INVISIBLE);

@@ -23,7 +23,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -56,10 +55,6 @@ public class StudentTab extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.student_tab);
-
-		FrameLayout fl = (FrameLayout) findViewById(R.id.menuContent);
-		// View v = findViewById(R.layout.edit_login_teacher);
-		// fl.addView(v);
 
 		studentListing();
 

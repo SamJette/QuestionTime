@@ -5,31 +5,44 @@
     android:versionName="1.0" >
 
     <uses-sdk android:minSdkVersion="11" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:icon="@drawable/logo_test2"
         android:label="@string/app_name" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" android:screenOrientation="landscape">
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name="ResultTab" ></activity>
-        <activity android:name="SettingsTab"></activity>
-        <activity android:name="StudentTab"></activity>
-        <activity android:name="TabGroup1QuestionActivity"></activity>
-        <activity android:name="QuestionDetails"></activity>
-        <activity android:name="QuestionTab"></activity>
-        <activity android:name="SettingsStudentEdit"></activity>
-        <activity android:name="TabGroup2SettingsActivity"></activity>
-        <activity android:name="SettingsStudentSend"></activity>
-        <activity android:name="TabGroupActivity"></activity>
-        </application>
+        <activity android:name="ResultTab" >
+        </activity>
+        <activity android:name="SettingsTab" >
+        </activity>
+        <activity android:name="StudentTab" >
+        </activity>
+        <activity android:name="TabGroup1QuestionActivity" >
+        </activity>
+        <activity android:name="QuestionDetails" >
+        </activity>
+        <activity android:name="QuestionTab" >
+        </activity>
+        <activity android:name="SettingsStudentEdit" >
+        </activity>
+        <activity android:name="TabGroup2SettingsActivity" >
+        </activity>
+        <activity android:name="SettingsStudentSend" >
+        </activity>
+        <activity android:name="TabGroupActivity" >
+        </activity>
+    </application>
 
 </manifest>

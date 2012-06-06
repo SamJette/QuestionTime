@@ -3,6 +3,8 @@
 
     <string name="hello">Hello World, MainActivity!</string>
     <string name="app_name">QuestionTime</string>
+    <string name="app_label">Zoeken</string>
+    <string name="search_hint">Zoek vragen</string>
     <string name="placeholderText">Question Time</string>
     <string name="ListTitleText">Selecteer een leerling</string>
     <string name="searchString">Zoeken</string>

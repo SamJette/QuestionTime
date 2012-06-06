@@ -23,7 +23,7 @@
             android:focusableInTouchMode="false"
             android:onClick="refreshStudentList"
             android:text="@string/refresh"
-            android:textColor="#000000" />
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 
     <ListView

@@ -22,7 +22,7 @@
         android:textColor="#000000"
         android:textSize="22dp" />
 
-    <Button
+   <!--  <Button
         android:id="@+id/buttonPush"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
@@ -32,6 +32,6 @@
         android:focusableInTouchMode="false"
         android:onClick="onPushButtonClick"
         android:text="@string/push"
-        android:textColor="#000000" />
+        android:textColor="#000000" /> -->
 
 </LinearLayout>

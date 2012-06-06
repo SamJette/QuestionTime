@@ -6,15 +6,6 @@
     android:background="@drawable/gradient_bg"
     android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="20dip"
-        android:text="@string/settingsString"
-        android:textColor="#040404"
-        android:textSize="30dp"
-        android:textStyle="bold" />
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

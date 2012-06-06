@@ -73,7 +73,7 @@ public class QuestionDetailParser extends DefaultHandler {
 		} else if (localName.equalsIgnoreCase(KEY_deletedat)) {
 			tempQuestion.deleteDate = builder.toString();
 		} else if (localName.equalsIgnoreCase(KEY_id)) {
-			tempQuestion.ID = builder.toString();
+			// tempQuestion.ID = Integer.parseInt(builder.toString());
 		} else if (localName.equalsIgnoreCase(KEY_isopen)) {
 			tempQuestion.isOpen = builder.toString();
 		} else if (localName.equalsIgnoreCase(KEY_ispushed)) {

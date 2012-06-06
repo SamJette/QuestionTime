@@ -66,6 +66,8 @@ public class QuestionDetails extends Activity implements
 
 	public ArrayList<Question> questions = new ArrayList<Question>();
 
+	static final String KEY_ID = "ID";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -117,7 +119,7 @@ public class QuestionDetails extends Activity implements
 		Bundle extras = getIntent().getExtras();
 		String questionIDString = null;
 		if (extras != null) {
-			questionIDString = extras.getString(QuestionTab.KEY_ID);
+			questionIDString = extras.getString(KEY_ID);
 			// int questionID=Integer.parseInt(questionIDString);
 
 			Log.d("demo", "Question's ID = " + questionIDString);
@@ -163,7 +165,6 @@ public class QuestionDetails extends Activity implements
 						try {
 							reader = sp.getXMLReader();
 						} catch (SAXException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 

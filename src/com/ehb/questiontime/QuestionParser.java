@@ -34,7 +34,14 @@ public class QuestionParser extends DefaultHandler {
 		if (localName.toLowerCase().equals(KEY_ROW)) {
 			this.questions.add(tempQuestion);
 
+		} else if (localName.equalsIgnoreCase(KEY_ID)) {
+			String temp = builder.toString();
+			// Log.d("demo", "ID ??" + temp);
+
+			tempQuestion.ID = temp;
+
 		}
+
 		/** finished reading "question text" tag assign it to the temp question **/
 		else if (localName.equalsIgnoreCase(KEY_QUESTION)) {
 			tempQuestion.questionText = builder.toString();
@@ -44,8 +51,6 @@ public class QuestionParser extends DefaultHandler {
 			tempQuestion.teachersID = builder.toString();
 		} else if (localName.equalsIgnoreCase(KEY_ISPUSHED)) {
 			tempQuestion.isGepusht = builder.toString();
-		} else if (localName.equalsIgnoreCase(KEY_ID)) {
-			tempQuestion.ID = builder.toString();
 		}
 	}
 
@@ -65,13 +70,11 @@ public class QuestionParser extends DefaultHandler {
 		if (localName.equalsIgnoreCase(KEY_ROW)) {
 			tempQuestion = new Question();
 			builder = new StringBuilder();
-		}
-
-		else if (localName.toUpperCase().equals(KEY_QUESTION)) {
+		} else if (localName.toUpperCase().equals(KEY_ID)) {
 			builder = new StringBuilder();
 		}
 
-		else if (localName.toUpperCase().equals(KEY_ID)) {
+		else if (localName.toUpperCase().equals(KEY_QUESTION)) {
 			builder = new StringBuilder();
 		}
 
@@ -81,11 +84,7 @@ public class QuestionParser extends DefaultHandler {
 			builder = new StringBuilder();
 		} else if (localName.toUpperCase().equals(KEY_ISPUSHED)) {
 			builder = new StringBuilder();
-		} else if (localName.equalsIgnoreCase(KEY_ID)) {
-			builder = new StringBuilder();
-		}
-
-		else
+		} else
 			builder = new StringBuilder();
 
 	}

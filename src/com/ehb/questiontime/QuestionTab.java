@@ -131,7 +131,8 @@ public class QuestionTab extends Activity {
 					e.printStackTrace();
 				}
 				questions = parser.questions;
-				Log.d("demo", "Questions in the getQuestions()= " + questions);
+				// Log.d("demo", "Questions in the getQuestions()= " +
+				// questions);
 
 				for (int i = 0; i < questions.size(); i++) {
 					Question temp = questions.get(i);
@@ -174,21 +175,21 @@ public class QuestionTab extends Activity {
 					public void onItemClick(AdapterView<?> arg0, View view,
 							int position, long arg3) {
 
-						Log.w("TAG", "onItemClick clicked position :"
-								+ position);
+						// Log.w("TAG", "onItemClick clicked position :"+
+						// position);
 
 						Intent intent = new Intent(getParent(),
 								QuestionDetails.class);
 
 						intent.putExtra(KEY_QUESTION,
 								questions.get(position).questionText);
-						Log.d("demo",
-								"question text="
-										+ questions.get(position).questionText);
+						// Log.d("demo","question text="+
+						// questions.get(position).questionText);
 
 						/* to retrieve the id of the question */
 
-						intent.putExtra(KEY_ID, questions.get(position).ID);
+						intent.putExtra(KEY_ID,
+								questions.get(position).ID.toString());
 
 						TabGroupActivity parentactivity = (TabGroupActivity) getParent();
 						parentactivity.startChildActivity("VragenDetails",

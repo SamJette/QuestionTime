@@ -34,7 +34,6 @@ public class StudentParser extends DefaultHandler {
 			throws SAXException {
 		if (localName.toLowerCase().equals(KEY_ROW)) {
 			this.students.add(tempStudent);
-			// Log.d("demo", "tempStudent = " + tempStudent);
 
 		}
 		// finished reading "firstname" tag assign it to the temp person

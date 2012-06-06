@@ -20,9 +20,9 @@ import android.widget.Button;
 
 public class SettingsTab extends Activity implements OnClickListener {
 
-	private Button buttonTeachers;
+	private Button buttonServer;
 	private Button buttonEditDataStudent;
-	private Button buttonSendDataStudent;
+	//private Button buttonSendDataStudent;
 	private Button buttonAfmelden;
 	public static final String PREFS_NAME = "LoginPrefs";
 
@@ -31,16 +31,15 @@ public class SettingsTab extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.settings_tab);
 
-		buttonTeachers = (Button) findViewById(R.id.buttonLeerkracht);
+		buttonServer = (Button) findViewById(R.id.buttonServer);
 		buttonEditDataStudent = (Button) findViewById(R.id.buttonGegevensWijzigen);
-		buttonSendDataStudent = (Button) findViewById(R.id.buttonGegevensVerzenden);
+		//buttonSendDataStudent = (Button) findViewById(R.id.buttonGegevensVerzenden);
 		buttonAfmelden = (Button) findViewById(R.id.buttonAfmelden);
 
 		buttonEditDataStudent.setOnClickListener(this);
-		buttonSendDataStudent.setOnClickListener(this);
-		buttonTeachers.setOnClickListener(this);
+		//buttonSendDataStudent.setOnClickListener(this);
+		buttonServer.setOnClickListener(this);
 		buttonAfmelden.setOnClickListener(this);
-
 	}
 
 	@Override
@@ -51,7 +50,38 @@ public class SettingsTab extends Activity implements OnClickListener {
 
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.buttonLeerkracht:
+		case R.id.buttonServer:
+			final Dialog dialog = new Dialog(getParent());
+
+			dialog.setContentView(R.layout.server_dialog);
+			
+			//dialog.setTitle("Serveradres instellen.");
+			dialog.setCancelable(false);
+		
+			Button buttonCancel = (Button) dialog
+					.findViewById(R.id.buttonCancel);
+			buttonCancel.setOnClickListener(new OnClickListener() {
+
+				public void onClick(View v) {
+					dialog.dismiss();
+				}
+			});
+			
+			Button buttonBewaren = (Button) dialog
+					.findViewById(R.id.buttonBewaren);
+			buttonBewaren.setOnClickListener(new OnClickListener() {
+
+				public void onClick(View v) {
+					dialog.dismiss();
+				}
+			});
+
+			
+
+			dialog.show();
+
+			break;
+		/*case R.id.buttonLeerkracht:
 			final Dialog dialog = new Dialog(getParent());
 
 			dialog.setContentView(R.layout.edit_login_teacher);
@@ -78,7 +108,7 @@ public class SettingsTab extends Activity implements OnClickListener {
 
 			dialog.show();
 
-			break;
+			break;*/
 		case R.id.buttonGegevensWijzigen:
 			Log.d("demo", "onClickChangeDataStudents - buttonGegevensWijzigen");
 			Intent intent = new Intent(getParent(), SettingsStudentEdit.class);
@@ -87,11 +117,11 @@ public class SettingsTab extends Activity implements OnClickListener {
 
 			break;
 
-		case R.id.buttonGegevensVerzenden:
+		/*case R.id.buttonGegevensVerzenden:
 			Log.d("demo", "onClickChangeDataStudents - buttonGegevensVerzenden");
 			Intent i = new Intent(getParent(), SettingsStudentSend.class);
 			TabGroupActivity pactivity = (TabGroupActivity) getParent();
-			pactivity.startChildActivity("SettingsStudentSend", i);
+			pactivity.startChildActivity("SettingsStudentSend", i);*/
 
 		case R.id.buttonAfmelden:
 			Log.d("demo", "onClickChangeDataStudents - buttonAfmelden");

@@ -58,7 +58,6 @@ public class MainActivity extends TabActivity {
 		/** action bar **/
 
 		ActionBar actionBar = getActionBar();
-		actionBar.setTitle("Question Time");
 		actionBar.hide();
 
 		/** tabs **/
@@ -95,14 +94,15 @@ public class MainActivity extends TabActivity {
 	public TextView myTabTextView(String myTabTitle) {
 		TextView txtTab = new TextView(this);
 		txtTab.setTextColor(Color.WHITE);
-		txtTab.setPadding(8, 9, 8, 9);
+		txtTab.setPadding(20,0,20,0);
 		txtTab.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
 		txtTab.setBackgroundResource(R.drawable.list_tab_selector);
 		txtTab.setTypeface(Typeface.DEFAULT_BOLD);
-		txtTab.setTextSize(22);
+		txtTab.setTextSize(21);
 		txtTab.setShadowLayer(1, 1, 1, Color.DKGRAY);
 		txtTab.setText(myTabTitle);
 		return txtTab;
+
 
 	}
 

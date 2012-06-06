@@ -3,34 +3,74 @@
     android:id="@+id/linearLayoutTabLeerlingen"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/gradient_bg"
+    android:background="#F2F2F2"
     android:orientation="vertical" >
 
-    <LinearLayout
+
+
+
+     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center" >
+        android:layout_marginTop="150dp"
+        android:gravity="center"
+        android:orientation="vertical" >
 
         <Button
-            android:id="@+id/buttonLeerkracht"
+            android:id="@+id/buttonGegevensWijzigen"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_margin="20dp"
-            android:background="@drawable/detail_vragen_roundcorner"
+            android:background="#9e9e9e"  
             android:gravity="center"
-            android:text="@string/loginPasswordTeacher" />
+            android:text="@string/editDataStudent"
+            android:textColor="#FFFFFF"
+            android:textSize="21dp"
+            android:shadowColor="#515151"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2" />
+         <Button
+            android:id="@+id/buttonServer"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="#9e9e9e"
+            android:gravity="center"
+            android:shadowColor="#515151"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
+            android:text="@string/serveradres"
+            android:textColor="#FFFFFF"
+            android:textSize="21dp" />
 
         <Button
             android:id="@+id/buttonAfmelden"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:background="#9e9e9e"  
+            android:gravity="center"
+            android:text="@string/afmelden"
+            android:textColor="#FFFFFF"
+            android:textSize="21dp"
+            android:shadowColor="#515151"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2" />
+
+         <Button
+            android:id="@+id/buttonGegevensVerzenden"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:background="@drawable/detail_vragen_roundcorner"
             android:gravity="center"
-            android:text="@string/afmelden" />
+            android:text="Gegevens leerlingen verzenden"
+            android:visibility="invisible" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -38,26 +78,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center" >
-
-        <Button
-            android:id="@+id/buttonGegevensWijzigen"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:background="@drawable/detail_vragen_roundcorner"
-            android:gravity="center"
-            android:text="@string/editDataStudent" />
-
-        <Button
-            android:id="@+id/buttonGegevensVerzenden"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:background="@drawable/detail_vragen_roundcorner"
-            android:gravity="center"
-            android:text="Gegevens leerlingen verzenden" />
     </LinearLayout>
 
 </LinearLayout>

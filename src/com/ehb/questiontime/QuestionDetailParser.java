@@ -97,8 +97,46 @@ public class QuestionDetailParser extends DefaultHandler {
 	@Override
 	public void startElement(String uri, String localName, String qName,
 			Attributes attributes) throws SAXException {
-		// TODO Auto-generated method stub
-		super.startElement(uri, localName, qName, attributes);
+		if (localName.toLowerCase().equals(KEY_DATA)) {
+			builder = new StringBuilder();
+		} else if (localName.equalsIgnoreCase(KEY_ANSWERS)) {
+			if (localName.equalsIgnoreCase(KEY_item)) {
+				builder = new StringBuilder();
+			} else if (localName.equalsIgnoreCase(KEY_answer)) {
+				builder = new StringBuilder();
+			} else if (localName.equalsIgnoreCase(KEY_createdat_ANSWER)) {
+				builder = new StringBuilder();
+			} else if (localName.equalsIgnoreCase(KEY_deletedat_ANSWER)) {
+				builder = new StringBuilder();
+			} else if (localName.equalsIgnoreCase(KEY_id_ANSWER)) {
+				builder = new StringBuilder();
+			} else if (localName.equalsIgnoreCase(KEY_iscorrect_ANSWER)) {
+				builder = new StringBuilder();
+			} else if (localName.equalsIgnoreCase(KEY_questionid_ANSWER)) {
+				builder = new StringBuilder();
+			} else if (localName.equalsIgnoreCase(KEY_updatedat_ANSWER)) {
+				builder = new StringBuilder();
+			}
+
+		} else if (localName.equalsIgnoreCase(KEY_createdat)) {
+			builder = new StringBuilder();
+		} else if (localName.equalsIgnoreCase(KEY_deletedat)) {
+			builder = new StringBuilder();
+		} else if (localName.equalsIgnoreCase(KEY_id)) {
+			builder = new StringBuilder();
+		} else if (localName.equalsIgnoreCase(KEY_isopen)) {
+			builder = new StringBuilder();
+		} else if (localName.equalsIgnoreCase(KEY_ispushed)) {
+			builder = new StringBuilder();
+		} else if (localName.equalsIgnoreCase(KEY_question)) {
+			builder = new StringBuilder();
+		} else if (localName.equalsIgnoreCase(KEY_teacherid)) {
+			builder = new StringBuilder();
+		} else if (localName.equalsIgnoreCase(KEY_updatedat)) {
+			builder = new StringBuilder();
+		} else
+			builder = new StringBuilder();
+
 	}
 
 }

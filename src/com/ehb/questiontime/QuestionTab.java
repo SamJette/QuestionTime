@@ -109,10 +109,8 @@ public class QuestionTab extends Activity {
 				try {
 					sp = factory.newSAXParser();
 				} catch (ParserConfigurationException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (SAXException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -120,7 +118,6 @@ public class QuestionTab extends Activity {
 				try {
 					reader = sp.getXMLReader();
 				} catch (SAXException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -131,7 +128,6 @@ public class QuestionTab extends Activity {
 				try {
 					Xml.parse(response, parser);
 				} catch (SAXException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				questions = parser.questions;
@@ -186,10 +182,14 @@ public class QuestionTab extends Activity {
 
 						intent.putExtra(KEY_QUESTION,
 								questions.get(position).questionText);
-
 						Log.d("demo",
 								"question text="
 										+ questions.get(position).questionText);
+
+						/* to retrieve the id of the question */
+
+						intent.putExtra(KEY_ID, questions.get(position).ID);
+
 						TabGroupActivity parentactivity = (TabGroupActivity) getParent();
 						parentactivity.startChildActivity("VragenDetails",
 								intent);

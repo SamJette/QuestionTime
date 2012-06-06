@@ -12,16 +12,16 @@ public class Question {
 	public String deleteDate;
 	public String updateDate;
 
-	public int answerID;
+	public String answerID;
 	public ArrayList<Answer> answers;
 	public String answerText;
 
 	public String isCorrect;
 	public String isOpen;
 
-	public int openQuestionsID;
+	public String openQuestionsID;
 	public String studentAnswer;
-	public int resultID;
+	public String resultID;
 
 	public Question() {
 		super();

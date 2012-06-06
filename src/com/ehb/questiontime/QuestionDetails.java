@@ -2,10 +2,21 @@ package com.ehb.questiontime;
 
 import java.util.ArrayList;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
+
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Xml;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +26,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Toast;
+
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 public class QuestionDetails extends Activity implements
 		OnCheckedChangeListener {
@@ -95,6 +108,82 @@ public class QuestionDetails extends Activity implements
 				editQuestionText.setText(vragenText);
 			}
 		}
+
+		retrieveDetailsQuestion();
+	}
+
+	public void retrieveDetailsQuestion() {
+
+		Bundle extras = getIntent().getExtras();
+		String questionIDString = null;
+		if (extras != null) {
+			questionIDString = extras.getString(QuestionTab.KEY_ID);
+			// int questionID=Integer.parseInt(questionIDString);
+
+			Log.d("demo", "Question's ID = " + questionIDString);
+		}
+
+		RestClient.get("questions/" + questionIDString + ".xml", null,
+				new AsyncHttpResponseHandler() {
+
+					private ProgressDialog dialog;
+
+					@Override
+					public void onStart() {
+						dialog = ProgressDialog.show(getParent(), "Loading",
+								"Data loading", true, true,
+								new OnCancelListener() {
+									public void onCancel(DialogInterface dialog) {
+										dialog.dismiss();
+									}
+								});
+					}
+
+					@Override
+					public void onSuccess(String response) {
+						if (this.dialog.isShowing())
+							this.dialog.dismiss();
+
+						/** create an instance of our parser */
+
+						QuestionParser parser = new QuestionParser();
+
+						SAXParserFactory factory = SAXParserFactory
+								.newInstance();
+						SAXParser sp = null;
+						try {
+							sp = factory.newSAXParser();
+						} catch (ParserConfigurationException e1) {
+							e1.printStackTrace();
+						} catch (SAXException e1) {
+							e1.printStackTrace();
+						}
+
+						XMLReader reader = null;
+						try {
+							reader = sp.getXMLReader();
+						} catch (SAXException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+
+						// add our own parser to the xml reader and start
+						// parsing
+						// the
+						// file
+						reader.setContentHandler(parser);
+						try {
+							Xml.parse(response, parser);
+						} catch (SAXException e) {
+							e.printStackTrace();
+						}
+						questions = parser.questions;
+						Log.d("demo", "Questions in the getQuestions()= "
+								+ questions);
+
+					}
+				});
+
 	}
 
 	/** method to save the question and return to the QuestionTab **/

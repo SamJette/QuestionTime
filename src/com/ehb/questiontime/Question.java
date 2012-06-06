@@ -22,6 +22,7 @@ public class Question {
 	public String openQuestionsID;
 	public String studentAnswer;
 	public String resultID;
+	public Answer anAnswer;
 
 	public Question() {
 		super();

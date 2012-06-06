@@ -19,7 +19,7 @@
 	<ExpandableListView 
 	    android:id="@+id/listViewTabResultaten"
 	    android:listSelector="@drawable/list_selector"
-	    android:groupIndicator="@drawable/plus"
+	    android:groupIndicator="@android:drawable/btn_dropdown"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 	</ExpandableListView>

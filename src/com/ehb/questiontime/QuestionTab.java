@@ -205,6 +205,10 @@ public class QuestionTab extends Activity {
 
 	}
 
+	public void onRefresh(View v) {
+		questionListing();
+	}
+
 	/** one of the Context Item is selected **/
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {

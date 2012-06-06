@@ -8,10 +8,12 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class QuestionDetailParser extends DefaultHandler {
 
-	public ArrayList<Question> questions;
-	private Question tempQuestion;
-	private Answer tempAnswer;
-	private StringBuilder builder;
+	// public ArrayList<Question> questions;
+	public Question tempQuestion;
+	public Answer tempAnswer;
+	public ArrayList<Answer> answers;
+
+	public StringBuilder builder;
 
 	/** XML node keys **/
 	static final String KEY_DATA = "data";
@@ -45,15 +47,12 @@ public class QuestionDetailParser extends DefaultHandler {
 	@Override
 	public void endElement(String uri, String localName, String qName)
 			throws SAXException {
-		if (localName.toLowerCase().equals(KEY_DATA)) {
-			this.questions.add(tempQuestion);
-		}
-		/** finished reading "question text" tag assign it to the temp question **/
-		else if (localName.equalsIgnoreCase(KEY_ANSWERS)) {
-			if (localName.equalsIgnoreCase(KEY_item)) {
-				tempQuestion.answers.add(tempAnswer);
-			} else if (localName.equalsIgnoreCase(KEY_answer)) {
+
+		if (localName.equalsIgnoreCase(KEY_item)) {
+			this.answers.add(tempAnswer);
+			if (localName.equalsIgnoreCase(KEY_answer)) {
 				tempAnswer.answerText = builder.toString();
+
 			} else if (localName.equalsIgnoreCase(KEY_createdat_ANSWER)) {
 				tempAnswer.createdDate = builder.toString();
 			} else if (localName.equalsIgnoreCase(KEY_deletedat_ANSWER)) {
@@ -68,12 +67,14 @@ public class QuestionDetailParser extends DefaultHandler {
 				tempAnswer.updateDate = builder.toString();
 			}
 
-		} else if (localName.equalsIgnoreCase(KEY_createdat)) {
+		}
+
+		else if (localName.equalsIgnoreCase(KEY_createdat)) {
 			tempQuestion.createdDate = builder.toString();
 		} else if (localName.equalsIgnoreCase(KEY_deletedat)) {
 			tempQuestion.deleteDate = builder.toString();
 		} else if (localName.equalsIgnoreCase(KEY_id)) {
-			// tempQuestion.ID = Integer.parseInt(builder.toString());
+			tempQuestion.ID = builder.toString();
 		} else if (localName.equalsIgnoreCase(KEY_isopen)) {
 			tempQuestion.isOpen = builder.toString();
 		} else if (localName.equalsIgnoreCase(KEY_ispushed)) {
@@ -85,22 +86,29 @@ public class QuestionDetailParser extends DefaultHandler {
 		} else if (localName.equalsIgnoreCase(KEY_updatedat)) {
 			tempQuestion.updateDate = builder.toString();
 		}
+		/** finished reading "question text" tag assign it to the temp question **/
 
 	}
 
 	@Override
 	public void startDocument() throws SAXException {
-		questions = new ArrayList<Question>();
+		// questions = new ArrayList<Question>();
+		tempQuestion = new Question();
+		answers = new ArrayList<Answer>();
+		// tempAnswer = new Answer();
 
 	}
 
 	@Override
 	public void startElement(String uri, String localName, String qName,
 			Attributes attributes) throws SAXException {
-		if (localName.toLowerCase().equals(KEY_DATA)) {
+		if (localName.equalsIgnoreCase(KEY_DATA)) {
 			builder = new StringBuilder();
 		} else if (localName.equalsIgnoreCase(KEY_ANSWERS)) {
+			builder = new StringBuilder();
+
 			if (localName.equalsIgnoreCase(KEY_item)) {
+				tempAnswer = new Answer();
 				builder = new StringBuilder();
 			} else if (localName.equalsIgnoreCase(KEY_answer)) {
 				builder = new StringBuilder();

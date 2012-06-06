@@ -34,7 +34,9 @@ public class QuestionParser extends DefaultHandler {
 		if (localName.toLowerCase().equals(KEY_ROW)) {
 			this.questions.add(tempQuestion);
 
-		} else if (localName.equalsIgnoreCase(KEY_ID)) {
+		}
+
+		else if (localName.equalsIgnoreCase(KEY_ID)) {
 			String temp = builder.toString();
 			// Log.d("demo", "ID ??" + temp);
 

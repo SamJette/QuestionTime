@@ -1,7 +1,5 @@
 package com.ehb.questiontime;
 
-import java.util.ArrayList;
-
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -63,8 +61,10 @@ public class QuestionDetails extends Activity implements
 	Button button5;
 
 	public Question aQuestion;
+	// public Answer anAnswer;
 
-	public ArrayList<Question> questions = new ArrayList<Question>();
+	// public ArrayList<Question> questions = new ArrayList<Question>();
+	// public ArrayList<Answer> answers = new ArrayList<Answer>();
 
 	static final String KEY_ID = "ID";
 
@@ -120,10 +120,10 @@ public class QuestionDetails extends Activity implements
 		String questionIDString = null;
 		if (extras != null) {
 			questionIDString = extras.getString(KEY_ID);
-			// int questionID=Integer.parseInt(questionIDString);
 
 			Log.d("demo", "Question's ID = " + questionIDString);
 		}
+		// final int questionID = Integer.parseInt(questionIDString);
 
 		RestClient.get("questions/" + questionIDString + ".xml", null,
 				new AsyncHttpResponseHandler() {
@@ -148,7 +148,7 @@ public class QuestionDetails extends Activity implements
 
 						/** create an instance of our parser */
 
-						QuestionParser parser = new QuestionParser();
+						QuestionDetailParser parser = new QuestionDetailParser();
 
 						SAXParserFactory factory = SAXParserFactory
 								.newInstance();
@@ -175,12 +175,32 @@ public class QuestionDetails extends Activity implements
 						reader.setContentHandler(parser);
 						try {
 							Xml.parse(response, parser);
+
+							Log.d("demo", "Response = " + response);
+
 						} catch (SAXException e) {
 							e.printStackTrace();
 						}
-						questions = parser.questions;
-						Log.d("demo", "Questions in the getQuestions()= "
-								+ questions);
+						aQuestion = parser.tempQuestion;
+						editQuestionText.setText(aQuestion.questionText);
+
+						aQuestion.answers = parser.answers;
+
+						Log.d("demo",
+								"answers size = " + aQuestion.answers.size());
+
+						for (int i = 0; i < aQuestion.answers.size(); i++) {
+							Answer temp = aQuestion.answers.get(i);
+							if (temp.answerText.equals(null)) {
+								editJa1InvulVraag
+										.setText("geen antwoord gevonden");
+							} else {
+								Log.d("demo", "answers = " + temp.answerText);
+								editJa1InvulVraag.setText(temp.answerText);
+
+							}
+
+						}
 
 					}
 				});
@@ -206,28 +226,22 @@ public class QuestionDetails extends Activity implements
 		}
 		/** save the object **/
 
-		aQuestion = new Question();
-		aQuestion.answerText = answerText;
-		questions.add(aQuestion);
-
-		/** ja/Nee vraag **/
-
-		if (isJaNeeVraag) {
-			Log.d("demo", "isJaNeeVraag");
-
-			if (checkJa1.isChecked()) {
-				aQuestion.answerText = "Ja";
-			} else if (checkNee2.isChecked()) {
-				aQuestion.answerText = "Nee";
-			}
-
-		} else if (isMeerKeuzeVraag) {
-			Log.d("demo", "isMeerKeuzeVraag");
-
-		} else if (isInvulVraag) {
-			Log.d("demo", "isInvulVraag");
-
-		}
+		/*
+		 * aQuestion = new Question(); aQuestion.answerText = answerText;
+		 * questions.add(aQuestion);
+		 * 
+		 * 
+		 * if (isJaNeeVraag) { Log.d("demo", "isJaNeeVraag");
+		 * 
+		 * if (checkJa1.isChecked()) { aQuestion.answerText = "Ja"; } else if
+		 * (checkNee2.isChecked()) { aQuestion.answerText = "Nee"; }
+		 * 
+		 * } else if (isMeerKeuzeVraag) { Log.d("demo", "isMeerKeuzeVraag");
+		 * 
+		 * } else if (isInvulVraag) { Log.d("demo", "isInvulVraag");
+		 * 
+		 * }
+		 */
 
 		/** return to QuestionTab view **/
 		Intent intent = new Intent(getParent(), QuestionTab.class);

@@ -300,7 +300,7 @@ public class QuestionTab extends Activity {
 		params.put("question[ispushed]", "1");
 
 		RestClient.put("questions/" + id, params,
-				new JsonHttpResponseHandler() {
+				new AsyncHttpResponseHandler() {
 					private ProgressDialog dialog;
 
 					@Override
@@ -312,11 +312,12 @@ public class QuestionTab extends Activity {
 										dialog.dismiss();
 									}
 								});
+						
 					}
 
 					@Override
-					public void onSuccess(JSONObject response) {
-						// go the resultspage
+					public void onSuccess(String response) {
+						
 						Log.d("success", "pushed");
 					}
 				});

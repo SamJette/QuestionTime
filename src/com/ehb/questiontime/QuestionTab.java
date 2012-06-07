@@ -7,7 +7,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.json.JSONObject;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
@@ -33,7 +32,6 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 public class QuestionTab extends Activity {
@@ -311,12 +309,12 @@ public class QuestionTab extends Activity {
 										dialog.dismiss();
 									}
 								});
-						
+
 					}
 
 					@Override
 					public void onSuccess(String response) {
-						
+
 						Log.d("success", "pushed");
 					}
 				});

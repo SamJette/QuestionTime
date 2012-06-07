@@ -43,6 +43,7 @@ public class QuestionTab extends Activity {
 	static final String KEY_TEACHERID = "TEACHERID";
 	static final String KEY_ISPUSHED = "ISPUSHED";
 
+	/** the listview **/
 	private ListView myListview;
 	// private SearchView mySearchView;
 

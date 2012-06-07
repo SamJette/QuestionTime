@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
@@ -34,4 +35,47 @@
         android:text="@string/push"
         android:textColor="#000000" /> -->
 
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_selector"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/vragenTextTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom|center|center_horizontal|center_vertical|fill_vertical"
+        android:layout_weight="7"
+        android:background="#F2F2F2"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:freezesText="false"
+        android:gravity="center|clip_vertical|left"
+        android:paddingLeft="15dp"
+        android:text="@string/eenVraag"
+        android:textColor="#515151"
+        android:textSize="21dp" />
+
+    <Button
+        android:id="@+id/buttonPush"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"        
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:onClick="onPushButtonClick"
+        android:text="@string/push"
+        android:background="#9e9e9e"
+        android:shadowColor="#515151"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="2"
+        android:textColor="#FFFFFF"
+        android:textSize="21dp" />
+
+>>>>>>> origin/Anderson2
 </LinearLayout>

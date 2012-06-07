@@ -33,9 +33,8 @@
     <string name="_data_loading">Data ophalen</string>
     <string name="_loading">Laden</string>
     <string name="refresh">Herladen</string>
-    <string name="push">&gt;</string>
-        <string name="pushString">Push</string>
-    
+    <string name="push">></string>
+    <string name="pushString">Push</string>
     <string name="copy">Copy</string>
     <string name="bewaren">Bewaren</string>
     <string name="add">Toevoegen</string>
@@ -58,4 +57,7 @@
     <string name="loginPasswordTeacher">Login/wachtwoord veranderen</string>
     <string name="afmelden">Afmelden</string>
     <string name="serveradres">Serveradres instellen</string>
+    <string name="questionTime">Question Time</string>
+    <string name="leerlingenGegevensVerzenden">Gegevens leerlingen verzenden</string>
+
 </resources>

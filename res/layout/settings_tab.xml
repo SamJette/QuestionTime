@@ -65,7 +65,7 @@
             android:layout_margin="20dp"
             android:background="@drawable/detail_vragen_roundcorner"
             android:gravity="center"
-            android:text="Gegevens leerlingen verzenden"
+            android:text="@string/leerlingenGegevensVerzenden"
             android:visibility="invisible" />
 
     </LinearLayout>

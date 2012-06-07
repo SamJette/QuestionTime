@@ -51,7 +51,4 @@
         android:listSelector="@drawable/list_selector" >
     </ListView>
     
-    
-
->>>>>>> origin/Anderson2
 </LinearLayout>

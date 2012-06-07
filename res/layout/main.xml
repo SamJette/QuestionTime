@@ -10,14 +10,13 @@
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:background="#F2F2F2"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical" >
 
         <LinearLayout
             android:id="@+id/linearLayout1"
             android:layout_width="match_parent"
             android:layout_height="54dp"
-            android:background="@drawable/background_dkgray">
+            android:background="@drawable/background_dkgray" >
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
@@ -37,6 +36,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="3dp"
                         android:background="@drawable/background_dkgray"
+                        android:contentDescription="@android:string/untitled"
                         android:gravity="center|clip_vertical"
                         android:src="@drawable/logo_test2" />
 
@@ -48,19 +48,18 @@
                         android:background="@drawable/background_dkgray"
                         android:freezesText="false"
                         android:gravity="center|clip_vertical"
-                        android:text="Question Time"
+                        android:text="@string/questionTime"
                         android:textColor="#FFFFFF"
                         android:textSize="21dp"
                         android:textStyle="bold" />
-
                 </LinearLayout>
 
                 <ImageView
                     android:id="@+id/ImageView01"
                     android:layout_width="match_parent"
                     android:layout_height="4dp"
-                    android:background="#515151" />
-
+                    android:background="#515151"
+                    android:contentDescription="@android:string/untitled" />
             </LinearLayout>
 
             <LinearLayout
@@ -77,7 +76,6 @@
                     android:divider="@android:drawable/divider_horizontal_dark"
                     android:showDividers="middle" >
                 </TabWidget>
-
             </LinearLayout>
 
             <LinearLayout
@@ -90,17 +88,14 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="54dp" >
-                </FrameLayout>                
-
+                </FrameLayout>
             </LinearLayout>
-
         </LinearLayout>
 
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            />
+            android:layout_height="fill_parent" />
     </LinearLayout>
 
 </TabHost>

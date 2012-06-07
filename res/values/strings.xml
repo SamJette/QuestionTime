@@ -34,6 +34,8 @@
     <string name="_loading">Laden</string>
     <string name="refresh">Herladen</string>
     <string name="push">&gt;</string>
+        <string name="pushString">Push</string>
+    
     <string name="copy">Copy</string>
     <string name="bewaren">Bewaren</string>
     <string name="add">Toevoegen</string>

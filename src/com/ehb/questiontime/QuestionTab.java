@@ -32,7 +32,6 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 public class QuestionTab extends Activity {
 	/** XML node keys **/
@@ -163,7 +162,7 @@ public class QuestionTab extends Activity {
 								// super.onCreateContextMenu(menu, v, menuInfo);
 								menu.setHeaderTitle("CONTEXT MENU");
 								menu.add(0, DELETE_ID, 0, R.string.menu_delete);
-								menu.add(0, PUSH_ID, 0, R.string.push);
+								menu.add(0, PUSH_ID, 0, R.string.pushString);
 							}
 						});
 				myListview.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
@@ -289,36 +288,40 @@ public class QuestionTab extends Activity {
 		Log.d("demo", "index= " + index);
 		Log.d("demo", "getItemId()= " + item.getItemId());
 
-		RequestParams params = new RequestParams();
+		Intent intent = new Intent(getParent(), ResultTab.class);
+		startActivity(intent);
 
-		// String id = "" + item.getItemId();// Als we weten welke vraag het is
-		String id = "" + index;
-
-		params.put("question[ispushed]", "1");
-
-		RestClient.put("questions/" + id, params,
-				new AsyncHttpResponseHandler() {
-					private ProgressDialog dialog;
-
-					@Override
-					public void onStart() {
-						dialog = ProgressDialog.show(getParent(), "Loading",
-								"Data loading", true, true,
-								new OnCancelListener() {
-									public void onCancel(DialogInterface dialog) {
-										dialog.dismiss();
-									}
-								});
-
-					}
-
-					@Override
-					public void onSuccess(String response) {
-
-						Log.d("success", "pushed");
-					}
-				});
-
+		/*
+		 * RequestParams params = new RequestParams();
+		 * 
+		 * // String id = "" + item.getItemId();// Als we weten welke vraag het
+		 * is String id = "" + index;
+		 * 
+		 * params.put("question[ispushed]", "1");
+		 * 
+		 * RestClient.put("questions/" + id, params, new
+		 * AsyncHttpResponseHandler() { private ProgressDialog dialog;
+		 * 
+		 * @Override public void onStart() {
+		 * 
+		 * dialog = ProgressDialog.show(getParent(), "Loading", "Data loading",
+		 * true, true, new OnCancelListener() { public void
+		 * onCancel(DialogInterface dialog) { dialog.dismiss(); } });
+		 * 
+		 * 
+		 * }
+		 * 
+		 * @Override public void onSuccess(String response) { if
+		 * (this.dialog.isShowing()) this.dialog.dismiss();
+		 * 
+		 * Log.d("demo", "pushed");
+		 * 
+		 * Intent intent = new Intent(getParent(), ResultTab.class);
+		 * TabGroupActivity parentactivity = (TabGroupActivity) getParent();
+		 * parentactivity.startChildActivity("ResultTab", intent);
+		 * 
+		 * } });
+		 */
 	}
 
 }

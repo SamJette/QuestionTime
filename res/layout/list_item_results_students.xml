@@ -1,45 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/list_selector"
+    android:layout_height="48dp"
+    android:background="@drawable/online"
     android:orientation="horizontal" >
-
-    <TextView
-        android:id="@+id/firstnameResults"
+
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center"
-        android:layout_weight="3"
-        android:gravity="center"
-        android:padding="10dip"
-        android:text="@string/firstname"
-        android:textColor="#040404"
-        android:textSize="16dp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:layout_weight="7" >
 
-    <TextView
-        android:id="@+id/nameResults"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center"
-        android:layout_weight="3"
-        android:gravity="center"
-        android:padding="10dip"
-        
-        android:text="@string/name"
-        android:textColor="#343434" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="36dp"
+            android:layout_weight="7"
+            android:background="#F2F2F2" >
 
-    <TextView
-        android:id="@+id/resultsTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:background="@drawable/detail_vragen_roundcorner"
-        android:gravity="center"
-        android:padding="10dip"
-        android:text="1/1"
-        android:textColor="@color/whiteColor" />
+            <TextView
+                android:id="@+id/firstnameResults"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="@string/firstname"
+                android:textColor="#515151"
+                android:textSize="21dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/nameResults"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.76"
+                android:gravity="left|center"
+                android:text="@string/name"
+                android:textColor="#515151"
+                android:textSize="21dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/resultsTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="16dp"
+            android:layout_weight="0.7"
+            android:background="#F2F2F2"
+            android:gravity="center"
+            android:text="0/1"
+            android:textColor="#515151"
+            android:textSize="21dp" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -55,7 +55,7 @@ public class SettingsTab extends Activity implements OnClickListener {
 
 			dialog.setContentView(R.layout.server_dialog);
 			
-			//dialog.setTitle("Serveradres instellen.");
+			dialog.setTitle("Serveradres instellen.");
 			dialog.setCancelable(false);
 		
 			Button buttonCancel = (Button) dialog

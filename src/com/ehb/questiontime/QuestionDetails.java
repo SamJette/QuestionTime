@@ -352,9 +352,9 @@ public class QuestionDetails extends Activity implements
 
 		} else if (isMeerKeuzeVraag) {
 			editJa1InvulVraag.setVisibility(View.VISIBLE);
-			editJa1InvulVraag.setText("1");
+			editJa1InvulVraag.setText("A");
 			editNee2.setVisibility(View.VISIBLE);
-			editNee2.setText("2");
+			editNee2.setText("B");
 			checkJa1.setVisibility(View.VISIBLE);
 			checkNee2.setVisibility(View.VISIBLE);
 			buttonJa1.setVisibility(View.VISIBLE);

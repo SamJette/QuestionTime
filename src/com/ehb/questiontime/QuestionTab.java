@@ -29,7 +29,6 @@ import android.view.View.OnCreateContextMenuListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
@@ -48,7 +47,7 @@ public class QuestionTab extends Activity {
 	static final String KEY_ISPUSHED = "ISPUSHED";
 
 	private ListView myListview;
-	private SearchView mySearchView;
+	// private SearchView mySearchView;
 
 	private static final int DELETE_ID = Menu.FIRST;
 	private static final int PUSH_ID = Menu.FIRST + 1;
@@ -255,7 +254,7 @@ public class QuestionTab extends Activity {
 	}
 
 	/** onClick - button "Add Question" **/
-	public void onClick(View v) {
+	public void onAddClick(View v) {
 		// Intent i = new Intent(VragenTab.this, VragenDetails.class);
 		// startActivityForResult(i, ACTIVITY_DETAIL);
 		Intent intent = new Intent(getParent(), QuestionDetails.class);

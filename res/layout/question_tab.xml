@@ -16,7 +16,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1.00"
             android:background="@drawable/detail_vragen_roundcorner"
-            android:onClick="onClick"
+            android:onClick="onAddClick"
             android:text="@string/add"
                         android:layout_margin="10dip"
             

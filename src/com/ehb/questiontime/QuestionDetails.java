@@ -103,15 +103,19 @@ public class QuestionDetails extends Activity implements
 		/** to retrieve the value of the clicked row in QuestionTab **/
 
 		Bundle extras = getIntent().getExtras();
+
+		// Log.d("demo", "extras in bundle = " + extras.toString());
 		if (extras != null) {
+
 			String vragenText = extras.getString(QuestionTab.KEY_QUESTION);
 			Log.d("demo", "Bundel: vragen Text in detail view: " + vragenText);
 			if (vragenText != null) {
 				editQuestionText.setText(vragenText);
 			}
+			retrieveDetailsQuestion();
+
 		}
 
-		retrieveDetailsQuestion();
 	}
 
 	public void retrieveDetailsQuestion() {

@@ -4,17 +4,21 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Xml;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +30,8 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 public class QuestionDetails extends Activity implements
 		OnCheckedChangeListener {
@@ -65,6 +71,8 @@ public class QuestionDetails extends Activity implements
 
 	// public ArrayList<Question> questions = new ArrayList<Question>();
 	// public ArrayList<Answer> answers = new ArrayList<Answer>();
+	
+	public static final String PREFS_NAME = "LoginPrefs";
 
 	static final String KEY_ID = "ID";
 
@@ -268,7 +276,8 @@ public class QuestionDetails extends Activity implements
 		/** save the object **/
 
 		/*
-		 * aQuestion = new Question(); aQuestion.answerText = answerText;
+		 * aQuestion = new Question(); 
+		 * aQuestion.answerText = answerText;
 		 * questions.add(aQuestion);
 		 * 
 		 * 
@@ -283,6 +292,98 @@ public class QuestionDetails extends Activity implements
 		 * 
 		 * }
 		 */
+		
+		
+		/****** VRAGEN OPSLAAN *****/
+		
+		/*SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+		
+		//eerst pushen we de vraag naar de server dan de antwoorden
+		RequestParams qParams = new RequestParams();
+		qParams.put("question[question]", questiontext);//question tekst
+		qParams.put("question[teacherid]", settings.getString("teacherid", null)); //get teacherid from the shared preferences.
+		qParams.put("question[isopen]", ((isInvulVraag) ? "1" : "0") );
+		
+		
+		RestClient.post("questions", qParams, new AsyncHttpResponseHandler() {
+			private ProgressDialog dialog;
+			@Override
+			public void onStart() {
+				dialog = ProgressDialog.show(QuestionDetails.this, "Loading",
+						"Data Loading", true, true, new OnCancelListener() {
+							public void onCancel(DialogInterface dialog) {
+								dialog.dismiss();
+							}
+						});
+			}
+
+			@Override
+			public void onSuccess(String response) {
+				if (this.dialog.isShowing())
+					this.dialog.dismiss();
+			}
+
+			public void onFailure() {
+				Toast toast = Toast.makeText(getBaseContext(), R.string._error,
+						Toast.LENGTH_LONG);
+				toast.setGravity(Gravity.CENTER, 0, 0);
+				toast.show();
+
+			}
+		});
+		
+		
+		//loop over de antwoorden voorbeeld
+		// Stel je vragen zitten in een array
+	
+		String [] answers ={"antwoord1", "antwoord2", "antwoord3", "antwoord4"};//bv bij meerkeuze
+		boolean [] isCorrect={false,true,false,false} ;//bv antwoord 2 is correct
+	    
+		int size = answers.length;
+		
+	    for (int i=0; i<size; i++) //loopen over alle antwoorden en voegen ze een voor één toe.
+	    {
+		RequestParams aParams = new RequestParams();
+		
+		aParams.put("answer[questionid]",questionid );//we moeten de question id hebben
+		aParams.put("answer[answer]",answers[i]); //get teacherid from the shared preferences.
+		aParams.put("answer[iscorrect]", ((isCorrect[i]) ? "1" : "0") );//isCorrectAnswer
+		
+			RestClient.post("answers", aParams, new AsyncHttpResponseHandler() {
+				private ProgressDialog dialog;
+				@Override
+				public void onStart() {
+					dialog = ProgressDialog.show(QuestionDetails.this, "Loading",
+							"Data Loading", true, true, new OnCancelListener() {
+								public void onCancel(DialogInterface dialog) {
+									dialog.dismiss();
+								}
+							});
+				}
+	
+				@Override
+				public void onSuccess(String response) {
+					if (this.dialog.isShowing())
+						this.dialog.dismiss();
+				}
+	
+				public void onFailure() {
+					Toast toast = Toast.makeText(getBaseContext(), R.string._error,
+							Toast.LENGTH_LONG);
+					toast.setGravity(Gravity.CENTER, 0, 0);
+					toast.show();
+	
+				}
+			});
+	    }
+*/
+
+		
+		//hetzelfde moeten we doen voor de update maar met een RestClient.put("questions/1 ipv RestClient.post("questions"...
+	    //en met url "question/"+questionid 
+		
+		
+		
 
 		/** return to QuestionTab view **/
 		Intent intent = new Intent(getParent(), QuestionTab.class);

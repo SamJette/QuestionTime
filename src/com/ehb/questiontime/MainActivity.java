@@ -312,6 +312,15 @@ public class MainActivity extends TabActivity {
 				System.out.println(_id);
 				System.out.println(_classid);
 				System.out.println(_email);
+				
+				//store the teacher id
+				SharedPreferences settings = getSharedPreferences(
+                        PREFS_NAME, 0);
+                SharedPreferences.Editor editor = settings.edit();
+
+                editor.putString("teacherid",_id);
+                editor.commit();
+				
 				if (_allowed.equals("No")) {
 					onFailure();
 				} else {

@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ExpandableListView;
 import android.widget.SimpleExpandableListAdapter;
+import android.widget.TextView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -41,6 +42,8 @@ public class ResultTab extends Activity {
 	public static final ArrayList<Question> questions = new ArrayList<Question>();
 	public static final ArrayList<Result> results = new ArrayList<Result>();
 	public static final ArrayList<Answer> answers = new ArrayList<Answer>();
+	
+	private TextView questionTopBar;
 
 	/** private ArrayList<Result> resultArray */
 
@@ -52,7 +55,6 @@ public class ResultTab extends Activity {
 		setContentView(R.layout.results_tab);
 
 		getResults();
-
 	}
 
 	public void getResults() {
@@ -139,6 +141,11 @@ public class ResultTab extends Activity {
 												// tmp.getString(4));
 
 												children.add(map);
+												
+												//Temp Question Title Anderson
+												questionTopBar = (TextView)findViewById(R.id.questionResults);
+												questionTopBar.setText(tmp.getString(1));
+												
 											} catch (JSONException e) {
 												// TODO Auto-generated catch
 												// block
@@ -157,27 +164,30 @@ public class ResultTab extends Activity {
 
 				}
 				fillAdapter(groupData, childData);
+				
 			}
 
 		});
 		Log.d("groupList", groupData.toString());
 		Log.d("childList", childData.toString());
-
 	}
 
 	private void fillAdapter(ArrayList<Map<String, String>> groupData,
 			ArrayList<ArrayList<Map<String, String>>> childData) {
 		SimpleExpandableListAdapter listAdapter = new SimpleExpandableListAdapter(
-				this, groupData, R.layout.list_item_results_students,
+				this, 
+				
+				groupData, R.layout.list_item_results_students,
 				new String[] { KEY_FIRSTNAME, KEY_NAME, KEY_ISJUIST },
-				new int[] { R.id.firstnameResults, R.id.nameResults,
-						R.id.resultsTextView }, childData,
-				R.layout.list_item_results_results, new String[] {
-						KEY_QUESTIONTEXT, KEY_ANSWER }, new int[] {
-						R.id.questionTextView, R.id.answerTextTextView });
+				new int[] { R.id.firstnameResults, R.id.nameResults,R.id.resultsTextView }, 
+				
+				childData,R.layout.list_item_results_results, 				
+				new String[] {KEY_ANSWER }, 
+				new int[] {R.id.answerTextTextView });
+		
 		ExpandableListView myListView = (ExpandableListView) findViewById(R.id.listViewTabResultaten);
 		myListView.setAdapter(listAdapter);
-
+		
 	}
 
 	@Override

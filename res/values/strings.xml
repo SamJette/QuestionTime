@@ -58,4 +58,8 @@
     <string name="loginPasswordTeacher">Login/wachtwoord veranderen</string>
     <string name="afmelden">Afmelden</string>
     <string name="serveradres">Serveradres instellen</string>
+    <string name="stop">STOP</string>
+    <string name="resultAnswer">Antwoord:</string>
+    <string name="appNameMain">QuestionTime</string>
+    <string name="antwHint">Typ hier uw vraag.</string>
 </resources>

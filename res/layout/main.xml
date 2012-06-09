@@ -48,7 +48,7 @@
                         android:background="@drawable/background_dkgray"
                         android:freezesText="false"
                         android:gravity="center|clip_vertical"
-                        android:text="Question Time"
+                        android:text="@string/appNameMain"
                         android:textColor="#FFFFFF"
                         android:textSize="21dp"
                         android:textStyle="bold" />

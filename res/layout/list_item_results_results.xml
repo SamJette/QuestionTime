@@ -14,8 +14,7 @@
         android:id="@+id/resultAntwTextView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginLeft="37dp"
-        
+        android:layout_marginLeft="37dp"        
         android:background="#F2F2F2"
         android:gravity="center|left"
         android:paddingLeft="55dp"

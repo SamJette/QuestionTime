@@ -36,6 +36,7 @@ public class ResultTab extends Activity {
 	static final String KEY_FIRSTNAME = "FIRSTNAME";
 	static final String KEY_NAME = "NAME";
 	static final String KEY_ISJUIST = "ISJUIST";
+	static final String KEY_SCORE = "SCORE";
 
 	static final String KEY_QUESTIONTEXT = "QUESTIONTEXT";
 	static final String KEY_POINTS = "POINTS";
@@ -77,8 +78,8 @@ public class ResultTab extends Activity {
 
 		RestClient.get("results.json", null, new JsonHttpResponseHandler() {
 			private ProgressDialog dialog;
-			// private JSONArray name;
 			private JSONArray _data = null;
+			
 
 			@Override
 			public void onStart() {
@@ -112,6 +113,22 @@ public class ResultTab extends Activity {
 
 						map.put(KEY_FIRSTNAME, tmp.getString(1));
 						map.put(KEY_ISJUIST, tmp.getString(2));
+						//map.put(KEY_SCORE, tmp.getString(2));
+						
+						/*String[] tmpArray = tmp.getString(2).split("/");
+						double num = Double.parseDouble(tmpArray[0]);
+						double denom = Double.parseDouble(tmpArray[1]);
+						double quot = 0.0;
+						if (denom != 0.0) quot = num/denom;
+						if (quot == 1.0){
+							map.put(KEY_SCORE,getResources().getDrawable(R.color.greenColor));
+						}else if (quot >= 0.5 && quot <= 0.7 ){
+							map.put(KEY_SCORE,getResources().getDrawable(R.color.orangeColor));
+						}else{
+							map.put(KEY_SCORE,getResources().getDrawable(R.color.redColor));
+						}*/
+						
+				
 
 						groupData.add(map);
 						Log.d("groupList", groupData.toString());
@@ -152,10 +169,10 @@ public class ResultTab extends Activity {
 												// change image if student is online or not
 												
 												if (tmp.getString(3).equalsIgnoreCase("0")) {
-													map.put(KEY_POINTS,getResources().getDrawable(R.drawable.offline));
+													map.put(KEY_POINTS,getResources().getDrawable(R.color.redColor));
 															
 												}else{
-													map.put(KEY_POINTS,getResources().getDrawable(R.drawable.online));
+													map.put(KEY_POINTS,getResources().getDrawable(R.color.greenColor));
 												}
 
 												
@@ -210,10 +227,11 @@ public class ResultTab extends Activity {
 					            public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 					                final View v = super.getChildView(groupPosition, childPosition, isLastChild, convertView, parent);
 
-					                // Populate your custom view here
+					                // Populate the custom view here
 					                ((TextView)v.findViewById(R.id.questionTextView)).setText( (String) ((Map<String,Object>)getChild(groupPosition, childPosition)).get(KEY_QUESTIONTEXT) );
 					                ((TextView)v.findViewById(R.id.answerTextTextView)).setText( (String) ((Map<String,Object>)getChild(groupPosition, childPosition)).get(KEY_ANSWER) );
-					                ((ImageView)v.findViewById(R.id.score)).setImageDrawable( (Drawable) ((Map<String,Object>)getChild(groupPosition, childPosition)).get(KEY_POINTS) );
+					                ((ImageView)v.findViewById(R.id.score1)).setBackgroundDrawable( (Drawable) ((Map<String,Object>)getChild(groupPosition, childPosition)).get(KEY_POINTS) );
+					                ((ImageView)v.findViewById(R.id.score2)).setBackgroundDrawable( (Drawable) ((Map<String,Object>)getChild(groupPosition, childPosition)).get(KEY_POINTS) );
 
 					                return v;
 					            }

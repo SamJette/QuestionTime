@@ -141,7 +141,7 @@ public class MainActivity extends TabActivity {
 		final AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
 		helpBuilder.setTitle(R.string._loginscreen_title);
 		helpBuilder.setMessage(R.string._login_message);
-		helpBuilder.setIcon(R.drawable.key_stroke_32x32);
+		helpBuilder.setIcon(R.drawable.key_stroke);
 
 		final TextView LabelName = new TextView(this);
 		LabelName.setWidth(100);

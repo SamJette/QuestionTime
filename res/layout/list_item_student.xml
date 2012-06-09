@@ -11,9 +11,9 @@
         android:id="@+id/logo"
         android:layout_width="85dp"
         android:layout_height="match_parent"
-        android:background="#F2F2F2"
+        android:background="@color/greenColor"
         android:contentDescription="Image if student is online or not"
-        android:src="@drawable/online" />
+        android:src="@drawable/transparent_pixel" />
 
     <LinearLayout
         android:layout_width="match_parent"

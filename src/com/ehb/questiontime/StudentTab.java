@@ -147,25 +147,25 @@ public class StudentTab extends Activity {
 					Log.d("demo", "is on line= " + temp.isOnLine);
 					if (temp.isOnLine.equalsIgnoreCase("1")) {
 						map.put(KEY_IMAGE_ISONLINE,
-								com.ehb.questiontime.R.color.greenColor);
+								R.color.greenColor);
 					} else {
 						map.put(KEY_IMAGE_ISONLINE,
-								com.ehb.questiontime.R.color.greyColor);
+								R.color.darkGreyColor);
 					}
 
 					listItem.add(map);
 				}
 
-				myListView = (ListView) findViewById(com.ehb.questiontime.R.id.listViewTabLeerlingen);
+				myListView = (ListView) findViewById(R.id.listViewTabLeerlingen);
 
 				SimpleAdapter adapter = new SimpleAdapter(StudentTab.this,
 						listItem,
-						com.ehb.questiontime.R.layout.list_item_student,
+						R.layout.list_item_student,
 						new String[] { KEY_FIRSTNAME, KEY_NAME,
 								KEY_IMAGE_ISONLINE }, new int[] {
-								com.ehb.questiontime.R.id.firstNameTextView,
-								com.ehb.questiontime.R.id.lastNameTextView,
-								com.ehb.questiontime.R.id.logo });
+								R.id.firstNameTextView,
+								R.id.lastNameTextView,
+								R.id.logo });
 				myListView.setAdapter(adapter);
 
 				myListView.setOnItemClickListener(new OnItemClickListener() {

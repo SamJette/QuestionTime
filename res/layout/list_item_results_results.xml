@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="48dp"
-    android:background="@drawable/online"
+    android:background="@color/greenColor"
     android:orientation="horizontal" >
 
     <LinearLayout
@@ -29,11 +29,19 @@
         	android:layout_height="match_parent"  
             android:layout_weight="2"
             android:gravity="center|right"
-            android:paddingRight="15dp"           
+            android:paddingRight="5dp"           
             android:text="@string/NEE"
             android:textColor="#515151"
             android:textSize="21dp"  
             android:background="#F2F2F2"
-            android:layout_marginRight="16dp"/>
+            android:layout_marginRight="0dp"/>
+        <ImageView
+        android:id="@+id/score"
+        android:layout_width="16dp"
+        android:layout_height="wrap_content"
+        android:background="@color/greenColor"
+        android:contentDescription="Image if student is online or not"
+        android:src="@drawable/transparent_pixel"
+        />
 
 </LinearLayout>

@@ -12,10 +12,13 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.SimpleExpandableListAdapter;
+import android.widget.TextView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -29,7 +32,7 @@ public class ResultTab extends Activity {
 	static final String KEY_ISJUIST = "ISJUIST";
 
 	static final String KEY_QUESTIONTEXT = "QUESTIONTEXT";
-	static final String KEY_DATE = "CREATEDDATE";
+	static final String KEY_POINTS = "POINTS";
 	static final String KEY_ANSWER = "ANSWERTEXT";
 
 	Student aStudent;
@@ -55,6 +58,10 @@ public class ResultTab extends Activity {
 
 	}
 
+	public void onRefresh(View v) {
+		getResults();
+	}
+	
 	public void getResults() {
 
 		RestClient.get("results.json", null, new JsonHttpResponseHandler() {
@@ -129,14 +136,21 @@ public class ResultTab extends Activity {
 												System.out.println(tmp
 														.getString(2));
 												System.out.println(tmp
-														.getString(4));
+														.getString(3));
+												
+												// change image if student is online or not
+												
+												if (tmp.getString(3).equalsIgnoreCase("0")) {
+													map.put(KEY_POINTS,tmp.getString(1));
+															
+												}
 
+												
 												map.put(KEY_QUESTIONTEXT,
 														tmp.getString(1));
 												map.put(KEY_ANSWER,
 														tmp.getString(2));
-												// map.put(KEY_DATE,
-												// tmp.getString(4));
+												
 
 												children.add(map);
 											} catch (JSONException e) {
@@ -173,8 +187,8 @@ public class ResultTab extends Activity {
 				new int[] { R.id.firstnameResults, R.id.nameResults,
 						R.id.resultsTextView }, childData,
 				R.layout.list_item_results_results, new String[] {
-						KEY_QUESTIONTEXT, KEY_ANSWER }, new int[] {
-						R.id.questionTextView, R.id.answerTextTextView });
+						KEY_QUESTIONTEXT, KEY_ANSWER, KEY_POINTS }, new int[] {
+						R.id.questionTextView, R.id.answerTextTextView, R.id.imageViewLeft });
 		ExpandableListView myListView = (ExpandableListView) findViewById(R.id.listViewTabResultaten);
 		myListView.setAdapter(listAdapter);
 

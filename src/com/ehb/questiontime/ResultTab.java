@@ -188,7 +188,7 @@ public class ResultTab extends Activity {
 						R.id.resultsTextView }, childData,
 				R.layout.list_item_results_results, new String[] {
 						KEY_QUESTIONTEXT, KEY_ANSWER, KEY_POINTS }, new int[] {
-						R.id.questionTextView, R.id.answerTextTextView, R.id.imageViewLeft });
+						R.id.questionTextView, R.id.answerTextTextView, R.id.resultsTextView });
 		ExpandableListView myListView = (ExpandableListView) findViewById(R.id.listViewTabResultaten);
 		myListView.setAdapter(listAdapter);
 

@@ -11,7 +11,7 @@
         android:background="#9e9e9e"
         android:gravity="right" >
 
-        <Button
+        <!-- <Button
             android:id="@+id/buttonRefresh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
             android:shadowRadius="2"
             android:text="@string/refresh"
             android:textColor="#FFFFFF"
-            android:textSize="21dp" />
+            android:textSize="21dp" /> -->
 
         <Button
             android:id="@+id/buttonStop"

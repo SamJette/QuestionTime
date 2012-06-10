@@ -17,7 +17,7 @@ public class QuestionDetailParser extends DefaultHandler {
 
 	/** XML node keys **/
 	static final String KEY_DATA = "data";
-	static final String KEY_ANSWERS = "answers";
+	static final String KEY_ANSWERS = "Answers";
 
 	static final String KEY_createdat = "createdat";
 	static final String KEY_deletedat = "deletedat";
@@ -53,27 +53,11 @@ public class QuestionDetailParser extends DefaultHandler {
 		} else if (localName.equalsIgnoreCase(KEY_answer)) {
 			tempAnswer.answerText = builder.toString();
 
+		} else if (localName.equalsIgnoreCase(KEY_iscorrect_ANSWER)) {
+			tempAnswer.isCorrect = builder.toString();
 		}
-		/*
-		 * else if (localName.equalsIgnoreCase(KEY_createdat_ANSWER)) {
-		 * tempAnswer.createdDate = builder.toString(); } else if
-		 * (localName.equalsIgnoreCase(KEY_deletedat_ANSWER)) {
-		 * tempAnswer.deleteDate = builder.toString(); } else if
-		 * (localName.equalsIgnoreCase(KEY_id_ANSWER)) { //tempAnswer.id =
-		 * builder.toString(); } else if
-		 * (localName.equalsIgnoreCase(KEY_iscorrect_ANSWER)) {
-		 * tempAnswer.isCorrect = builder.toString(); } else if
-		 * (localName.equalsIgnoreCase(KEY_questionid_ANSWER)) {
-		 * tempAnswer.questionId = builder.toString(); } else if
-		 * (localName.equalsIgnoreCase(KEY_updatedat_ANSWER)) {
-		 * tempAnswer.updateDate = builder.toString(); }
-		 */
 
-		else if (localName.equalsIgnoreCase(KEY_createdat)) {
-			tempQuestion.createdDate = builder.toString();
-		} else if (localName.equalsIgnoreCase(KEY_deletedat)) {
-			tempQuestion.deleteDate = builder.toString();
-		} else if (localName.equalsIgnoreCase(KEY_id)) {
+		else if (localName.equalsIgnoreCase(KEY_id)) {
 			tempQuestion.ID = builder.toString();
 		} else if (localName.equalsIgnoreCase(KEY_isopen)) {
 			tempQuestion.isOpen = builder.toString();
@@ -94,7 +78,7 @@ public class QuestionDetailParser extends DefaultHandler {
 	public void startDocument() throws SAXException {
 		// questions = new ArrayList<Question>();
 		tempQuestion = new Question();
-		answers = new ArrayList<Answer>();
+		// answers = new ArrayList<Answer>();
 		// tempAnswer = new Answer();
 
 	}
@@ -104,37 +88,25 @@ public class QuestionDetailParser extends DefaultHandler {
 			Attributes attributes) throws SAXException {
 		if (localName.equalsIgnoreCase(KEY_DATA)) {
 			builder = new StringBuilder();
-			tempAnswer = new Answer();
 
 		} else if (localName.equalsIgnoreCase(KEY_ANSWERS)) {
+			// tempAnswer = new Answer();
+
+			answers = new ArrayList<Answer>();
+
 			builder = new StringBuilder();
 		}
 
 		else if (localName.equalsIgnoreCase(KEY_item)) {
+			tempAnswer = new Answer();
 			builder = new StringBuilder();
 		} else if (localName.equalsIgnoreCase(KEY_answer)) {
 			builder = new StringBuilder();
+		} else if (localName.equalsIgnoreCase(KEY_iscorrect_ANSWER)) {
+			builder = new StringBuilder();
 		}
-		/*
-		 * else if (localName.equalsIgnoreCase(KEY_createdat_ANSWER)) { builder
-		 * = new StringBuilder(); } else if
-		 * (localName.equalsIgnoreCase(KEY_deletedat_ANSWER)) { builder = new
-		 * StringBuilder(); } else if
-		 * (localName.equalsIgnoreCase(KEY_id_ANSWER)) { builder = new
-		 * StringBuilder(); } else if
-		 * (localName.equalsIgnoreCase(KEY_iscorrect_ANSWER)) { builder = new
-		 * StringBuilder(); } else if
-		 * (localName.equalsIgnoreCase(KEY_questionid_ANSWER)) { builder = new
-		 * StringBuilder(); } else if
-		 * (localName.equalsIgnoreCase(KEY_updatedat_ANSWER)) { builder = new
-		 * StringBuilder(); }
-		 * 
-		 * }
-		 */else if (localName.equalsIgnoreCase(KEY_createdat)) {
-			builder = new StringBuilder();
-		} else if (localName.equalsIgnoreCase(KEY_deletedat)) {
-			builder = new StringBuilder();
-		} else if (localName.equalsIgnoreCase(KEY_id)) {
+
+		else if (localName.equalsIgnoreCase(KEY_id)) {
 			builder = new StringBuilder();
 		} else if (localName.equalsIgnoreCase(KEY_isopen)) {
 			builder = new StringBuilder();
@@ -143,8 +115,6 @@ public class QuestionDetailParser extends DefaultHandler {
 		} else if (localName.equalsIgnoreCase(KEY_question)) {
 			builder = new StringBuilder();
 		} else if (localName.equalsIgnoreCase(KEY_teacherid)) {
-			builder = new StringBuilder();
-		} else if (localName.equalsIgnoreCase(KEY_updatedat)) {
 			builder = new StringBuilder();
 		} else
 			builder = new StringBuilder();

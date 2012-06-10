@@ -144,6 +144,9 @@ public class QuestionTab extends Activity {
 				for (int i = 0; i < questions.size(); i++) {
 					Question temp = questions.get(i);
 
+					// Log.d("demo", "Questions in the getQuestions()= "
+					// + temp.questionText);
+
 					HashMap<String, Object> map = new HashMap<String, Object>();
 
 					map.put(KEY_QUESTION, temp.questionText);

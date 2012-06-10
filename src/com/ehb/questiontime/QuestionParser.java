@@ -37,10 +37,8 @@ public class QuestionParser extends DefaultHandler {
 		}
 
 		else if (localName.equalsIgnoreCase(KEY_ID)) {
-			String temp = builder.toString();
-			// Log.d("demo", "ID ??" + temp);
 
-			tempQuestion.ID = temp;
+			tempQuestion.ID = builder.toString();
 
 		}
 

@@ -1,24 +1,22 @@
 package com.ehb.questiontime;
 
+import java.util.ArrayList;
+
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Xml;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -30,8 +28,6 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 public class QuestionDetails extends Activity implements
 		OnCheckedChangeListener {
@@ -68,10 +64,8 @@ public class QuestionDetails extends Activity implements
 
 	public Question aQuestion;
 	public Answer anAnswer;
+	public ArrayList<Answer> answers = new ArrayList<Answer>();
 
-	// public ArrayList<Question> questions = new ArrayList<Question>();
-	// public ArrayList<Answer> answers = new ArrayList<Answer>();
-	
 	public static final String PREFS_NAME = "LoginPrefs";
 
 	static final String KEY_ID = "ID";
@@ -199,16 +193,9 @@ public class QuestionDetails extends Activity implements
 						// aQuestion.answers = parser.answers;
 						anAnswer = parser.tempAnswer;
 
-						// Log.d("demo",
-						// "answers size = " + aQuestion.answers.size());
-						Log.d("demo", "answer text = " + anAnswer.answerText);
 						editJa1InvulVraag.setText(anAnswer.answerText);
 
 						if (aQuestion.isOpen.equalsIgnoreCase("1")) {
-							/*
-							 * isInvulVraag = true; isJaNeeVraag = false;
-							 * isMeerKeuzeVraag = false;
-							 */
 
 							radioInvulVraag.setChecked(true);
 							radioJaNeeVraag.setChecked(false);
@@ -217,41 +204,91 @@ public class QuestionDetails extends Activity implements
 							if (anAnswer.answerText.equalsIgnoreCase("Ja")
 									|| anAnswer.answerText
 											.equalsIgnoreCase("Nee")) {
-								/*
-								 * isInvulVraag = false; isJaNeeVraag = true;
-								 * isMeerKeuzeVraag = false;
-								 */
 
 								radioInvulVraag.setChecked(false);
 								radioJaNeeVraag.setChecked(true);
 								radioMeerKeuzeVraag.setChecked(false);
 
 							} else {
-								/*
-								 * isInvulVraag = false; isJaNeeVraag = false;
-								 * isMeerKeuzeVraag = true;
-								 */
 								radioInvulVraag.setChecked(false);
 								radioJaNeeVraag.setChecked(false);
 								radioMeerKeuzeVraag.setChecked(true);
 
+								answers = parser.answers;
+
+								ArrayList<String> answersTextItem = new ArrayList<String>();
+								ArrayList<String> answerIsCorrect = new ArrayList<String>();
+
+								for (int i = 0; i < answers.size(); i++) {
+									Answer temp = answers.get(i);
+									answersTextItem.add(temp.answerText);
+									answerIsCorrect.add(temp.isCorrect);
+								}
+
+								for (String s : answersTextItem) {
+									if (!s.isEmpty()) {
+
+										try {
+											// "row" 1
+											editJa1InvulVraag
+													.setText(answersTextItem
+															.get(0));
+											if (answerIsCorrect.get(0)
+													.equalsIgnoreCase("1"))
+												checkJa1.setChecked(true);
+											else
+												checkJa1.setChecked(false);
+											// "row" 2
+
+											editNee2.setText(answersTextItem
+													.get(1));
+											if (answerIsCorrect.get(1)
+													.equalsIgnoreCase("1"))
+												checkNee2.setChecked(true);
+											else
+												checkNee2.setChecked(false);
+											// "row" 3
+
+											edit3.setText(answersTextItem
+													.get(2));
+											if (answerIsCorrect.get(2)
+													.equalsIgnoreCase("1"))
+												check3.setChecked(true);
+											else
+												check3.setChecked(false);
+											// "row" 4
+
+											edit4.setText(answersTextItem
+													.get(3));
+											if (answerIsCorrect.get(3)
+													.equalsIgnoreCase("1"))
+												check4.setChecked(true);
+											else
+												check4.setChecked(false);
+											// "row" 5
+
+											edit5.setText(answersTextItem
+													.get(4));
+											if (answerIsCorrect.get(4)
+													.equalsIgnoreCase("1"))
+												check5.setChecked(true);
+											else
+												check5.setChecked(false);
+
+										} catch (IndexOutOfBoundsException err) {
+											Log.d("demo",
+													"Index  is out of bounds.");
+										}
+
+									}
+								}
+
 							}
+
 						}
 
-						// editNee2.setVisibility(View.INVISIBLE);
-						// buttonNee2.setVisibility(View.INVISIBLE);
-						// checkNee2.setVisibility(View.INVISIBLE);
-
-						/*
-						 * for (int i = 0; i < aQuestion.answers.size(); i++) {
-						 * Answer temp = aQuestion.answers.get(i); Log.d("demo",
-						 * "answers = " + temp.answerText);
-						 * editJa1InvulVraag.setText(temp.answerText);
-						 * 
-						 * }
-						 */
-
 					}
+
 				});
 
 	}
@@ -276,8 +313,7 @@ public class QuestionDetails extends Activity implements
 		/** save the object **/
 
 		/*
-		 * aQuestion = new Question(); 
-		 * aQuestion.answerText = answerText;
+		 * aQuestion = new Question(); aQuestion.answerText = answerText;
 		 * questions.add(aQuestion);
 		 * 
 		 * 
@@ -292,98 +328,76 @@ public class QuestionDetails extends Activity implements
 		 * 
 		 * }
 		 */
-		
-		
+
 		/****** VRAGEN OPSLAAN *****/
-		
-		/*SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-		
-		//eerst pushen we de vraag naar de server dan de antwoorden
-		RequestParams qParams = new RequestParams();
-		qParams.put("question[question]", questiontext);//question tekst
-		qParams.put("question[teacherid]", settings.getString("teacherid", null)); //get teacherid from the shared preferences.
-		qParams.put("question[isopen]", ((isInvulVraag) ? "1" : "0") );
-		
-		
-		RestClient.post("questions", qParams, new AsyncHttpResponseHandler() {
-			private ProgressDialog dialog;
-			@Override
-			public void onStart() {
-				dialog = ProgressDialog.show(QuestionDetails.this, "Loading",
-						"Data Loading", true, true, new OnCancelListener() {
-							public void onCancel(DialogInterface dialog) {
-								dialog.dismiss();
-							}
-						});
-			}
 
-			@Override
-			public void onSuccess(String response) {
-				if (this.dialog.isShowing())
-					this.dialog.dismiss();
-			}
+		/*
+		 * SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+		 * 
+		 * //eerst pushen we de vraag naar de server dan de antwoorden
+		 * RequestParams qParams = new RequestParams();
+		 * qParams.put("question[question]", questiontext);//question tekst
+		 * qParams.put("question[teacherid]", settings.getString("teacherid",
+		 * null)); //get teacherid from the shared preferences.
+		 * qParams.put("question[isopen]", ((isInvulVraag) ? "1" : "0") );
+		 * 
+		 * 
+		 * RestClient.post("questions", qParams, new AsyncHttpResponseHandler()
+		 * { private ProgressDialog dialog;
+		 * 
+		 * @Override public void onStart() { dialog =
+		 * ProgressDialog.show(QuestionDetails.this, "Loading", "Data Loading",
+		 * true, true, new OnCancelListener() { public void
+		 * onCancel(DialogInterface dialog) { dialog.dismiss(); } }); }
+		 * 
+		 * @Override public void onSuccess(String response) { if
+		 * (this.dialog.isShowing()) this.dialog.dismiss(); }
+		 * 
+		 * public void onFailure() { Toast toast =
+		 * Toast.makeText(getBaseContext(), R.string._error, Toast.LENGTH_LONG);
+		 * toast.setGravity(Gravity.CENTER, 0, 0); toast.show();
+		 * 
+		 * } });
+		 * 
+		 * 
+		 * //loop over de antwoorden voorbeeld // Stel je vragen zitten in een
+		 * array
+		 * 
+		 * String [] answers ={"antwoord1", "antwoord2", "antwoord3",
+		 * "antwoord4"};//bv bij meerkeuze boolean []
+		 * isCorrect={false,true,false,false} ;//bv antwoord 2 is correct
+		 * 
+		 * int size = answers.length;
+		 * 
+		 * for (int i=0; i<size; i++) //loopen over alle antwoorden en voegen ze
+		 * een voor één toe. { RequestParams aParams = new RequestParams();
+		 * 
+		 * aParams.put("answer[questionid]",questionid );//we moeten de question
+		 * id hebben aParams.put("answer[answer]",answers[i]); //get teacherid
+		 * from the shared preferences. aParams.put("answer[iscorrect]",
+		 * ((isCorrect[i]) ? "1" : "0") );//isCorrectAnswer
+		 * 
+		 * RestClient.post("answers", aParams, new AsyncHttpResponseHandler() {
+		 * private ProgressDialog dialog;
+		 * 
+		 * @Override public void onStart() { dialog =
+		 * ProgressDialog.show(QuestionDetails.this, "Loading", "Data Loading",
+		 * true, true, new OnCancelListener() { public void
+		 * onCancel(DialogInterface dialog) { dialog.dismiss(); } }); }
+		 * 
+		 * @Override public void onSuccess(String response) { if
+		 * (this.dialog.isShowing()) this.dialog.dismiss(); }
+		 * 
+		 * public void onFailure() { Toast toast =
+		 * Toast.makeText(getBaseContext(), R.string._error, Toast.LENGTH_LONG);
+		 * toast.setGravity(Gravity.CENTER, 0, 0); toast.show();
+		 * 
+		 * } }); }
+		 */
 
-			public void onFailure() {
-				Toast toast = Toast.makeText(getBaseContext(), R.string._error,
-						Toast.LENGTH_LONG);
-				toast.setGravity(Gravity.CENTER, 0, 0);
-				toast.show();
-
-			}
-		});
-		
-		
-		//loop over de antwoorden voorbeeld
-		// Stel je vragen zitten in een array
-	
-		String [] answers ={"antwoord1", "antwoord2", "antwoord3", "antwoord4"};//bv bij meerkeuze
-		boolean [] isCorrect={false,true,false,false} ;//bv antwoord 2 is correct
-	    
-		int size = answers.length;
-		
-	    for (int i=0; i<size; i++) //loopen over alle antwoorden en voegen ze een voor één toe.
-	    {
-		RequestParams aParams = new RequestParams();
-		
-		aParams.put("answer[questionid]",questionid );//we moeten de question id hebben
-		aParams.put("answer[answer]",answers[i]); //get teacherid from the shared preferences.
-		aParams.put("answer[iscorrect]", ((isCorrect[i]) ? "1" : "0") );//isCorrectAnswer
-		
-			RestClient.post("answers", aParams, new AsyncHttpResponseHandler() {
-				private ProgressDialog dialog;
-				@Override
-				public void onStart() {
-					dialog = ProgressDialog.show(QuestionDetails.this, "Loading",
-							"Data Loading", true, true, new OnCancelListener() {
-								public void onCancel(DialogInterface dialog) {
-									dialog.dismiss();
-								}
-							});
-				}
-	
-				@Override
-				public void onSuccess(String response) {
-					if (this.dialog.isShowing())
-						this.dialog.dismiss();
-				}
-	
-				public void onFailure() {
-					Toast toast = Toast.makeText(getBaseContext(), R.string._error,
-							Toast.LENGTH_LONG);
-					toast.setGravity(Gravity.CENTER, 0, 0);
-					toast.show();
-	
-				}
-			});
-	    }
-*/
-
-		
-		//hetzelfde moeten we doen voor de update maar met een RestClient.put("questions/1 ipv RestClient.post("questions"...
-	    //en met url "question/"+questionid 
-		
-		
-		
+		// hetzelfde moeten we doen voor de update maar met een
+		// RestClient.put("questions/1 ipv RestClient.post("questions"...
+		// en met url "question/"+questionid
 
 		/** return to QuestionTab view **/
 		Intent intent = new Intent(getParent(), QuestionTab.class);

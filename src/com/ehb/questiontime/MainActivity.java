@@ -47,6 +47,7 @@ public class MainActivity extends TabActivity {
 	static final String KEY_CLASSID = "classId";
 
 	public static final String PREFS_NAME = "LoginPrefs";
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -94,7 +95,7 @@ public class MainActivity extends TabActivity {
 	public TextView myTabTextView(String myTabTitle) {
 		TextView txtTab = new TextView(this);
 		txtTab.setTextColor(Color.WHITE);
-		txtTab.setPadding(20,0,20,0);
+		txtTab.setPadding(20, 0, 20, 0);
 		txtTab.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
 		txtTab.setBackgroundResource(R.drawable.list_tab_selector);
 		txtTab.setTypeface(Typeface.DEFAULT_BOLD);
@@ -103,8 +104,9 @@ public class MainActivity extends TabActivity {
 		txtTab.setText(myTabTitle);
 		return txtTab;
 
-
 	}
+	
+	
 
 	/** menu **/
 
@@ -312,15 +314,14 @@ public class MainActivity extends TabActivity {
 				System.out.println(_id);
 				System.out.println(_classid);
 				System.out.println(_email);
-				
-				//store the teacher id
-				SharedPreferences settings = getSharedPreferences(
-                        PREFS_NAME, 0);
-                SharedPreferences.Editor editor = settings.edit();
 
-                editor.putString("teacherid",_id);
-                editor.commit();
-				
+				// store the teacher id
+				SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+				SharedPreferences.Editor editor = settings.edit();
+
+				editor.putString("teacherid", _id);
+				editor.commit();
+
 				if (_allowed.equals("No")) {
 					onFailure();
 				} else {

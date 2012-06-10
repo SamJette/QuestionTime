@@ -223,8 +223,7 @@ public class ResultTab extends Activity {
 				
 				this, groupData, R.layout.list_item_results_students,
 				new String[] { KEY_FIRSTNAME, KEY_NAME, KEY_ISJUIST },
-				new int[] { /*R.id.firstnameResults, R.id.nameResults,
-						R.id.resultsTextView */
+				new int[] { 
 				}, 
 				childData,
 				R.layout.list_item_results_results, 

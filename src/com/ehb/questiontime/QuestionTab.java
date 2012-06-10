@@ -29,6 +29,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TabHost;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -140,7 +141,8 @@ public class QuestionTab extends Activity {
 					HashMap<String, Object> map = new HashMap<String, Object>();
 
 					map.put(KEY_QUESTION, temp.questionText);
-
+					
+					
 					listItem.add(map);
 				}
 
@@ -280,6 +282,7 @@ public class QuestionTab extends Activity {
 
 	}
 
+
 	public void Push(MenuItem item) {
 
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
@@ -289,9 +292,14 @@ public class QuestionTab extends Activity {
 		Log.d("demo", "index= " + index);
 		Log.d("demo", "getItemId()= " + item.getItemId());
 
-		Intent intent = new Intent(getParent(), ResultTab.class);
-		startActivity(intent);
+		// Intent intent = new Intent(getParent(), ResultTab.class);
+		// startActivity(intent);
 
+		
+		MainActivity activity = (MainActivity) this.getParent().getParent();
+		TabHost host = activity.getTabHost();
+		host.setCurrentTab(2);
+		
 		/*
 		 * RequestParams params = new RequestParams();
 		 * 

@@ -78,7 +78,7 @@ public class ResultTab extends Activity {
 
 			@Override
 			public void onStart() {
-				dialog = ProgressDialog.show(ResultTab.this, "Loading",
+				dialog = ProgressDialog.show(getParent(), "Loading",
 						"Data loading", true, true, new OnCancelListener() {
 							public void onCancel(DialogInterface dialog) {
 								dialog.dismiss();

@@ -33,6 +33,7 @@ import android.widget.TabHost;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 public class QuestionTab extends Activity {
 	/** XML node keys **/
@@ -141,7 +142,7 @@ public class QuestionTab extends Activity {
 					HashMap<String, Object> map = new HashMap<String, Object>();
 
 					map.put(KEY_QUESTION, temp.questionText);
-					
+					map.put(KEY_ID, temp.ID);
 					
 					listItem.add(map);
 				}
@@ -150,8 +151,8 @@ public class QuestionTab extends Activity {
 
 				SimpleAdapter adapter = new SimpleAdapter(QuestionTab.this,
 						listItem, R.layout.list_item_question,
-						new String[] { KEY_QUESTION },
-						new int[] { R.id.vragenTextTextView });
+						new String[] { KEY_QUESTION, KEY_ID },
+						new int[] { R.id.vragenTextTextView, R.id.questionid });
 
 				myListview.setAdapter(adapter);
 
@@ -292,45 +293,53 @@ public class QuestionTab extends Activity {
 		Log.d("demo", "index= " + index);
 		Log.d("demo", "getItemId()= " + item.getItemId());
 
-		// Intent intent = new Intent(getParent(), ResultTab.class);
-		// startActivity(intent);
+		 //Intent intent = new Intent(getParent().getParent(), ResultTab.class);
+		 //startActivity(intent);
 
 		
-		MainActivity activity = (MainActivity) this.getParent().getParent();
-		TabHost host = activity.getTabHost();
-		host.setCurrentTab(2);
 		
-		/*
-		 * RequestParams params = new RequestParams();
-		 * 
-		 * // String id = "" + item.getItemId();// Als we weten welke vraag het
-		 * is String id = "" + index;
-		 * 
-		 * params.put("question[ispushed]", "1");
-		 * 
-		 * RestClient.put("questions/" + id, params, new
-		 * AsyncHttpResponseHandler() { private ProgressDialog dialog;
-		 * 
-		 * @Override public void onStart() {
-		 * 
-		 * dialog = ProgressDialog.show(getParent(), "Loading", "Data loading",
-		 * true, true, new OnCancelListener() { public void
-		 * onCancel(DialogInterface dialog) { dialog.dismiss(); } });
-		 * 
-		 * 
-		 * }
-		 * 
-		 * @Override public void onSuccess(String response) { if
-		 * (this.dialog.isShowing()) this.dialog.dismiss();
-		 * 
-		 * Log.d("demo", "pushed");
-		 * 
-		 * Intent intent = new Intent(getParent(), ResultTab.class);
-		 * TabGroupActivity parentactivity = (TabGroupActivity) getParent();
-		 * parentactivity.startChildActivity("ResultTab", intent);
-		 * 
-		 * } });
-		 */
+		
+		
+		 RequestParams params = new RequestParams();
+		 
+		 // String id = "" + item.getItemId();// Als we weten welke vraag het is 
+		 String id = "" + index;
+		 
+		params.put("question[ispushed]", "1");
+		//params.put("_method", "put");
+
+		RestClient.put("questions/" + id, params, new AsyncHttpResponseHandler() {
+			private ProgressDialog dialog;
+
+			@Override
+			public void onStart() {
+
+				dialog = ProgressDialog.show(getParent(), "Loading",
+						"Data loading", true, true, new OnCancelListener() {
+							public void onCancel(DialogInterface dialog) {
+								dialog.dismiss();
+							}
+						});
+
+			}
+
+			@Override
+			public void onSuccess(String response) {
+				if (this.dialog.isShowing())
+					this.dialog.dismiss();
+
+				Log.d("demo", "pushed");
+				Log.d("response", response);
+				MainActivity activity = (MainActivity) getParent().getParent();
+				TabHost host = activity.getTabHost();
+				host.setCurrentTab(2);
+		 
+		 /*Intent intent = new Intent(getParent(), ResultTab.class);
+		 TabGroupActivity parentactivity = (TabGroupActivity) getParent();
+		 parentactivity.startChildActivity("ResultTab", intent);*/
+		 
+		 } });
+		 
 	}
 
 }

@@ -64,6 +64,8 @@ public class ResultTab extends Activity {
 
 		getResults();
 	}
+	
+	
 
 	public void onRefresh(View v) {
 		getResults();
@@ -178,7 +180,7 @@ public class ResultTab extends Activity {
 
 												//Temp Question Title Anderson
 												questionTopBar = (TextView)findViewById(R.id.questionResults);
-												questionTopBar.setText(tmp.getString(1));
+												questionTopBar.setText(tmp.getString(1)+':'+tmp.getString(4));
 												
 
 											} catch (JSONException e) {

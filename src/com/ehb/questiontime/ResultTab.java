@@ -74,6 +74,7 @@ public class ResultTab extends Activity {
 	public void getResults() {
 
 		RestClient.get("results.json", null, new JsonHttpResponseHandler() {
+			
 			private ProgressDialog dialog;
 			private JSONArray _data = null;
 			
@@ -93,8 +94,10 @@ public class ResultTab extends Activity {
 				if (this.dialog.isShowing())
 					this.dialog.dismiss();
 				
-				 final ArrayList<Map<String, Object>> groupData = new ArrayList<Map<String, Object>>();
-				 final ArrayList<ArrayList<Map<String, Object>>> childData = new ArrayList<ArrayList<Map<String, Object>>>();
+				
+				ArrayList<Map<String, Object>> groupData = new ArrayList<Map<String, Object>>();
+				final ArrayList<ArrayList<Map<String, Object>>>childData = new ArrayList<ArrayList<Map<String, Object>>>();
+
 
 				try {
 					_data = response.getJSONArray("DATA");
@@ -180,7 +183,7 @@ public class ResultTab extends Activity {
 
 												//Temp Question Title Anderson
 												questionTopBar = (TextView)findViewById(R.id.questionResults);
-												questionTopBar.setText(tmp.getString(1)+':'+tmp.getString(4));
+												questionTopBar.setText(tmp.getString(1)+' '+':'+' '+tmp.getString(4));
 												
 
 											} catch (JSONException e) {
@@ -203,10 +206,7 @@ public class ResultTab extends Activity {
 
 				}
 				fillAdapter(groupData, childData);
-
-				Log.d("groupData", groupData.toString());
-				Log.d("childData", childData.toString());
-
+				
 			}
 
 		});

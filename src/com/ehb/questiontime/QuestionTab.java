@@ -342,7 +342,7 @@ public class QuestionTab extends Activity {
 		params.put("question[ispushed]", "1");
 		//params.put("_method", "put");
 
-		RestClient.put("questions/" + id, params, new AsyncHttpResponseHandler() {
+		RestClient.put("qpush/" + id, params, new AsyncHttpResponseHandler() {
 			private ProgressDialog dialog;
 
 			@Override
@@ -364,6 +364,7 @@ public class QuestionTab extends Activity {
 
 				Log.d("demo", "pushed");
 				Log.d("response", response);
+				
 				MainActivity activity = (MainActivity) getParent().getParent();
 				TabHost host = activity.getTabHost();
 				host.setCurrentTab(2);

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="whiteColor">#FFFFFF</color>
     <color name="blueColor">#0099CC</color>
     <color name="greenColor">#ACE600</color>
@@ -9,4 +10,5 @@
     <color name="greyColor">#DBDBDC</color>
     <color name="lightGreyColor">#F2F2F2</color>
     <color name="darkGreyColor">#3D3D3D</color>
+
 </resources>

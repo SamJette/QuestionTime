@@ -60,8 +60,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="#E3E3E3" >
+        android:background="#E3E3E3"
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/textView1"
@@ -80,41 +80,40 @@
             android:layout_margin="20dp"
             android:background="#F2F2F2"
             android:ems="10"
+            android:hint="@string/antwHint"
             android:imeOptions="actionDone"
             android:inputType="text"
             android:padding="20dp"
             android:textColor="#515151"
-            android:textSize="21dp"
-            android:hint="@string/antwHint" />
-        	
+            android:textSize="21dp" />
 
         <!-- android:hint="INPUT TEXT" -->
     </LinearLayout>
-
+
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="#E3E3E3"
         android:orientation="horizontal"
-        android:paddingLeft="20dp" 
-        android:paddingRight="20dp"  >
-        
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" >
+
         <LinearLayout
             android:layout_width="20dp"
-            android:layout_height="match_parent"                   
+            android:layout_height="match_parent"
             android:background="#9e9e9e" >
         </LinearLayout>
 
         <RadioButton
-            android:id="@+id/radioJaNee"    
+            android:id="@+id/radioJaNee"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:background="#9e9e9e"
             android:checked="true"
-            android:gravity="center|center_horizontal"  
+            android:gravity="center|center_horizontal"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp"          
+            android:paddingRight="20dp"
             android:shadowColor="#515151"
             android:shadowDx="1"
             android:shadowDy="1"
@@ -132,11 +131,10 @@
 
         <RadioButton
             android:id="@+id/radioMeerKeuzeVraag"
-            android:layout_height="48dp"            
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:background="#9e9e9e"
-            android:gravity="center|center_horizontal"                 
-            
+            android:gravity="center|center_horizontal"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:shadowColor="#515151"
@@ -146,7 +144,7 @@
             android:text="@string/meerKeuzeVraag"
             android:textColor="#FFFFFF"
             android:textSize="21dp" />
-        
+
         <LinearLayout
             android:layout_width="20dp"
             android:layout_height="match_parent"
@@ -156,10 +154,10 @@
 
         <RadioButton
             android:id="@+id/radioInvulTextVraag"
-            android:layout_height="48dp"            
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:background="#9e9e9e"
-            android:gravity="center|center_horizontal"            
+            android:gravity="center|center_horizontal"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:shadowColor="#515151"
@@ -181,8 +179,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp" 
-            android:background="#E3E3E3">
+            android:layout_marginBottom="2dp"
+            android:background="#E3E3E3" >
 
             <Button
                 android:id="@+id/buttonJa"
@@ -264,8 +262,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp" 
-            android:background="#E3E3E3">
+            android:layout_marginBottom="2dp"
+            android:background="#E3E3E3" >
 
             <Button
                 android:id="@+id/button3"
@@ -305,8 +303,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp" 
-            android:background="#E3E3E3">
+            android:layout_marginBottom="2dp"
+            android:background="#E3E3E3" >
 
             <Button
                 android:id="@+id/button4"
@@ -346,8 +344,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp" 
-            android:background="#E3E3E3">
+            android:layout_marginBottom="2dp"
+            android:background="#E3E3E3" >
 
             <Button
                 android:id="@+id/button5"

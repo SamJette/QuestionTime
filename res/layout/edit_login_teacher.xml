@@ -1,43 +1,41 @@
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/emailString"
+        android:inputType="textEmailAddress" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/editTextPasswoord"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:orientation="vertical" >
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/passwordString"
+        android:inputType="textPassword" />
 
-        <EditText
-            android:id="@+id/editTextEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/emailString"
-            android:inputType="textEmailAddress" >
-
-        </EditText>
-
-        <EditText
-            android:id="@+id/editTextPasswoord"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/passwordString"
-            android:inputType="textPassword" />
-
-    <LinearLayout 
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-         >
-        
+        android:layout_height="fill_parent" >
+
         <Button
             android:id="@+id/buttonBewaren"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:text="@string/bewaren" />
-        
-                <Button
+
+        <Button
             android:id="@+id/buttonCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:text="@android:string/cancel" />
-       </LinearLayout> 
-	
     </LinearLayout>
+
+</LinearLayout>

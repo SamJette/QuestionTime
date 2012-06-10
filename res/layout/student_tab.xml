@@ -17,30 +17,29 @@
             android:id="@+id/buttonRefresh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#9e9e9e"            
+            android:layout_gravity="right"
+            android:background="#9e9e9e"
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:onClick="refreshStudentList"
-            android:text="@string/refresh"
-            android:textColor="#FFFFFF"
-            android:textSize="21dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:shadowColor="#515151"
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="2"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:layout_gravity="right" />
+            android:text="@string/refresh"
+            android:textColor="#FFFFFF"
+            android:textSize="21dp" />
     </LinearLayout>
-    
+
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="4dp"
-        android:orientation="vertical"
-        android:background="@drawable/background_dkgray" >
+        android:background="@drawable/background_dkgray"
+        android:orientation="vertical" >
     </LinearLayout>
-    
 
     <ListView
         android:id="@+id/listViewTabLeerlingen"

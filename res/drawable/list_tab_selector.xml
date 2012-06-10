@@ -15,5 +15,4 @@
     	    android:state_pressed="false" 
     	    android:state_selected="true"/>
     
-
 </selector>

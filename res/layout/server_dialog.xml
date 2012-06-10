@@ -1,51 +1,44 @@
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center"
-        android:orientation="vertical" 
-        
-        >
-
-        <EditText
-            android:id="@+id/editTextEmail"
-            android:layout_width="500dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:freezesText="false"
-            android:gravity="center"
-            android:hint="serveradres"
-            android:inputType="textEmailAddress"
-            
-            android:textSize="21dp" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
 
-        </EditText>
-
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:freezesText="false"
+        android:gravity="center"
+        android:hint="serveradres"
+        android:inputType="textEmailAddress"
+        android:textSize="21dp" >
+    </EditText>
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
-        
-                <Button
+
+        <Button
             android:id="@+id/buttonCancel"
-            android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"   
-            android:background="#000000"            
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#000000"
             android:text="@string/_cancel"
             android:textColor="#FFFFFF"
-            android:textSize="21dp"
-            />
+            android:textSize="21dp" />
 
-                <Button
-                    android:id="@+id/buttonBewaren"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#000000"   
-                    android:text="@string/bewaren"
-                    android:textColor="#FFFFFF"
-            		android:textSize="21dp"
-             		/>
-
-       </LinearLayout> 
-	
+        <Button
+            android:id="@+id/buttonBewaren"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#000000"
+            android:text="@string/bewaren"
+            android:textColor="#FFFFFF"
+            android:textSize="21dp" />
     </LinearLayout>
+
+</LinearLayout>

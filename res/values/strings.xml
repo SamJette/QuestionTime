@@ -32,7 +32,7 @@
     <string name="_data_loading">Data ophalen</string>
     <string name="_loading">Laden</string>
     <string name="refresh">Herladen</string>
-    <string name="push">&amp;gt;</string>
+    <string name="push">&gt;</string>
     <string name="pushString">Push</string>
     <string name="copy">Copy</string>
     <string name="bewaren">Bewaren</string>

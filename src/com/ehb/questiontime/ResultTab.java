@@ -114,9 +114,9 @@ public class ResultTab extends Activity {
 
 						map.put(KEY_FIRSTNAME, tmp.getString(1));
 						map.put(KEY_ISJUIST, tmp.getString(2));
-						//map.put(KEY_SCORE, tmp.getString(2));
+						map.put(KEY_SCORE, tmp.getString(2));
 						
-						/*String[] tmpArray = tmp.getString(2).split("/");
+						String[] tmpArray = tmp.getString(2).split("/");
 						double num = Double.parseDouble(tmpArray[0]);
 						double denom = Double.parseDouble(tmpArray[1]);
 						double quot = 0.0;
@@ -127,8 +127,8 @@ public class ResultTab extends Activity {
 							map.put(KEY_SCORE,getResources().getDrawable(R.color.orangeColor));
 						}else{
 							map.put(KEY_SCORE,getResources().getDrawable(R.color.redColor));
-						}*/
-						
+						}
+						Log.d("score", ""+quot);
 				
 
 						groupData.add(map);
@@ -222,31 +222,52 @@ public class ResultTab extends Activity {
 				
 				this, groupData, R.layout.list_item_results_students,
 				new String[] { KEY_FIRSTNAME, KEY_NAME, KEY_ISJUIST },
-				new int[] { R.id.firstnameResults, R.id.nameResults,
-						R.id.resultsTextView }, 
+				new int[] { /*R.id.firstnameResults, R.id.nameResults,
+						R.id.resultsTextView */
+				}, 
 				childData,
 				R.layout.list_item_results_results, 
 				new String[] {KEY_QUESTIONTEXT, KEY_ANSWER, KEY_POINTS }, 
 				new int[] {}){
-					            @Override
+			
+				@Override
+		        public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+					final View gv = super.getGroupView(groupPosition, isExpanded, convertView,  parent);
+		 
+		            ((TextView)gv.findViewById(R.id.firstnameResults)).setText( (String) ((Map<String,Object>)getGroup(groupPosition)).get(KEY_FIRSTNAME));
+		            ((TextView)gv.findViewById(R.id.nameResults)).setText( (String) ((Map<String,Object>)getGroup(groupPosition)).get(KEY_NAME));
+		            ((TextView)gv.findViewById(R.id.resultsTextView)).setText( (String) ((Map<String,Object>)getGroup(groupPosition)).get(KEY_ISJUIST));
+		           
+		            ((ImageView)gv.findViewById(R.id.sscore1)).setBackgroundDrawable( (Drawable) ((Map<String,Object>)getGroup(groupPosition)).get(KEY_SCORE));
+	                ((ImageView)gv.findViewById(R.id.sscore2)).setBackgroundDrawable( (Drawable) ((Map<String,Object>)getGroup(groupPosition)).get(KEY_SCORE));
 
-					            public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-					                final View v = super.getChildView(groupPosition, childPosition, isLastChild, convertView, parent);
+		            return gv;
+		        }
+				
+				@Override
+	            public View newGroupView(boolean isExpanded, ViewGroup parent) {
+	                 return layoutInflater.inflate(R.layout.list_item_results_students, null, false);
+	            }
+		
+	            @Override
 
-					                // Populate the custom view here
-					                ((TextView)v.findViewById(R.id.questionTextView)).setText( (String) ((Map<String,Object>)getChild(groupPosition, childPosition)).get(KEY_QUESTIONTEXT) );
-					                ((TextView)v.findViewById(R.id.answerTextTextView)).setText( (String) ((Map<String,Object>)getChild(groupPosition, childPosition)).get(KEY_ANSWER) );
-					                ((ImageView)v.findViewById(R.id.score1)).setBackgroundDrawable( (Drawable) ((Map<String,Object>)getChild(groupPosition, childPosition)).get(KEY_POINTS) );
-					                ((ImageView)v.findViewById(R.id.score2)).setBackgroundDrawable( (Drawable) ((Map<String,Object>)getChild(groupPosition, childPosition)).get(KEY_POINTS) );
+	            public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+	                final View v = super.getChildView(groupPosition, childPosition, isLastChild, convertView, parent);
 
-					                return v;
-					            }
+	                // Populate the custom view here
+	                ((TextView)v.findViewById(R.id.questionTextView)).setText( (String) ((Map<String,Object>)getChild(groupPosition, childPosition)).get(KEY_QUESTIONTEXT) );
+	                ((TextView)v.findViewById(R.id.answerTextTextView)).setText( (String) ((Map<String,Object>)getChild(groupPosition, childPosition)).get(KEY_ANSWER) );
+	                ((ImageView)v.findViewById(R.id.score1)).setBackgroundDrawable( (Drawable) ((Map<String,Object>)getChild(groupPosition, childPosition)).get(KEY_POINTS) );
+	                ((ImageView)v.findViewById(R.id.score2)).setBackgroundDrawable( (Drawable) ((Map<String,Object>)getChild(groupPosition, childPosition)).get(KEY_POINTS) );
 
-					            @Override
-					            public View newChildView(boolean isLastChild, ViewGroup parent) {
-					                 return layoutInflater.inflate(R.layout.list_item_results_results, null, false);
-					            }
-					        };
+	                return v;
+	            }
+
+	            @Override
+	            public View newChildView(boolean isLastChild, ViewGroup parent) {
+	                 return layoutInflater.inflate(R.layout.list_item_results_results, null, false);
+	            }
+	        };
 		ExpandableListView myListView = (ExpandableListView) findViewById(R.id.listViewTabResultaten);
 		myListView.setAdapter(listAdapter);
 		

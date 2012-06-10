@@ -65,16 +65,16 @@
             android:layout_margin="20dp"
             android:background="@drawable/detail_vragen_roundcorner"
             android:gravity="center"
-            android:text="@string/leerlingenGegevensVerzenden"
+            android:text="@string/sendDataStudent"
             android:visibility="invisible" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center" >
-    </LinearLayout>
+<!--     <LinearLayout -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_gravity="center" -->
+<!--         android:gravity="center" > -->
+<!--     </LinearLayout> -->
 
 </LinearLayout>

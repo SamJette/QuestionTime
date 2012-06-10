@@ -4,7 +4,7 @@
     android:layout_height="48dp"
     android:background="@drawable/transparent_pixel"
     android:orientation="horizontal" >
-    
+
     <ImageView
         android:id="@+id/score1"
         android:layout_width="36dp"
@@ -13,45 +13,38 @@
         android:contentDescription="Image correct or false"
         android:src="@drawable/transparent_pixel" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/resultAntwTextView"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent" 
-        android:layout_weight="7" >
-        
-        <TextView
-        android:id="@+id/questionTextView"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"        
-        android:layout_weight="6" 
+        android:layout_height="match_parent"
         android:layout_marginLeft="0dp"
         android:background="#F2F2F2"
-        android:gravity="center|left" 
-        android:paddingLeft="15dp"       
-        android:text="bv. ''Is een vlinder een vogel?''"
+        android:gravity="center|left"
+        android:paddingLeft="55dp"
+        android:paddingRight="8dp"
+        android:text="@string/resultAnswer"
         android:textColor="#515151"
-        android:textSize="21dp"/>
+        android:textSize="21dp" />
 
-        <TextView
-            android:id="@+id/answerTextTextView"
-            android:layout_width="0dp"
-        	android:layout_height="match_parent"  
-            android:layout_weight="2"
-            android:gravity="center|right"
-            android:paddingRight="5dp"           
-            android:text="@string/NEE"
-            android:textColor="#515151"
-            android:textSize="21dp"  
-            android:background="#F2F2F2"
-            android:layout_marginRight="0dp"/>
+    <TextView
+        android:id="@+id/answerTextTextView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="0dp"
+        android:layout_weight="2"
+        android:background="#F2F2F2"
+        android:gravity="center|left"
+        android:paddingRight="15dp"
+        android:text="@string/NEE"
+        android:textColor="#515151"
+        android:textSize="21dp" />
 
-    </LinearLayout>
-   
-       <ImageView
-           android:id="@+id/score2"
-           android:layout_width="16dp"
-           android:layout_height="match_parent"
-           android:background="@color/redColor"
-           android:contentDescription="Image correct or false"
-           android:src="@drawable/transparent_pixel" />
+    <ImageView
+        android:id="@+id/score2"
+        android:layout_width="16dp"
+        android:layout_height="match_parent"
+        android:background="@color/redColor"
+        android:contentDescription="Image correct or false"
+        android:src="@drawable/transparent_pixel" />
 
 </LinearLayout>

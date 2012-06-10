@@ -4,10 +4,10 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-    
+    
     <LinearLayout
-        android:layout_width="match_parent"        
-        android:layout_height="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"        
         android:background="#9e9e9e"
         android:gravity="right" >
 
@@ -27,26 +27,40 @@
             android:shadowRadius="2"
             android:text="@string/refresh"
             android:textColor="#FFFFFF"
-            android:textSize="21dp" /> -->
-
-        <Button
-            android:id="@+id/buttonStop"
-            android:layout_width="wrap_content"                      
-            android:layout_height="wrap_content"
-            android:background="#9e9e9e"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            
-            android:text="STOP"
-            android:textColor="#FFFFFF"
+            android:textSize="21dp" /> 
+			android:gravity="right" >-->
+
+        <TextView
+            android:id="@+id/questionResults"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="47dp"
+            android:layout_weight="7"
+            android:paddingLeft="15dp"
+            android:gravity="left|center"
+            android:textColor="#ffffff"
             android:textSize="21dp"
             android:shadowColor="#515151"
             android:shadowDx="1"
             android:shadowDy="1"
-            android:shadowRadius="2"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp" />
+            android:shadowRadius="2" />
 
+
+        <Button
+            android:id="@+id/buttonStop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#9e9e9e"
+            android:focusable="false"
+            android:focusableInTouchMode="false"            
+            android:paddingRight="15dp"
+            android:shadowColor="#515151"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
+            android:text="@string/stop"
+            android:textColor="#FFFFFF"
+            android:textSize="21dp" />
     </LinearLayout>
     
     <LinearLayout
@@ -62,8 +76,8 @@
 	    android:listSelector="@drawable/list_selector"	   
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:divider="#9e9e9e"
-        android:childDivider="#9e9e9e"
+        android:divider="#d1d1d1"
+        android:childDivider="#d1d1d1"
         android:dividerHeight="1dp" >
 	</ExpandableListView>
 

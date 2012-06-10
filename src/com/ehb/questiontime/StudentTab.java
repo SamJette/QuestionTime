@@ -193,7 +193,7 @@ public class StudentTab extends Activity {
 		case (STUDENT_DIALOG):
 			LayoutInflater li = LayoutInflater.from(this);
 			View quakeDetailsView = li.inflate(
-					com.ehb.questiontime.R.layout.student_detail, null);
+					R.layout.student_detail, null);
 
 			AlertDialog.Builder quakeDialog = new AlertDialog.Builder(this);
 			quakeDialog.setTitle("Student Time");
@@ -214,7 +214,7 @@ public class StudentTab extends Activity {
 			AlertDialog studentDialog = (AlertDialog) dialog;
 			studentDialog.setTitle(aStudent.name);
 			TextView tv = (TextView) studentDialog
-					.findViewById(com.ehb.questiontime.R.id.studentDetailsTextViewInDialog);
+					.findViewById(R.id.studentDetailsTextViewInDialog);
 			tv.setText(studentText);
 
 			break;

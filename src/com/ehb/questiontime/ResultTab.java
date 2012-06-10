@@ -21,8 +21,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
@@ -30,8 +32,8 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 
 public class ResultTab extends Activity {
 
-	private final ArrayList<Map<String, Object>> groupData = new ArrayList<Map<String, Object>>();
-	private final ArrayList<ArrayList<Map<String, Object>>> childData = new ArrayList<ArrayList<Map<String, Object>>>();
+	private ArrayList<Map<String, Object>> groupData = new ArrayList<Map<String, Object>>();
+	private ArrayList<ArrayList<Map<String, Object>>> childData = new ArrayList<ArrayList<Map<String, Object>>>();
 
 	static final String KEY_FIRSTNAME = "FIRSTNAME";
 	static final String KEY_NAME = "NAME";
@@ -50,6 +52,7 @@ public class ResultTab extends Activity {
 	Question aQuestion;
 	Result aResult;
 	Answer anAnswer;
+	private AbsListView myListView;
 
 	public static final ArrayList<Student> students = new ArrayList<Student>();
 	public static final ArrayList<Question> questions = new ArrayList<Question>();
@@ -71,6 +74,12 @@ public class ResultTab extends Activity {
 	}
 
 	public void onRefresh(View v) {
+		// clean up the old object set to null so the garbage collector will clean it up
+		groupData = null;
+		childData = null;
+		//reinitialize the objects so data will not be added to the list
+		groupData = new ArrayList<Map<String, Object>>();
+		childData = new ArrayList<ArrayList<Map<String, Object>>>();
 		getResults();
 	}
 	
@@ -204,17 +213,21 @@ public class ResultTab extends Activity {
 			}
 
 		});
+		
 		Log.d("groupList", groupData.toString());
 		Log.d("childList", childData.toString());
-
+		
 	}
 	
 
 	private void fillAdapter(ArrayList<Map<String, Object>> groupData,
 			ArrayList<ArrayList<Map<String, Object>>> childData) {
 		final LayoutInflater layoutInflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+		
+		
+		
 		SimpleExpandableListAdapter listAdapter = new SimpleExpandableListAdapter(
+				
 				this, groupData, R.layout.list_item_results_students,
 				new String[] { KEY_FIRSTNAME, KEY_NAME, KEY_ISJUIST },
 				new int[] { R.id.firstnameResults, R.id.nameResults,
@@ -224,6 +237,7 @@ public class ResultTab extends Activity {
 				new String[] {KEY_QUESTIONTEXT, KEY_ANSWER, KEY_POINTS }, 
 				new int[] {}){
 					            @Override
+
 					            public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 					                final View v = super.getChildView(groupPosition, childPosition, isLastChild, convertView, parent);
 
@@ -243,6 +257,8 @@ public class ResultTab extends Activity {
 					        };
 		ExpandableListView myListView = (ExpandableListView) findViewById(R.id.listViewTabResultaten);
 		myListView.setAdapter(listAdapter);
+		
+		
 
 	}
 

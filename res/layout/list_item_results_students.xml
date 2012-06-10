@@ -12,7 +12,7 @@
         <ImageView
             android:id="@+id/sscore1"
             android:layout_width="37dp"
-            android:layout_height="match_parent"
+            android:layout_height="48dp"
             android:background="@color/redColor"
             android:contentDescription="Image correct or false"
             android:src="@drawable/transparent_pixel" />
@@ -20,7 +20,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="37dp"
             android:layout_weight="7"
             android:background="#F2F2F2" >
 
@@ -62,7 +62,7 @@
         <ImageView
             android:id="@+id/sscore2"
             android:layout_width="16dp"
-            android:layout_height="match_parent"
+            android:layout_height="48dp"
             android:background="@color/redColor"
             android:contentDescription="Image correct or false"
             android:src="@drawable/transparent_pixel" />

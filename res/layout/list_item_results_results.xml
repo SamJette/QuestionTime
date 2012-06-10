@@ -7,7 +7,7 @@
 
     <ImageView
         android:id="@+id/score1"
-        android:layout_width="36dp"
+        android:layout_width="37dp"
         android:layout_height="match_parent"
         android:background="@color/redColor"
         android:contentDescription="Image correct or false"

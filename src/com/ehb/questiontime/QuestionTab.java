@@ -347,6 +347,7 @@ public class QuestionTab extends Activity {
 
 		RestClient.put("qpush/" + id, params, new AsyncHttpResponseHandler() {
 			private ProgressDialog dialog;
+			private String response;
 
 			@Override
 			public void onStart() {
@@ -357,7 +358,7 @@ public class QuestionTab extends Activity {
 								dialog.dismiss();
 							}
 						});
-
+				onSuccess("ok");// force a success
 			}
 
 			@Override
@@ -367,16 +368,21 @@ public class QuestionTab extends Activity {
 
 				Log.d("demo", "pushed");
 				Log.d("response", response);
-				
+
 				MainActivity activity = (MainActivity) getParent().getParent();
 				TabHost host = activity.getTabHost();
 				host.setCurrentTab(2);
-		 
-		 /*Intent intent = new Intent(getParent(), ResultTab.class);
-		 TabGroupActivity parentactivity = (TabGroupActivity) getParent();
-		 parentactivity.startChildActivity("ResultTab", intent);*/
-		 
-		 } });
+				
+
+				/*
+				 * Intent intent = new Intent(getParent(), ResultTab.class);
+				 * TabGroupActivity parentactivity = (TabGroupActivity)
+				 * getParent(); parentactivity.startChildActivity("ResultTab",
+				 * intent);
+				 */
+
+			}
+		});
 		
 	}
 

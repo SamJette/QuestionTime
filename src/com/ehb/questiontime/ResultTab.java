@@ -32,9 +32,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 
 public class ResultTab extends Activity {
 
-	private ArrayList<Map<String, Object>> groupData = new ArrayList<Map<String, Object>>();
-	private ArrayList<ArrayList<Map<String, Object>>> childData = new ArrayList<ArrayList<Map<String, Object>>>();
-
+	
 	static final String KEY_FIRSTNAME = "FIRSTNAME";
 	static final String KEY_NAME = "NAME";
 	static final String KEY_ISJUIST = "ISJUIST";
@@ -44,10 +42,6 @@ public class ResultTab extends Activity {
 	static final String KEY_POINTS = "POINTS";
 	static final String KEY_ANSWER = "ANSWERTEXT";
 	
-	final String NAME = "name";
-	final String IMAGE = "image";
-
-
 	Student aStudent;
 	Question aQuestion;
 	Result aResult;
@@ -74,12 +68,6 @@ public class ResultTab extends Activity {
 	}
 
 	public void onRefresh(View v) {
-		// clean up the old object set to null so the garbage collector will clean it up
-		groupData = null;
-		childData = null;
-		//reinitialize the objects so data will not be added to the list
-		groupData = new ArrayList<Map<String, Object>>();
-		childData = new ArrayList<ArrayList<Map<String, Object>>>();
 		getResults();
 	}
 	
@@ -104,6 +92,10 @@ public class ResultTab extends Activity {
 			public void onSuccess(JSONObject response) {
 				if (this.dialog.isShowing())
 					this.dialog.dismiss();
+				
+				 final ArrayList<Map<String, Object>> groupData = new ArrayList<Map<String, Object>>();
+				 final ArrayList<ArrayList<Map<String, Object>>> childData = new ArrayList<ArrayList<Map<String, Object>>>();
+
 
 				try {
 					_data = response.getJSONArray("DATA");
@@ -117,8 +109,8 @@ public class ResultTab extends Activity {
 						JSONArray tmp = _data.getJSONArray(i);
 						Map<String, Object> map = new HashMap<String, Object>();
 
-						System.out.println(tmp.getString(1));
-						System.out.println(tmp.getString(2));
+						//System.out.println(tmp.getString(1));
+						//System.out.println(tmp.getString(2));
 
 						map.put(KEY_FIRSTNAME, tmp.getString(1));
 						map.put(KEY_ISJUIST, tmp.getString(2));
@@ -140,7 +132,8 @@ public class ResultTab extends Activity {
 				
 
 						groupData.add(map);
-						Log.d("groupList", groupData.toString());
+						//Log.d("groupData", groupData.toString());
+						
 
 						RestClient.get("results/" + tmp.getString(0) + ".json",
 								null, new JsonHttpResponseHandler() {
@@ -153,27 +146,22 @@ public class ResultTab extends Activity {
 									@Override
 									public void onSuccess(JSONObject response) {
 										try {
-											_data = response
-													.getJSONArray("DATA");
+											_data = response.getJSONArray("DATA");
 										} catch (JSONException e) {
 											// TODO Auto-generated catch block
 											e.printStackTrace();
 										}
-										System.out.println(_data);
+										//System.out.println(_data);
 										ArrayList<Map<String, Object>> children = new ArrayList<Map<String, Object>>();
 
 										for (int i = 0; i < _data.length(); i++) {
 											try {
-												JSONArray tmp = _data
-														.getJSONArray(i);
+												JSONArray tmp = _data.getJSONArray(i);
 												HashMap<String, Object> map = new HashMap<String, Object>();
 
-												System.out.println(tmp
-														.getString(1));
-												System.out.println(tmp
-														.getString(2));
-												System.out.println(tmp
-														.getString(3));
+												//System.out.println(tmp.getString(1));
+												//System.out.println(tmp.getString(2));
+												//System.out.println(tmp.getString(3));
 												
 												// change image if student is online or not
 												
@@ -190,8 +178,8 @@ public class ResultTab extends Activity {
 												map.put(KEY_ANSWER,
 														tmp.getString(2));
 		
-
 												children.add(map);
+												
 											} catch (JSONException e) {
 												// TODO Auto-generated catch
 												// block
@@ -199,6 +187,8 @@ public class ResultTab extends Activity {
 											}
 										}
 										childData.add(children);
+										
+										//Log.d("childData", childData.toString());
 									}
 
 								});
@@ -210,12 +200,14 @@ public class ResultTab extends Activity {
 
 				}
 				fillAdapter(groupData, childData);
+				Log.d("groupData", groupData.toString());
+				Log.d("childData", childData.toString());
+
 			}
 
 		});
 		
-		Log.d("groupList", groupData.toString());
-		Log.d("childList", childData.toString());
+		
 		
 	}
 	
@@ -257,7 +249,6 @@ public class ResultTab extends Activity {
 					        };
 		ExpandableListView myListView = (ExpandableListView) findViewById(R.id.listViewTabResultaten);
 		myListView.setAdapter(listAdapter);
-		
 		
 
 	}

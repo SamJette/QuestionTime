@@ -17,6 +17,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.Xml;
 import android.view.ContextMenu;
@@ -28,6 +29,8 @@ import android.view.View.OnCreateContextMenuListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
 import android.widget.SimpleAdapter;
 import android.widget.TabHost;
 import android.widget.Toast;
@@ -46,7 +49,7 @@ public class QuestionTab extends Activity {
 
 	/** the listview **/
 	private ListView myListview;
-	// private SearchView mySearchView;
+	private SearchView mySearchView;
 
 	private static final int DELETE_ID = Menu.FIRST;
 	private static final int PUSH_ID = Menu.FIRST + 1;
@@ -58,6 +61,8 @@ public class QuestionTab extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.question_tab);
+
+		mySearchView = (SearchView) findViewById(R.id.searchView1);
 
 		questionListing();
 
@@ -141,8 +146,7 @@ public class QuestionTab extends Activity {
 					HashMap<String, Object> map = new HashMap<String, Object>();
 
 					map.put(KEY_QUESTION, temp.questionText);
-					
-					
+
 					listItem.add(map);
 				}
 
@@ -199,6 +203,37 @@ public class QuestionTab extends Activity {
 
 					}
 
+				});
+
+				/** code for the searchview **/
+				myListview.setTextFilterEnabled(true);
+
+				mySearchView.setOnQueryTextListener(new OnQueryTextListener() {
+
+					public boolean onQueryTextSubmit(String query) {
+						return false;
+					}
+
+					public boolean onQueryTextChange(String newText) {
+
+						if (TextUtils.isEmpty(newText)) {
+							myListview.clearTextFilter();
+						} else {
+							int pos = 0;
+							for (Question q : questions) {
+								if (q.questionText.toLowerCase().contains(
+										newText.toLowerCase())) {
+									SimpleAdapter tempAdapter = (SimpleAdapter) myListview
+											.getAdapter();
+									tempAdapter.getFilter().filter(newText);
+								}
+								pos++;
+							}
+
+						}
+
+						return true;
+					}
 				});
 
 				System.out.println(response);
@@ -282,7 +317,6 @@ public class QuestionTab extends Activity {
 
 	}
 
-
 	public void Push(MenuItem item) {
 
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
@@ -295,11 +329,10 @@ public class QuestionTab extends Activity {
 		// Intent intent = new Intent(getParent(), ResultTab.class);
 		// startActivity(intent);
 
-		
 		MainActivity activity = (MainActivity) this.getParent().getParent();
 		TabHost host = activity.getTabHost();
 		host.setCurrentTab(2);
-		
+
 		/*
 		 * RequestParams params = new RequestParams();
 		 * 

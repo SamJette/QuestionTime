@@ -8,7 +8,7 @@
     <ImageView
         android:id="@+id/score1"
         android:layout_width="37dp"
-        android:layout_height="match_parent"
+        android:layout_height="48dp"
         android:background="@color/redColor"
         android:contentDescription="Image correct or false"
         android:src="@drawable/transparent_pixel" />
@@ -42,7 +42,7 @@
     <ImageView
         android:id="@+id/score2"
         android:layout_width="16dp"
-        android:layout_height="match_parent"
+        android:layout_height="48dp"
         android:background="@color/redColor"
         android:contentDescription="Image correct or false"
         android:src="@drawable/transparent_pixel" />

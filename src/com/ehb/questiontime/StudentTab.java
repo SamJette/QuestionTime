@@ -146,11 +146,9 @@ public class StudentTab extends Activity {
 					// change image if student is online or not
 					Log.d("demo", "is on line= " + temp.isOnLine);
 					if (temp.isOnLine.equalsIgnoreCase("1")) {
-						map.put(KEY_IMAGE_ISONLINE,
-								R.color.greenColor);
+						map.put(KEY_IMAGE_ISONLINE, R.color.greenColor);
 					} else {
-						map.put(KEY_IMAGE_ISONLINE,
-								R.color.darkGreyColor);
+						map.put(KEY_IMAGE_ISONLINE, R.color.darkGreyColor);
 					}
 
 					listItem.add(map);
@@ -159,13 +157,10 @@ public class StudentTab extends Activity {
 				myListView = (ListView) findViewById(R.id.listViewTabLeerlingen);
 
 				SimpleAdapter adapter = new SimpleAdapter(StudentTab.this,
-						listItem,
-						R.layout.list_item_student,
-						new String[] { KEY_FIRSTNAME, KEY_NAME,
-								KEY_IMAGE_ISONLINE }, new int[] {
-								R.id.firstNameTextView,
-								R.id.lastNameTextView,
-								R.id.logo });
+						listItem, R.layout.list_item_student, new String[] {
+								KEY_FIRSTNAME, KEY_NAME, KEY_IMAGE_ISONLINE },
+						new int[] { R.id.firstNameTextView,
+								R.id.lastNameTextView, R.id.logo });
 				myListView.setAdapter(adapter);
 
 				myListView.setOnItemClickListener(new OnItemClickListener() {
@@ -192,8 +187,7 @@ public class StudentTab extends Activity {
 		switch (id) {
 		case (STUDENT_DIALOG):
 			LayoutInflater li = LayoutInflater.from(this);
-			View quakeDetailsView = li.inflate(
-					R.layout.student_detail, null);
+			View quakeDetailsView = li.inflate(R.layout.student_detail, null);
 
 			AlertDialog.Builder quakeDialog = new AlertDialog.Builder(this);
 			quakeDialog.setTitle("Student Time");

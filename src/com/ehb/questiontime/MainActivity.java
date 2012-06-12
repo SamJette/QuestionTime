@@ -19,6 +19,7 @@ import android.text.InputType;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -47,7 +48,6 @@ public class MainActivity extends TabActivity {
 	static final String KEY_CLASSID = "classId";
 
 	public static final String PREFS_NAME = "LoginPrefs";
-	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -76,12 +76,14 @@ public class MainActivity extends TabActivity {
 				.setIndicator(myTabTextView("Vragen")).setContent(intent);
 		tabHost.addTab(spec);
 
-	    //TabHost refreshes when it gets focus again.
-		tabHost.addTab(tabHost.newTabSpec("Resultaten")
-		        .setIndicator(myTabTextView("Resultaten"))
-		        .setContent(new Intent(this, ResultTab.class)
-		        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)));
-		
+		// TabHost refreshes when it gets focus again.
+		tabHost.addTab(tabHost
+				.newTabSpec("Resultaten")
+				.setIndicator(myTabTextView("Resultaten"))
+				.setContent(
+						new Intent(this, ResultTab.class)
+								.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)));
+
 		intent = new Intent().setClass(this, TabGroup2SettingsActivity.class);
 		spec = tabHost.newTabSpec("Instellingen")
 				.setIndicator(myTabTextView("Instellingen")).setContent(intent);
@@ -105,8 +107,12 @@ public class MainActivity extends TabActivity {
 		return txtTab;
 
 	}
-	
-	
+
+	/** home button clicked --> return to StudentTab **/
+	public void onHomeButtonClicked(View v) {
+		TabHost tabHost = getTabHost();
+		tabHost.setCurrentTab(0);
+	}
 
 	/** menu **/
 

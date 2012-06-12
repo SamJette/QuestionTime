@@ -7,20 +7,19 @@
 
     <ImageView
         android:id="@+id/score1"
-        android:layout_width="37dp"
+        android:layout_width="39dp"
         android:layout_height="48dp"
         android:background="@color/redColor"
         android:contentDescription="Image correct or false"
-        android:src="@drawable/transparent_pixel" />
+        />
 
     <TextView
         android:id="@+id/resultAntwTextView"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="0dp"
+        android:layout_height="match_parent"        
         android:background="#F2F2F2"
         android:gravity="center|left"
-        android:paddingLeft="55dp"
+        android:paddingLeft="15dp"
         android:paddingRight="8dp"
         android:text="@string/resultAnswer"
         android:textColor="#515151"
@@ -45,6 +44,7 @@
         android:layout_height="48dp"
         android:background="@color/redColor"
         android:contentDescription="Image correct or false"
-        android:src="@drawable/transparent_pixel" />
+        />
 
 </LinearLayout>
+

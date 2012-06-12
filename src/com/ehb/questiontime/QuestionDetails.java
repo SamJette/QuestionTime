@@ -118,6 +118,12 @@ public class QuestionDetails extends Activity implements
 
 		}
 
+		editJa1InvulVraag.invalidate();
+		editNee2.invalidate();
+		edit3.invalidate();
+		edit4.invalidate();
+		edit5.invalidate();
+
 	}
 
 	public void retrieveDetailsQuestion() {

@@ -81,6 +81,9 @@ public class QuestionTab extends Activity {
 
 	public void refreshQuestionList(View v) {
 
+		// getWindow().setSoftInputMode(
+		// WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
 		questionListing();
 
 	}
@@ -151,17 +154,17 @@ public class QuestionTab extends Activity {
 
 					map.put(KEY_QUESTION, temp.questionText);
 
-					//map.put(KEY_ID, temp.ID);
-					
+					// map.put(KEY_ID, temp.ID);
+
 					listItem.add(map);
 				}
 
 				myListview = (ListView) findViewById(R.id.listViewTabVragen);
 
 				SimpleAdapter adapter = new SimpleAdapter(QuestionTab.this,
-						listItem, R.layout.list_item_question,
-						new String[] { KEY_QUESTION, KEY_ID },
-						new int[] { R.id.vragenTextTextView});
+						listItem, R.layout.list_item_question, new String[] {
+								KEY_QUESTION, KEY_ID },
+						new int[] { R.id.vragenTextTextView });
 
 				myListview.setAdapter(adapter);
 
@@ -332,18 +335,16 @@ public class QuestionTab extends Activity {
 		Log.d("demo", "index= " + index);
 		Log.d("demo", "getItemId()= " + item.getItemId());
 
-		 //Intent intent = new Intent(getParent().getParent(), ResultTab.class);
-		 //startActivity(intent);
+		// Intent intent = new Intent(getParent().getParent(), ResultTab.class);
+		// startActivity(intent);
 
-	
-		
-		 RequestParams params = new RequestParams();
-		 
-		 // String id = "" + item.getItemId();// Als we weten welke vraag het is 
-		 String id = "" + index;
-		 
+		RequestParams params = new RequestParams();
+
+		// String id = "" + item.getItemId();// Als we weten welke vraag het is
+		String id = "" + index;
+
 		params.put("question[ispushed]", "1");
-		//params.put("_method", "put");
+		// params.put("_method", "put");
 
 		RestClient.put("qpush/" + id, params, new AsyncHttpResponseHandler() {
 			private ProgressDialog dialog;
@@ -372,7 +373,6 @@ public class QuestionTab extends Activity {
 				MainActivity activity = (MainActivity) getParent().getParent();
 				TabHost host = activity.getTabHost();
 				host.setCurrentTab(2);
-				
 
 				/*
 				 * Intent intent = new Intent(getParent(), ResultTab.class);
@@ -383,7 +383,7 @@ public class QuestionTab extends Activity {
 
 			}
 		});
-		
+
 	}
 
 }

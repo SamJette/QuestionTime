@@ -28,18 +28,17 @@
                     android:id="@+id/linearLayout5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" >
-                    
-                                        <Button
+
+                    <Button
                         android:id="@+id/buttonHomeLogo"
                         android:layout_width="46dp"
                         android:layout_height="46dp"
-                        android:layout_marginTop="3dp"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginTop="3dp"
                         android:background="@drawable/logo_test2"
                         android:focusable="false"
                         android:focusableInTouchMode="false"
-                        android:onClick="onHomeButtonClicked"
-                        />
+                        android:onClick="onHomeButtonClicked" />
 
                     <Button
                         android:id="@+id/buttonHome"
@@ -56,9 +55,9 @@
                         android:text="@string/appNameMain"
                         android:textColor="#FFFFFF"
                         android:textSize="21dp" />
-                    
 
-                 <!--    <ImageView
+                    <!--
+                    <ImageView
                         android:id="@+id/imageView2"
                         android:layout_width="46dp"
                         android:layout_height="46dp"
@@ -80,7 +79,8 @@
                         android:text="@string/appNameMain"
                         android:textColor="#FFFFFF"
                         android:textSize="21dp"
-                        android:textStyle="bold" /> -->
+                        android:textStyle="bold" />
+                    -->
                 </LinearLayout>
 
                 <ImageView
@@ -114,7 +114,19 @@
                 android:background="@drawable/background_dkgray"
                 android:orientation="vertical" >
 
-                
+                <Button
+                    android:id="@+id/infoButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/background_dkgray"
+                    android:drawableRight="@android:drawable/ic_dialog_info"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:onClick="onInfoButtonClicked"
+                    android:paddingLeft="20dp"
+                     />
             </LinearLayout>
         </LinearLayout>
 
@@ -122,12 +134,7 @@
             android:id="@android:id/tabcontent"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
-          <!--   <Button 
-                android:drawableRight="@android:drawable/ic_dialog_info"
-                /> -->
-            
-            
-            </FrameLayout>
+        </FrameLayout>
     </LinearLayout>
 
 </TabHost>

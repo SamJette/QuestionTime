@@ -66,10 +66,11 @@ public class SettingsTab extends Activity implements OnClickListener {
 		case R.id.buttonServer:
 
 			final Dialog dialog = new Dialog(getParent());
+			// dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 			dialog.setContentView(R.layout.server_dialog);
 
-			dialog.setTitle("Serveradres instellen.");
+			// dialog.setTitle("Serveradres instellen.");
 
 			dialog.setCancelable(false);
 

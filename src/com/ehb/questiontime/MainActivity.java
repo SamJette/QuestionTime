@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TabActivity;
 import android.content.DialogInterface;
@@ -19,6 +20,9 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -54,11 +58,6 @@ public class MainActivity extends TabActivity {
 		setContentView(R.layout.main);
 		PersistentCookieStore myCookieStore = new PersistentCookieStore(this);
 		RestClient.client.setCookieStore(myCookieStore);
-
-		/** action bar **/
-
-		// ActionBar actionBar = getActionBar();
-		// actionBar.hide();
 
 		/** tabs **/
 
@@ -345,6 +344,32 @@ public class MainActivity extends TabActivity {
 
 			}
 		});
+
+	}
+
+	public void onInfoButtonClicked(View v) {
+
+		final Dialog dialog = new Dialog(this);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+		dialog.setContentView(R.layout.info_dialog);
+		dialog.setCancelable(false);
+
+		Button buttonCancel = (Button) dialog
+
+		.findViewById(R.id.buttonCancel);
+
+		buttonCancel.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+
+				dialog.dismiss();
+
+			}
+
+		});
+
+		dialog.show();
 
 	}
 

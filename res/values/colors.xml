@@ -2,13 +2,13 @@
 <resources>
 
     <color name="whiteColor">#FFFFFF</color>
-    <color name="blueColor">#0099CC</color>
+    <color name="blueColor">#00c2f2</color>
     <color name="greenColor">#ACE600</color>
     <color name="darkBlueColor">#0E4D79</color>
     <color name="orangeColor">#FF6A00</color>
     <color name="redColor">#F23D32</color>
     <color name="greyColor">#DBDBDC</color>
     <color name="lightGreyColor">#F2F2F2</color>
-    <color name="darkGreyColor">#3D3D3D</color>
+    <color name="darkGreyColor">#515151</color>
 
 </resources>

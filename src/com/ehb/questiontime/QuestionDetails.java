@@ -69,6 +69,8 @@ public class QuestionDetails extends Activity implements
 	public static final String PREFS_NAME = "LoginPrefs";
 
 	static final String KEY_ID = "ID";
+	
+	/** @param savedInstanceState */
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +127,8 @@ public class QuestionDetails extends Activity implements
 		edit5.invalidate();
 
 	}
+	
+	/** @param DetailsQuestion */
 
 	public void retrieveDetailsQuestion() {
 
@@ -299,7 +303,8 @@ public class QuestionDetails extends Activity implements
 
 	}
 
-	/** method to save the question and return to the QuestionTab **/
+	/** @param method to save the question and return to the QuestionTab */
+	
 	public void saveTheQuestionOnCLick(View v) {
 
 		// save the question text
@@ -405,17 +410,20 @@ public class QuestionDetails extends Activity implements
 		// RestClient.put("questions/1 ipv RestClient.post("questions"...
 		// en met url "question/"+questionid
 
-		/** return to QuestionTab view **/
+		/** @param return to QuestionTab view */
+		
 		Intent intent = new Intent(getParent(), QuestionTab.class);
 		TabGroupActivity parentactivity = (TabGroupActivity) getParent();
 		parentactivity.startChildActivity("VragenTab", intent);
 
 	}
 
-	/** method to cancel and return to the Question tab **/
-	public void cancelTheQuestionOnCLick(View v) {
+		/** @param cancel and return to the Question tab */
+	
+		public void cancelTheQuestionOnCLick(View v) {
 
-		/** return to QuestionTab view **/
+		/** @param return to QuestionTab view */
+			
 		Intent intent = new Intent(getParent(), QuestionTab.class);
 		TabGroupActivity parentactivity = (TabGroupActivity) getParent();
 		parentactivity.startChildActivity("VragenTab", intent);
@@ -524,7 +532,7 @@ public class QuestionDetails extends Activity implements
 		}
 	}
 
-	/** method for the checkboxes **/
+	/** @param checkboxes */
 
 	public void myCheckListener(View v) {
 		if (isJaNeeVraag) {
@@ -556,10 +564,12 @@ public class QuestionDetails extends Activity implements
 		}
 		return super.onKeyUp(keyCode, event);
 	}
+	
+	/** @param return to QuestionTab view */
 
 	@Override
 	public void onBackPressed() {
-		/** return to QuestionTab view **/
+		
 		Intent intent = new Intent(getParent(), QuestionTab.class);
 		TabGroupActivity parentactivity = (TabGroupActivity) getParent();
 		parentactivity.startChildActivity("VragenTab", intent);

@@ -58,6 +58,8 @@ public class QuestionTab extends Activity {
 	public Question aQuestion;
 	public ArrayList<Question> questions = new ArrayList<Question>();
 
+	/** @param savedInstanceState */
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -69,7 +71,7 @@ public class QuestionTab extends Activity {
 
 	}
 
-	/** method to refresh the question list via the menu **/
+	/** @param refresh the question list via the menu */
 
 	public void refreshQuestionList() {
 
@@ -77,7 +79,7 @@ public class QuestionTab extends Activity {
 
 	}
 
-	/** method to refresh the question list via the button **/
+	/** @param refresh the question list via the button */
 
 	public void refreshQuestionList(View v) {
 
@@ -186,7 +188,8 @@ public class QuestionTab extends Activity {
 
 				myListview.setOnItemClickListener(new OnItemClickListener() {
 
-					/** click on a row **/
+					/** @param click on a row */
+					
 					public void onItemClick(AdapterView<?> arg0, View view,
 							int position, long arg3) {
 
@@ -214,7 +217,8 @@ public class QuestionTab extends Activity {
 
 				});
 
-				/** code for the searchview **/
+				/** @param searchview */
+				
 				myListview.setTextFilterEnabled(true);
 
 				mySearchView.setOnQueryTextListener(new OnQueryTextListener() {
@@ -255,7 +259,8 @@ public class QuestionTab extends Activity {
 		questionListing();
 	}
 
-	/** one of the Context Item is selected **/
+	/** @param Context Item is selected */
+	
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 
@@ -297,7 +302,8 @@ public class QuestionTab extends Activity {
 		return super.onContextItemSelected(item);
 	}
 
-	/** onClick - button "Add Question" **/
+	/** @param onClick - button "Add Question" */
+	
 	public void onAddClick(View v) {
 		// Intent i = new Intent(VragenTab.this, VragenDetails.class);
 		// startActivityForResult(i, ACTIVITY_DETAIL);
@@ -317,7 +323,7 @@ public class QuestionTab extends Activity {
 		super.onActivityResult(requestCode, resultCode, intent);
 	}
 
-	/** the push button clicker **/
+	/** @param push button clicker */
 
 	public void onPushButtonClick(View v) {
 		Toast.makeText(getApplicationContext(), "Push the question",

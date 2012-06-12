@@ -43,7 +43,7 @@ import com.loopj.android.http.RequestParams;
  */
 
 public class MainActivity extends TabActivity {
-	/** Called when the activity is first created. */
+	
 
 	/** variables for the shared prefs */
 	static final String KEY_USERNAME = "username";
@@ -51,6 +51,10 @@ public class MainActivity extends TabActivity {
 	static final String KEY_CLASSID = "classId";
 
 	public static final String PREFS_NAME = "LoginPrefs";
+	
+	/**called when the screen is made
+	 * @param savedInstanceState  
+	 */
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -59,7 +63,7 @@ public class MainActivity extends TabActivity {
 		PersistentCookieStore myCookieStore = new PersistentCookieStore(this);
 		RestClient.client.setCookieStore(myCookieStore);
 
-		/** tabs **/
+		//tabs
 
 		TabHost tabHost = getTabHost();
 		TabHost.TabSpec spec;
@@ -90,7 +94,7 @@ public class MainActivity extends TabActivity {
 
 	}
 
-	/** textView in the tabs **/
+	/** @param myTabTitle */
 
 	public TextView myTabTextView(String myTabTitle) {
 		TextView txtTab = new TextView(this);
@@ -106,19 +110,21 @@ public class MainActivity extends TabActivity {
 
 	}
 
-	/** home button clicked --> return to StudentTab **/
+	/** @param home button clicked --> return to StudentTab **/
 	public void onHomeButtonClicked(View v) {
 		TabHost tabHost = getTabHost();
 		tabHost.setCurrentTab(0);
 	}
 
-	/** menu **/
+	/** @param menu */
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(0, 0, Menu.NONE, "Refresh");
 		return true;
 	}
+	
+	/** @param item */
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -133,7 +139,7 @@ public class MainActivity extends TabActivity {
 		return false;
 	}
 
-	/** login **/
+	/** @param onStart */
 
 	@Override
 	protected void onStart() {

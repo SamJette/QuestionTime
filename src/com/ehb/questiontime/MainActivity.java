@@ -3,7 +3,6 @@ package com.ehb.questiontime;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -58,8 +57,8 @@ public class MainActivity extends TabActivity {
 
 		/** action bar **/
 
-		ActionBar actionBar = getActionBar();
-		actionBar.hide();
+		// ActionBar actionBar = getActionBar();
+		// actionBar.hide();
 
 		/** tabs **/
 

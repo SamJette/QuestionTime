@@ -121,7 +121,13 @@
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent" />
+            android:layout_height="fill_parent" >
+          <!--   <Button 
+                android:drawableRight="@android:drawable/ic_dialog_info"
+                /> -->
+            
+            
+            </FrameLayout>
     </LinearLayout>
 
 </TabHost>

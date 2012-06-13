@@ -162,7 +162,7 @@ public class SettingsStudentEdit extends Activity {
 		});
 	}
 
-	/** @param dialog onItemClick */
+	/** dialog onItemClick **/
 
 	@Override
 	public Dialog onCreateDialog(int id) {
@@ -233,10 +233,9 @@ public class SettingsStudentEdit extends Activity {
 			break;
 		}
 	}
-	
-	/** @param return to SettingsTab view */
 
 	public void doneEditStudentList(View v) {
+		/** return to SettingsTab view **/
 		Intent intent = new Intent(getParent(), SettingsTab.class);
 		TabGroupActivity parentactivity = (TabGroupActivity) getParent();
 		parentactivity.startChildActivity("SettingsTab", intent);

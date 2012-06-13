@@ -56,10 +56,9 @@ public class SettingsStudentSend extends Activity {
 		m_listview.setAdapter(adapter);
 
 	}
-	
-	/** @param return to SettingsTab view */
 
 	public void doneSendStudentList(View v) {
+		/** return to SettingsTab view **/
 		Intent intent = new Intent(getParent(), SettingsTab.class);
 		TabGroupActivity parentactivity = (TabGroupActivity) getParent();
 		parentactivity.startChildActivity("SettingsTab", intent);

@@ -111,6 +111,7 @@ public class ResultTab extends Activity {
 						// System.out.println(tmp.getString(2));
 
 						map.put(KEY_FIRSTNAME, tmp.getString(1));
+						//map.put(KEY_NAME, tmp.getString(?));
 						map.put(KEY_ISJUIST, tmp.getString(2));
 						map.put(KEY_SCORE, tmp.getString(2));
 						map.put(KEY_SCORE2, tmp.getString(2));
@@ -121,7 +122,7 @@ public class ResultTab extends Activity {
 						double quot = 0.0;
 						if (denom != 0.0)
 							quot = num / denom;
-						if (quot == 1.0) {
+						if (quot == 0.0) {
 							map.put(KEY_SCORE,
 									getResources().getDrawable(
 											R.color.greenColor));

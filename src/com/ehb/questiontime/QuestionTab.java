@@ -33,7 +33,6 @@ import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
 import android.widget.SimpleAdapter;
 import android.widget.TabHost;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -194,29 +193,21 @@ public class QuestionTab extends Activity {
 					public void onItemClick(AdapterView<?> arg0, View view,
 							int position, long arg3) {
 
-						Log.w("TAG", "onItemClick clicked position :"
-								+ position + "arg3 = " + arg3);
-
-						TextView tv = ((TextView) view
-								.findViewById(R.id.vragenTextTextView));
-						String questionText = tv.getText().toString();
-
-						String IDString = null;
-
-						for (Question q : questions) {
-							if ((q.questionText).equals(questionText)) {
-								QuestionSingleton.q = q;
-								IDString = q.ID;
-							}
-						}
+						// Log.w("TAG", "onItemClick clicked position :"+
+						// position);
 
 						Intent intent = new Intent(getParent(),
 								QuestionDetails.class);
 
-						Log.d("questionText onItemClick", questionText);
-						intent.putExtra(KEY_QUESTION, questionText);
+						intent.putExtra(KEY_QUESTION,
+								questions.get(position).questionText);
+						// Log.d("demo","question text="+
+						// questions.get(position).questionText);
 
-						intent.putExtra(KEY_ID, IDString);
+						/* to retrieve the id of the question */
+
+						intent.putExtra(KEY_ID,
+								questions.get(position).ID.toString());
 
 						TabGroupActivity parentactivity = (TabGroupActivity) getParent();
 						parentactivity.startChildActivity("VragenDetails",
@@ -335,7 +326,6 @@ public class QuestionTab extends Activity {
 	/** @param push button clicker */
 
 	public void onPushButtonClick(View v) {
-
 		Toast.makeText(getApplicationContext(), "Push the question",
 				Toast.LENGTH_LONG).show();
 		// Push(MenuItem item);

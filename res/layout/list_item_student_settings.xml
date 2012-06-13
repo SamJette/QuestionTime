@@ -5,10 +5,7 @@
     android:background="@drawable/list_selector"
     android:orientation="horizontal" >
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 59bfd206e77bb86832657544bb310337e9e1fd2a
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

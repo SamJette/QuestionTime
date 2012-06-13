@@ -46,15 +46,9 @@
 	<string name="JA">JA</string>
 	<string name="NEE">NEE</string>
 	<string name="jouwVraag">Jouw vraag:</string>
-<<<<<<< HEAD
 	<string name="invulTextVraag">Open vraag ?</string>
 	<string name="meerKeuzeVraag">Meer keuze vraag ?</string>
 	<string name="jaNeeVraag">Ja/Nee vraag ?</string>
-=======
-	<string name="invulTextVraag">Invulvraag</string>
-	<string name="meerKeuzeVraag">Meerkeuzevraag</string>
-	<string name="jaNeeVraag">Ja/Nee-vraag</string>
->>>>>>> 59bfd206e77bb86832657544bb310337e9e1fd2a
 	<string name="eenVraag">Een vraag ?</string>
 	<string name="firstname">Voornaam</string>
 	<string name="name">Naam</string>

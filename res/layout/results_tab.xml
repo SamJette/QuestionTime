@@ -75,7 +75,7 @@
     <ExpandableListView
         android:id="@+id/listViewTabResultaten"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:childDivider="#d1d1d1"
         android:divider="#d1d1d1"
         android:dividerHeight="1dp"

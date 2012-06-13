@@ -9,11 +9,7 @@
 
     <ImageView
         android:id="@+id/logo"
-<<<<<<< HEAD
         android:layout_width="60dp"
-=======
-        android:layout_width="50dp"
->>>>>>> 59bfd206e77bb86832657544bb310337e9e1fd2a
         android:layout_height="match_parent"
         android:contentDescription="Image if student is online or not"
         android:src="@drawable/transparent_pixel" />

@@ -3,60 +3,57 @@
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:orientation="horizontal" >
-
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="7"
         android:background="#F2F2F2" >
 
+
         <ImageView
             android:id="@+id/sscore1"
             android:layout_width="39dp"
-            android:layout_height="match_parent"
+            android:layout_height="48dp"
             android:background="@color/redColor"
             android:contentDescription="Image correct or false" />
 
-        <LinearLayout
-            android:layout_width="826dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.11"
-            android:background="#F2F2F2" >
+        <TextView
+            android:id="@+id/firstnameResults"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:paddingLeft="15dp"
+            android:layout_marginRight="10dp"
+            android:gravity="left|center"
+            android:text="@string/firstname"
+            android:textColor="#515151"
+            android:textSize="21dp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/firstnameResults"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"                                
-                android:gravity="center"
-                android:paddingLeft="15dp"
-                android:text="@string/firstname"
-                android:textColor="#515151"
-                android:textSize="21dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/nameResults"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                       
-                android:gravity="left|center"
-                android:paddingLeft="15dp"
-                android:text="@string/name"
-                android:textColor="#515151"
-                android:textSize="21dp"
-                android:textStyle="normal" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/nameResults"
+            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.79"
+            android:background="#F2F2F2"
+            android:gravity="left|center"
+            android:text="@string/name"
+            android:textColor="#515151"
+            android:textSize="21dp"
+            android:textStyle="normal" />
 
         <TextView
             android:id="@+id/resultsTextView"
             android:layout_width="100dp"
             android:layout_height="fill_parent"
             android:layout_marginRight="0dp"
-            
+            android:background="#F2F2F2"
             android:gravity="center"
             android:text="0/1"
             android:textColor="#515151"
             android:textSize="21dp" />
+
 
         <ImageView
             android:id="@+id/sscore2"
@@ -64,6 +61,7 @@
             android:layout_height="48dp"
             android:background="@color/redColor"
             android:contentDescription="Image correct or false" />
+
     </LinearLayout>
 
 </LinearLayout>

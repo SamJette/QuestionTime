@@ -103,7 +103,7 @@ public class MainActivity extends TabActivity {
 		txtTab.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
 		txtTab.setBackgroundResource(R.drawable.list_tab_selector);
 		txtTab.setTypeface(Typeface.DEFAULT_BOLD);
-		txtTab.setTextSize(23);
+		txtTab.setTextSize(21);
 		txtTab.setShadowLayer(1, 1, 1, Color.DKGRAY);
 		txtTab.setText(myTabTitle);
 		return txtTab;

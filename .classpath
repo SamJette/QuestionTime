@@ -4,5 +4,9 @@
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+<<<<<<< HEAD
+=======
+	<classpathentry kind="lib" path="/Login/libs/android-async-http-1.3.2.jar"/>
+>>>>>>> 59bfd206e77bb86832657544bb310337e9e1fd2a
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

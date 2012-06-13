@@ -70,7 +70,7 @@
         android:id="@+id/listViewTabVragen"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:divider="#cccccc"
+        android:divider="#d1d1d1"
         android:dividerHeight="1dp"
         android:listSelector="@drawable/list_selector" >
     </ListView>

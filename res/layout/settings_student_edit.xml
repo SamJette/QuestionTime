@@ -43,8 +43,8 @@
         android:id="@+id/listViewSettingsLeerlingen"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:divider="#b5b5b5"
-        android:dividerHeight="1dp"
+        android:divider="@color/blueColor"
+        android:dividerHeight="0dp"
         android:listSelector="@drawable/list_selector" >
     </ListView>
 

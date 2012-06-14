@@ -74,10 +74,19 @@ public class MainActivity extends TabActivity {
 				.setIndicator(myTabTextView("Leerlingen")).setContent(intent);
 		tabHost.addTab(spec);
 
-		intent = new Intent().setClass(this, TabGroup1QuestionActivity.class);
-		spec = tabHost.newTabSpec("Vragen")
-				.setIndicator(myTabTextView("Vragen")).setContent(intent);
-		tabHost.addTab(spec);
+		/*
+		 * intent = new Intent().setClass(this,
+		 * TabGroup1QuestionActivity.class); spec = tabHost.newTabSpec("Vragen")
+		 * .setIndicator(myTabTextView("Vragen")).setContent(intent);
+		 * tabHost.addTab(spec);
+		 */
+		// TabHost refreshes when it gets focus again.
+		tabHost.addTab(tabHost
+				.newTabSpec("Vragen")
+				.setIndicator(myTabTextView("Vragen"))
+				.setContent(
+						new Intent(this, TabGroup1QuestionActivity.class)
+								.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)));
 
 		// TabHost refreshes when it gets focus again.
 		tabHost.addTab(tabHost

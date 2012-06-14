@@ -13,6 +13,7 @@ import org.xml.sax.XMLReader;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
@@ -26,6 +27,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnCreateContextMenuListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
@@ -35,7 +37,6 @@ import android.widget.SearchView.OnQueryTextListener;
 import android.widget.SimpleAdapter;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -73,18 +74,27 @@ public class QuestionTab extends Activity {
 
 	/** method to refresh the question list via the menu **/
 
-	public void refreshQuestionList() {
-
-		questionListing();
-
-	}
+	/*
+	 * public void refreshQuestionList() {
+	 * 
+	 * questionListing();
+	 * 
+	 * }
+	 */
 
 	/** method to refresh the question list via the button **/
 
-	public void refreshQuestionList(View v) {
+	public void onRefresh(View v) {
 
-		// getWindow().setSoftInputMode(
-		// WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+		Log.d("REFRESH", "refreshing in progress");
+		mySearchView.setFocusable(false);
+
+		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(mySearchView.getWindowToken(), 0);
+
+		MainActivity activity = (MainActivity) getParent().getParent();
+		TabHost host = activity.getTabHost();
+		host.setCurrentTab(1);
 
 		questionListing();
 
@@ -98,19 +108,22 @@ public class QuestionTab extends Activity {
 
 					@Override
 					public void onStart() {
-						dialog = ProgressDialog.show(getParent(), "Loading",
-								"Data loading", true, true,
+
+						dialog = ProgressDialog.show(getParent().getParent(),
+								"Loading", "Data loading", true, true,
 								new OnCancelListener() {
 									public void onCancel(DialogInterface dialog) {
 										dialog.dismiss();
 									}
 								});
+
 					}
 
 					@Override
 					public void onSuccess(String response) {
 						if (this.dialog.isShowing())
 							this.dialog.dismiss();
+						// dialog.dismiss();
 
 						ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
 
@@ -167,11 +180,10 @@ public class QuestionTab extends Activity {
 
 						myListview = (ListView) findViewById(R.id.listViewTabVragen);
 
-						SimpleAdapter adapter = new SimpleAdapter(
-								QuestionTab.this, listItem,
-								R.layout.list_item_question, new String[] {
-										KEY_QUESTION, KEY_ID }, new int[] {
-										R.id.vragenTextTextView,
+						SimpleAdapter adapter = new SimpleAdapter(getParent(),
+								listItem, R.layout.list_item_question,
+								new String[] { KEY_QUESTION, KEY_ID },
+								new int[] { R.id.vragenTextTextView,
 										R.id.buttonPush });
 						myListview.setAdapter(adapter);
 
@@ -283,16 +295,19 @@ public class QuestionTab extends Activity {
 
 										return true;
 									}
+
 								});
 
-						System.out.println(response);
+						// mySearchView.setFocusable(false);
+						InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+						imm.hideSoftInputFromWindow(
+								mySearchView.getWindowToken(), 0);
+						mySearchView.clearFocus();
+
+						// System.out.println(response);
 					}
 				});
 
-	}
-
-	public void onRefresh(View v) {
-		questionListing();
 	}
 
 	/** one of the Context Item is selected **/
@@ -343,6 +358,7 @@ public class QuestionTab extends Activity {
 	public void onAddClick(View v) {
 		// Intent i = new Intent(VragenTab.this, VragenDetails.class);
 		// startActivityForResult(i, ACTIVITY_DETAIL);
+
 		Intent intent = new Intent(getParent(), QuestionDetails.class);
 		TabGroupActivity parentactivity = (TabGroupActivity) getParent();
 		parentactivity.startChildActivity("QuestionDetails", intent);
@@ -365,9 +381,10 @@ public class QuestionTab extends Activity {
 
 		Button pushButton = ((Button) v.findViewById(R.id.buttonPush));
 
-		Toast.makeText(getApplicationContext(),
-				"Push the question" + pushButton.getText(), Toast.LENGTH_LONG)
-				.show();
+		/*
+		 * Toast.makeText(getApplicationContext(), "Push the question" +
+		 * pushButton.getText(), Toast.LENGTH_LONG) .show();
+		 */
 		// Push(MenuItem item);
 
 		RequestParams params = new RequestParams();

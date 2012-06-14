@@ -215,6 +215,11 @@ public class QuestionTab extends Activity {
 											AdapterView<?> arg0, View view,
 											int position, long arg3) {
 
+										InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+										imm.hideSoftInputFromWindow(
+												mySearchView.getWindowToken(),
+												0);
+
 										/*
 										 * Log.w("TAG",
 										 * "onItemClick clicked position :" +

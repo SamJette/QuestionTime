@@ -11,6 +11,7 @@ import org.xml.sax.XMLReader;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import android.util.Log;
 import android.util.Xml;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -113,7 +115,15 @@ public class QuestionDetails extends Activity implements
 			Log.d("demo", "Bundel: vragen Text in detail view: " + vragenText);
 			if (vragenText != null) {
 				editQuestionText.setText(vragenText);
-			}
+				editQuestionText.setFocusable(false);
+				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(editQuestionText.getWindowToken(),
+						0);
+
+			} else
+				editQuestionText.setFocusable(true);
+			editQuestionText.requestFocus();
+
 			retrieveDetailsQuestion();
 
 		}
@@ -236,6 +246,7 @@ public class QuestionDetails extends Activity implements
 
 										try {
 											// "row" 1
+
 											editJa1InvulVraag
 													.setText(answersTextItem
 															.get(0));

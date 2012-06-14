@@ -72,16 +72,6 @@ public class QuestionTab extends Activity {
 
 	}
 
-	/** method to refresh the question list via the menu **/
-
-	/*
-	 * public void refreshQuestionList() {
-	 * 
-	 * questionListing();
-	 * 
-	 * }
-	 */
-
 	/** method to refresh the question list via the button **/
 
 	public void onRefresh(View v) {
@@ -89,12 +79,13 @@ public class QuestionTab extends Activity {
 		Log.d("REFRESH", "refreshing in progress");
 		mySearchView.setFocusable(false);
 
-		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(mySearchView.getWindowToken(), 0);
+		// InputMethodManager imm = (InputMethodManager)
+		// getSystemService(Context.INPUT_METHOD_SERVICE);
+		// imm.hideSoftInputFromWindow(mySearchView.getWindowToken(), 0);
 
-		MainActivity activity = (MainActivity) getParent().getParent();
-		TabHost host = activity.getTabHost();
-		host.setCurrentTab(1);
+		// MainActivity activity = (MainActivity) getParent().getParent();
+		// TabHost host = activity.getTabHost();
+		// host.setCurrentTab(1);
 
 		questionListing();
 
@@ -180,10 +171,11 @@ public class QuestionTab extends Activity {
 
 						myListview = (ListView) findViewById(R.id.listViewTabVragen);
 
-						SimpleAdapter adapter = new SimpleAdapter(getParent(),
-								listItem, R.layout.list_item_question,
-								new String[] { KEY_QUESTION, KEY_ID },
-								new int[] { R.id.vragenTextTextView,
+						SimpleAdapter adapter = new SimpleAdapter(
+								QuestionTab.this, listItem,
+								R.layout.list_item_question, new String[] {
+										KEY_QUESTION, KEY_ID }, new int[] {
+										R.id.vragenTextTextView,
 										R.id.buttonPush });
 						myListview.setAdapter(adapter);
 

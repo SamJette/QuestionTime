@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
+import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 public class ResultTab extends Activity {
@@ -68,197 +69,232 @@ public class ResultTab extends Activity {
 		getResults();
 	}
 
+	public void onStop(View v) {
+
+		RestClient.get("websocket?key=stop", null,
+				new AsyncHttpResponseHandler() {
+
+					private ProgressDialog dialog;
+
+					@Override
+					public void onStart() {
+						dialog = ProgressDialog.show(getParent(), "Loading",
+								"Data loading", true, true,
+								new OnCancelListener() {
+									public void onCancel(DialogInterface dialog) {
+										dialog.dismiss();
+									}
+								});
+					}
+
+					@Override
+					public void onSuccess(String response) {
+						if (this.dialog.isShowing())
+							this.dialog.dismiss();
+					}
+				});
+
+	}
+
 	public void onRefresh(View v) {
 		getResults();
 	}
 
 	public void getResults() {
 
-		RestClient.get("results?format=json", null, new JsonHttpResponseHandler() {
+		RestClient.get("results?format=json", null,
+				new JsonHttpResponseHandler() {
 
-			private ProgressDialog dialog;
-			private JSONArray _data = null;
+					private ProgressDialog dialog;
+					private JSONArray _data = null;
 
-			@Override
-			public void onStart() {
-				dialog = ProgressDialog.show(getParent(), "Loading",
-						"Data loading", true, true, new OnCancelListener() {
-							public void onCancel(DialogInterface dialog) {
-								dialog.dismiss();
-							}
-						});
-			}
-
-			@Override
-			public void onSuccess(JSONObject response) {
-				if (this.dialog.isShowing())
-					this.dialog.dismiss();
-
-				ArrayList<Map<String, Object>> groupData = new ArrayList<Map<String, Object>>();
-				final ArrayList<ArrayList<Map<String, Object>>> childData = new ArrayList<ArrayList<Map<String, Object>>>();
-
-				try {
-					_data = response.getJSONArray("DATA");
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				System.out.println(_data);
-				for (int i = 0; i < _data.length(); i++) {
-					try {
-						JSONArray tmp = _data.getJSONArray(i);
-						Map<String, Object> map = new HashMap<String, Object>();
-
-						// System.out.println(tmp.getString(1));
-						// System.out.println(tmp.getString(2));
-
-						map.put(KEY_FIRSTNAME, tmp.getString(2));
-						map.put(KEY_NAME, tmp.getString(3));
-						map.put(KEY_ISJUIST, tmp.getString(4));
-						map.put(KEY_SCORE, tmp.getString(4));
-						map.put(KEY_SCORE2, tmp.getString(4));
-
-						String[] tmpArray = tmp.getString(4).split("/");
-						double num = Double.parseDouble(tmpArray[0]);
-						double denom = Double.parseDouble(tmpArray[1]);
-						double quot = 0.0;
-						if (denom != 0.0)
-							quot = num / denom;
-						if (quot == 1.0) {
-							map.put(KEY_SCORE,
-									getResources().getDrawable(
-											R.color.greenColor));
-							map.put(KEY_SCORE2,
-									getResources().getDrawable(
-											R.color.greenColor));
-
-						} else if (quot >= 0.5 && quot <= 0.7) {
-							map.put(KEY_SCORE,
-									getResources().getDrawable(
-											R.color.orangeColor));
-						} else {
-							map.put(KEY_SCORE,
-									getResources()
-											.getDrawable(R.color.redColor));
-							map.put(KEY_SCORE2,
-									getResources()
-											.getDrawable(R.color.redColor));
-
-						}
-						Log.d("score", "" + quot);
-
-						groupData.add(map);
-						// Log.d("groupData", groupData.toString());
-
-						RestClient.get("results/" + tmp.getString(0) + "?format=json",
-								null, new JsonHttpResponseHandler() {
-									private JSONArray _data2 = null;
-
-									@Override
-									public void onStart() {
+					@Override
+					public void onStart() {
+						dialog = ProgressDialog.show(getParent(), "Loading",
+								"Data loading", true, true,
+								new OnCancelListener() {
+									public void onCancel(DialogInterface dialog) {
+										dialog.dismiss();
 									}
-
-									@Override
-									public void onSuccess(JSONObject response) {
-										try {
-											_data2 = response
-													.getJSONArray("DATA");
-										} catch (JSONException e) {
-											// TODO Auto-generated catch block
-											e.printStackTrace();
-										}
-										// System.out.println(_data);
-										ArrayList<Map<String, Object>> children = new ArrayList<Map<String, Object>>();
-										
-										
-										
-										
-										for (int i = 0; i < _data2.length(); i++) {
-											JSONArray temp = null;
-											HashMap<String, Object> map = new HashMap<String, Object>();
-												
-												try {
-													temp = _data2
-															.getJSONArray(i);
-													Log.d("temp", temp.toString());
-												} catch (JSONException e2) {
-													// TODO Auto-generated catch block
-													e2.printStackTrace();
-												}
-																							
-												// change image if student is
-												// online or not
-
-												try {
-													if (temp.getString(4)
-															.equalsIgnoreCase("0")) {
-														map.put(KEY_POINTS,
-																getResources()
-																		.getDrawable(
-																				R.color.redColor));
-														
-														map.put(KEY_POINTS2,
-																getResources()
-																		.getDrawable(
-																				R.color.redColor));
-
-													} else {
-														map.put(KEY_POINTS,
-																getResources()
-																		.getDrawable(
-																				R.color.greenColor));
-																												
-														map.put(KEY_POINTS2,
-																getResources()
-																		.getDrawable(
-																				R.color.greenColor));
-
-													}
-													map.put(KEY_STUDENTANSWER, temp.getString(3));
-												} catch (NotFoundException e1) {
-													// TODO Auto-generated catch block
-													e1.printStackTrace();
-												} catch (JSONException e1) {
-													// TODO Auto-generated catch block
-													e1.printStackTrace();
-												}
-
-
-												// Temp Question Title Anderson
-												questionTopBar = (TextView) findViewById(R.id.questionResults);
-												try {
-													questionTopBar.setText(temp
-															.getString(1)
-															+ ' '
-															+ ':'
-															+ ' '
-															+ temp.getString(2));
-												} catch (JSONException e) {
-													// TODO Auto-generated catch block
-													e.printStackTrace();
-												}
-
-											children.add(map);
-											Log.d("children", children.toString());
-										}
-										
-											Log.d("childdata", childData.toString());
-										 childData.add(children);
-									}
-
 								});
-
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
 					}
 
-				}
-				fillAdapter(groupData, childData);
+					@Override
+					public void onSuccess(JSONObject response) {
+						if (this.dialog.isShowing())
+							this.dialog.dismiss();
 
-			}
+						ArrayList<Map<String, Object>> groupData = new ArrayList<Map<String, Object>>();
+						final ArrayList<ArrayList<Map<String, Object>>> childData = new ArrayList<ArrayList<Map<String, Object>>>();
 
-		});
+						try {
+							_data = response.getJSONArray("DATA");
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						System.out.println(_data);
+						for (int i = 0; i < _data.length(); i++) {
+							try {
+								JSONArray tmp = _data.getJSONArray(i);
+								Map<String, Object> map = new HashMap<String, Object>();
+
+								// System.out.println(tmp.getString(1));
+								// System.out.println(tmp.getString(2));
+
+								map.put(KEY_FIRSTNAME, tmp.getString(2));
+								map.put(KEY_NAME, tmp.getString(3));
+								map.put(KEY_ISJUIST, tmp.getString(4));
+								map.put(KEY_SCORE, tmp.getString(4));
+								map.put(KEY_SCORE2, tmp.getString(4));
+
+								String[] tmpArray = tmp.getString(4).split("/");
+								double num = Double.parseDouble(tmpArray[0]);
+								double denom = Double.parseDouble(tmpArray[1]);
+								double quot = 0.0;
+								if (denom != 0.0)
+									quot = num / denom;
+								if (quot == 1.0) {
+									map.put(KEY_SCORE, getResources()
+											.getDrawable(R.color.greenColor));
+									map.put(KEY_SCORE2, getResources()
+											.getDrawable(R.color.greenColor));
+
+								} else if (quot >= 0.5 && quot <= 0.7) {
+									map.put(KEY_SCORE, getResources()
+											.getDrawable(R.color.orangeColor));
+								} else {
+									map.put(KEY_SCORE, getResources()
+											.getDrawable(R.color.redColor));
+									map.put(KEY_SCORE2, getResources()
+											.getDrawable(R.color.redColor));
+
+								}
+								Log.d("score", "" + quot);
+
+								groupData.add(map);
+								// Log.d("groupData", groupData.toString());
+
+								RestClient.get("results/" + tmp.getString(0)
+										+ "?format=json", null,
+										new JsonHttpResponseHandler() {
+											private JSONArray _data2 = null;
+
+											@Override
+											public void onStart() {
+											}
+
+											@Override
+											public void onSuccess(
+													JSONObject response) {
+												try {
+													_data2 = response
+															.getJSONArray("DATA");
+												} catch (JSONException e) {
+													// TODO Auto-generated catch
+													// block
+													e.printStackTrace();
+												}
+												// System.out.println(_data);
+												ArrayList<Map<String, Object>> children = new ArrayList<Map<String, Object>>();
+
+												for (int i = 0; i < _data2
+														.length(); i++) {
+													JSONArray temp = null;
+													HashMap<String, Object> map = new HashMap<String, Object>();
+
+													try {
+														temp = _data2
+																.getJSONArray(i);
+														Log.d("temp",
+																temp.toString());
+													} catch (JSONException e2) {
+														// TODO Auto-generated
+														// catch block
+														e2.printStackTrace();
+													}
+
+													// change image if student
+													// is
+													// online or not
+
+													try {
+														if (temp.getString(4)
+																.equalsIgnoreCase(
+																		"0")) {
+															map.put(KEY_POINTS,
+																	getResources()
+																			.getDrawable(
+																					R.color.redColor));
+
+															map.put(KEY_POINTS2,
+																	getResources()
+																			.getDrawable(
+																					R.color.redColor));
+
+														} else {
+															map.put(KEY_POINTS,
+																	getResources()
+																			.getDrawable(
+																					R.color.greenColor));
+
+															map.put(KEY_POINTS2,
+																	getResources()
+																			.getDrawable(
+																					R.color.greenColor));
+
+														}
+														map.put(KEY_STUDENTANSWER,
+																temp.getString(3));
+													} catch (NotFoundException e1) {
+														// TODO Auto-generated
+														// catch block
+														e1.printStackTrace();
+													} catch (JSONException e1) {
+														// TODO Auto-generated
+														// catch block
+														e1.printStackTrace();
+													}
+
+													// Temp Question Title
+													// Anderson
+													questionTopBar = (TextView) findViewById(R.id.questionResults);
+													try {
+														questionTopBar.setText(temp
+																.getString(1)
+																+ ' '
+																+ ':'
+																+ ' '
+																+ temp.getString(2));
+													} catch (JSONException e) {
+														// TODO Auto-generated
+														// catch block
+														e.printStackTrace();
+													}
+
+													children.add(map);
+													Log.d("children",
+															children.toString());
+												}
+
+												Log.d("childdata",
+														childData.toString());
+												childData.add(children);
+											}
+
+										});
+
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+
+						}
+						fillAdapter(groupData, childData);
+
+					}
+
+				});
 
 	}
 
@@ -308,7 +344,6 @@ public class ResultTab extends Activity {
 						R.layout.list_item_results_students, null, false);
 			}
 
-			
 			@Override
 			public View getChildView(int groupPosition, int childPosition,
 					boolean isLastChild, View convertView, ViewGroup parent) {
@@ -321,10 +356,11 @@ public class ResultTab extends Activity {
 								groupPosition, childPosition)).get(KEY_POINTS));
 				((TextView) v.findViewById(R.id.answerTextTextView))
 						.setText((String) ((Map<String, Object>) getChild(
-								groupPosition, childPosition)).get(KEY_STUDENTANSWER));
+								groupPosition, childPosition))
+								.get(KEY_STUDENTANSWER));
 				((ImageView) v.findViewById(R.id.score2))
 						.setBackgroundDrawable((Drawable) ((Map<String, Object>) getChild(
-							groupPosition, childPosition)).get(KEY_POINTS2));
+								groupPosition, childPosition)).get(KEY_POINTS2));
 
 				return v;
 			}

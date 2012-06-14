@@ -55,7 +55,7 @@ public class QuestionTab extends Activity {
 	private SearchView mySearchView;
 
 	private static final int DELETE_ID = Menu.FIRST;
-	private static final int PUSH_ID = Menu.FIRST + 1;
+	// private static final int PUSH_ID = Menu.FIRST + 1;
 
 	public Question aQuestion;
 	public ArrayList<Question> questions = new ArrayList<Question>();
@@ -91,178 +91,203 @@ public class QuestionTab extends Activity {
 	}
 
 	public void questionListing() {
-		RestClient.get("questions?format=xml", null, new AsyncHttpResponseHandler() {
+		RestClient.get("questions?format=xml", null,
+				new AsyncHttpResponseHandler() {
 
-			private ProgressDialog dialog;
+					private ProgressDialog dialog;
 
-			@Override
-			public void onStart() {
-				dialog = ProgressDialog.show(getParent(), "Loading",
-						"Data loading", true, true, new OnCancelListener() {
-							public void onCancel(DialogInterface dialog) {
-								dialog.dismiss();
-							}
-						});
-			}
-
-			@Override
-			public void onSuccess(String response) {
-				if (this.dialog.isShowing())
-					this.dialog.dismiss();
-
-				ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
-
-				/** create an instance of our parser */
-
-				QuestionParser parser = new QuestionParser();
-
-				SAXParserFactory factory = SAXParserFactory.newInstance();
-				SAXParser sp = null;
-				try {
-					sp = factory.newSAXParser();
-				} catch (ParserConfigurationException e1) {
-					e1.printStackTrace();
-				} catch (SAXException e1) {
-					e1.printStackTrace();
-				}
-
-				XMLReader reader = null;
-				try {
-					reader = sp.getXMLReader();
-				} catch (SAXException e1) {
-					e1.printStackTrace();
-				}
-
-				// add our own parser to the xml reader and start parsing
-				// the
-				// file
-				reader.setContentHandler(parser);
-				try {
-					Xml.parse(response, parser);
-				} catch (SAXException e) {
-					e.printStackTrace();
-				}
-				questions = parser.questions;
-				// Log.d("demo", "Questions in the getQuestions()= " +
-				// questions);
-
-				for (int i = 0; i < questions.size(); i++) {
-					Question temp = questions.get(i);
-
-					// Log.d("demo", "Questions in the getQuestions()= "
-					// + temp.questionText);
-
-					HashMap<String, Object> map = new HashMap<String, Object>();
-
-					map.put(KEY_QUESTION, temp.questionText);
-
-					map.put(KEY_ID, temp.ID);
-
-					listItem.add(map);
-				}
-
-				myListview = (ListView) findViewById(R.id.listViewTabVragen);
-
-				SimpleAdapter adapter = new SimpleAdapter(QuestionTab.this,
-						listItem, R.layout.list_item_question, new String[] {
-								KEY_QUESTION, KEY_ID }, new int[] {
-								R.id.vragenTextTextView, R.id.buttonPush });
-				myListview.setAdapter(adapter);
-
-				/** to create a Context Menu for the "long press" **/
-				myListview
-						.setOnCreateContextMenuListener(new OnCreateContextMenuListener() {
-
-							/** long press to delete ? .... **/
-							public void onCreateContextMenu(ContextMenu menu,
-									View v, ContextMenuInfo menuInfo) {
-								// super.onCreateContextMenu(menu, v, menuInfo);
-								menu.setHeaderTitle("CONTEXT MENU");
-								menu.add(0, DELETE_ID, 0, R.string.menu_delete);
-								menu.add(0, PUSH_ID, 0, R.string.pushString);
-							}
-						});
-				myListview.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-				/** click on an item in the listView **/
-
-				myListview.setOnItemClickListener(new OnItemClickListener() {
-
-					/** click on a row **/
-					public void onItemClick(AdapterView<?> arg0, View view,
-							int position, long arg3) {
-
-						Log.w("TAG", "onItemClick clicked position :"
-								+ position + "arg3 = " + arg3);
-
-						TextView tv = ((TextView) view
-								.findViewById(R.id.vragenTextTextView));
-
-						Button pushButton = ((Button) findViewById(R.id.buttonPush));
-						if (pushButton.isClickable() == true) {
-							Log.d("PUSH", "push button");
-						}
-
-						String questionText = tv.getText().toString();
-
-						String IDString = null;
-
-						for (Question q : questions) {
-							if ((q.questionText).equals(questionText)) {
-								QuestionSingleton.q = q;
-								IDString = q.ID;
-							}
-						}
-
-						Intent intent = new Intent(getParent(),
-								QuestionDetails.class);
-
-						Log.d("questionText onItemClick", questionText);
-						intent.putExtra(KEY_QUESTION, questionText);
-
-						intent.putExtra(KEY_ID, IDString);
-
-						TabGroupActivity parentactivity = (TabGroupActivity) getParent();
-						parentactivity.startChildActivity("VragenDetails",
-								intent);
-
+					@Override
+					public void onStart() {
+						dialog = ProgressDialog.show(getParent(), "Loading",
+								"Data loading", true, true,
+								new OnCancelListener() {
+									public void onCancel(DialogInterface dialog) {
+										dialog.dismiss();
+									}
+								});
 					}
 
+					@Override
+					public void onSuccess(String response) {
+						if (this.dialog.isShowing())
+							this.dialog.dismiss();
+
+						ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
+
+						/** create an instance of our parser */
+
+						QuestionParser parser = new QuestionParser();
+
+						SAXParserFactory factory = SAXParserFactory
+								.newInstance();
+						SAXParser sp = null;
+						try {
+							sp = factory.newSAXParser();
+						} catch (ParserConfigurationException e1) {
+							e1.printStackTrace();
+						} catch (SAXException e1) {
+							e1.printStackTrace();
+						}
+
+						XMLReader reader = null;
+						try {
+							reader = sp.getXMLReader();
+						} catch (SAXException e1) {
+							e1.printStackTrace();
+						}
+
+						// add our own parser to the xml reader and start
+						// parsing
+						// the
+						// file
+						reader.setContentHandler(parser);
+						try {
+							Xml.parse(response, parser);
+						} catch (SAXException e) {
+							e.printStackTrace();
+						}
+						questions = parser.questions;
+						// Log.d("demo", "Questions in the getQuestions()= " +
+						// questions);
+
+						for (int i = 0; i < questions.size(); i++) {
+							Question temp = questions.get(i);
+
+							// Log.d("demo", "Questions in the getQuestions()= "
+							// + temp.questionText);
+
+							HashMap<String, Object> map = new HashMap<String, Object>();
+
+							map.put(KEY_QUESTION, temp.questionText);
+
+							map.put(KEY_ID, temp.ID);
+
+							listItem.add(map);
+						}
+
+						myListview = (ListView) findViewById(R.id.listViewTabVragen);
+
+						SimpleAdapter adapter = new SimpleAdapter(
+								QuestionTab.this, listItem,
+								R.layout.list_item_question, new String[] {
+										KEY_QUESTION, KEY_ID }, new int[] {
+										R.id.vragenTextTextView,
+										R.id.buttonPush });
+						myListview.setAdapter(adapter);
+
+						/** to create a Context Menu for the "long press" **/
+						myListview
+								.setOnCreateContextMenuListener(new OnCreateContextMenuListener() {
+
+									/** long press to delete ? .... **/
+									public void onCreateContextMenu(
+											ContextMenu menu, View v,
+											ContextMenuInfo menuInfo) {
+										// super.onCreateContextMenu(menu, v,
+										// menuInfo);
+										menu.setHeaderTitle("CONTEXT MENU");
+										menu.add(0, DELETE_ID, 0,
+												R.string.menu_delete);
+										// menu.add(0, PUSH_ID, 0,
+										// R.string.pushString);
+									}
+								});
+						myListview.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+						/** click on an item in the listView **/
+
+						myListview
+								.setOnItemClickListener(new OnItemClickListener() {
+
+									/** click on a row **/
+									public void onItemClick(
+											AdapterView<?> arg0, View view,
+											int position, long arg3) {
+
+										/*
+										 * Log.w("TAG",
+										 * "onItemClick clicked position :" +
+										 * position + "arg3 = " + arg3);
+										 */
+
+										TextView tv = ((TextView) view
+												.findViewById(R.id.vragenTextTextView));
+
+										Button pushButton = ((Button) findViewById(R.id.buttonPush));
+										if (pushButton.isClickable() == true) {
+											Log.d("PUSH", "push button");
+										}
+
+										String questionText = tv.getText()
+												.toString();
+
+										String IDString = null;
+
+										for (Question q : questions) {
+											if ((q.questionText)
+													.equals(questionText)) {
+												QuestionSingleton.q = q;
+												IDString = q.ID;
+											}
+										}
+
+										Intent intent = new Intent(getParent(),
+												QuestionDetails.class);
+
+										Log.d("questionText onItemClick",
+												questionText);
+										intent.putExtra(KEY_QUESTION,
+												questionText);
+
+										intent.putExtra(KEY_ID, IDString);
+
+										TabGroupActivity parentactivity = (TabGroupActivity) getParent();
+										parentactivity.startChildActivity(
+												"VragenDetails", intent);
+
+									}
+
+								});
+
+						/** code for the searchview **/
+						myListview.setTextFilterEnabled(true);
+
+						mySearchView
+								.setOnQueryTextListener(new OnQueryTextListener() {
+
+									public boolean onQueryTextSubmit(
+											String query) {
+										return false;
+									}
+
+									public boolean onQueryTextChange(
+											String newText) {
+
+										if (TextUtils.isEmpty(newText)) {
+											myListview.clearTextFilter();
+										} else {
+											int pos = 0;
+											for (Question q : questions) {
+												if (q.questionText
+														.toLowerCase()
+														.contains(
+																newText.toLowerCase())) {
+													SimpleAdapter tempAdapter = (SimpleAdapter) myListview
+															.getAdapter();
+													tempAdapter.getFilter()
+															.filter(newText);
+												}
+												pos++;
+											}
+
+										}
+
+										return true;
+									}
+								});
+
+						System.out.println(response);
+					}
 				});
-
-				/** code for the searchview **/
-				myListview.setTextFilterEnabled(true);
-
-				mySearchView.setOnQueryTextListener(new OnQueryTextListener() {
-
-					public boolean onQueryTextSubmit(String query) {
-						return false;
-					}
-
-					public boolean onQueryTextChange(String newText) {
-
-						if (TextUtils.isEmpty(newText)) {
-							myListview.clearTextFilter();
-						} else {
-							int pos = 0;
-							for (Question q : questions) {
-								if (q.questionText.toLowerCase().contains(
-										newText.toLowerCase())) {
-									SimpleAdapter tempAdapter = (SimpleAdapter) myListview
-											.getAdapter();
-									tempAdapter.getFilter().filter(newText);
-								}
-								pos++;
-							}
-
-						}
-
-						return true;
-					}
-				});
-
-				System.out.println(response);
-			}
-		});
 
 	}
 
@@ -304,9 +329,11 @@ public class QuestionTab extends Activity {
 			// Toast.LENGTH_LONG).show();
 			break;
 
-		case PUSH_ID:
-
-			Push(item);
+		/*
+		 * case PUSH_ID:
+		 * 
+		 * Push(item);
+		 */
 		}
 
 		return super.onContextItemSelected(item);
@@ -391,64 +418,49 @@ public class QuestionTab extends Activity {
 
 	}
 
-	public void Push(MenuItem item) {
-
-		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
-				.getMenuInfo();
-		int index = info.position;
-
-		Log.d("demo", "index= " + index);
-		Log.d("demo", "getItemId()= " + item.getItemId());
-
-		// Intent intent = new Intent(getParent().getParent(), ResultTab.class);
-		// startActivity(intent);
-
-		RequestParams params = new RequestParams();
-
-		// String id = "" + item.getItemId();// Als we weten welke vraag het is
-		String id = "" + index;
-
-		params.put("question[ispushed]", "1");
-		// params.put("_method", "put");
-
-		RestClient.put("qpush/" + id, params, new AsyncHttpResponseHandler() {
-			private ProgressDialog dialog;
-			private String response;
-
-			@Override
-			public void onStart() {
-
-				dialog = ProgressDialog.show(getParent(), "Loading",
-						"Data loading", true, true, new OnCancelListener() {
-							public void onCancel(DialogInterface dialog) {
-								dialog.dismiss();
-							}
-						});
-				onSuccess("ok");// force a success
-			}
-
-			@Override
-			public void onSuccess(String response) {
-				if (this.dialog.isShowing())
-					this.dialog.dismiss();
-
-				Log.d("demo", "pushed");
-				Log.d("response", response);
-
-				MainActivity activity = (MainActivity) getParent().getParent();
-				TabHost host = activity.getTabHost();
-				host.setCurrentTab(2);
-
-				/*
-				 * Intent intent = new Intent(getParent(), ResultTab.class);
-				 * TabGroupActivity parentactivity = (TabGroupActivity)
-				 * getParent(); parentactivity.startChildActivity("ResultTab",
-				 * intent);
-				 */
-
-			}
-		});
-
-	}
+	/*
+	 * public void Push(MenuItem item) {
+	 * 
+	 * AdapterView.AdapterContextMenuInfo info =
+	 * (AdapterView.AdapterContextMenuInfo) item .getMenuInfo(); int index =
+	 * info.position;
+	 * 
+	 * Log.d("demo", "index= " + index); Log.d("demo", "getItemId()= " +
+	 * item.getItemId());
+	 * 
+	 * // Intent intent = new Intent(getParent().getParent(), ResultTab.class);
+	 * // startActivity(intent);
+	 * 
+	 * RequestParams params = new RequestParams();
+	 * 
+	 * // String id = "" + item.getItemId();// Als we weten welke vraag het is
+	 * String id = "" + index;
+	 * 
+	 * params.put("question[ispushed]", "1"); // params.put("_method", "put");
+	 * 
+	 * RestClient.put("qpush/" + id, params, new AsyncHttpResponseHandler() {
+	 * private ProgressDialog dialog; private String response;
+	 * 
+	 * @Override public void onStart() {
+	 * 
+	 * dialog = ProgressDialog.show(getParent(), "Loading", "Data loading",
+	 * true, true, new OnCancelListener() { public void onCancel(DialogInterface
+	 * dialog) { dialog.dismiss(); } }); onSuccess("ok");// force a success }
+	 * 
+	 * @Override public void onSuccess(String response) { if
+	 * (this.dialog.isShowing()) this.dialog.dismiss();
+	 * 
+	 * Log.d("demo", "pushed"); Log.d("response", response);
+	 * 
+	 * MainActivity activity = (MainActivity) getParent().getParent(); TabHost
+	 * host = activity.getTabHost(); host.setCurrentTab(2);
+	 * 
+	 * /* Intent intent = new Intent(getParent(), ResultTab.class);
+	 * TabGroupActivity parentactivity = (TabGroupActivity) getParent();
+	 * parentactivity.startChildActivity("ResultTab", intent);
+	 */
+	/*
+	 * } });
+	 */
 
 }

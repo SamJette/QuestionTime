@@ -43,7 +43,6 @@ import com.loopj.android.http.RequestParams;
  */
 
 public class MainActivity extends TabActivity {
-	
 
 	/** variables for the shared prefs */
 	static final String KEY_USERNAME = "username";
@@ -51,9 +50,11 @@ public class MainActivity extends TabActivity {
 	static final String KEY_CLASSID = "classId";
 
 	public static final String PREFS_NAME = "LoginPrefs";
-	
-	/**called when the screen is made
-	 * @param savedInstanceState  
+
+	/**
+	 * called when the screen is made
+	 * 
+	 * @param savedInstanceState
 	 */
 
 	@Override
@@ -63,7 +64,7 @@ public class MainActivity extends TabActivity {
 		PersistentCookieStore myCookieStore = new PersistentCookieStore(this);
 		RestClient.client.setCookieStore(myCookieStore);
 
-		//tabs
+		// tabs
 
 		TabHost tabHost = getTabHost();
 		TabHost.TabSpec spec;
@@ -110,7 +111,10 @@ public class MainActivity extends TabActivity {
 
 	}
 
-	/** @param home button clicked --> return to StudentTab **/
+	/**
+	 * @param home
+	 *            button clicked --> return to StudentTab
+	 **/
 	public void onHomeButtonClicked(View v) {
 		TabHost tabHost = getTabHost();
 		tabHost.setCurrentTab(0);
@@ -123,7 +127,7 @@ public class MainActivity extends TabActivity {
 		menu.add(0, 0, Menu.NONE, "Refresh");
 		return true;
 	}
-	
+
 	/** @param item */
 
 	@Override
@@ -321,9 +325,9 @@ public class MainActivity extends TabActivity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				System.out.println(_id);
-				System.out.println(_classid);
-				System.out.println(_email);
+				// System.out.println(_id);
+				// System.out.println(_classid);
+				// System.out.println(_email);
 
 				// store the teacher id
 				SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
@@ -363,7 +367,7 @@ public class MainActivity extends TabActivity {
 
 		Button buttonCancel = (Button) dialog
 
-		.findViewById(R.id.buttonCancel);
+		.findViewById(R.id.buttonInfoOK);
 
 		buttonCancel.setOnClickListener(new OnClickListener() {
 

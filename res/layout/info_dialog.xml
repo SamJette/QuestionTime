@@ -2,16 +2,18 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center"
-            android:background="#000000"
+        android:background="#515151"
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/textViewInfos"
+        android:padding="10dp"
+        
         android:layout_width="1189dp"
         android:layout_height="wrap_content"
-        android:text="Infos about the app, who&apos;s who .....Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas velit sapien, placerat eu egestas eget, tempor a dui. Nam fringilla metus et nisl congue semper. Aenean metus nisi, cursus at iaculis eu, tempus in dui. In at nisi eget eros convallis feugiat ac a lorem. In id lorem vitae justo luctus euismod. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque eu elit non elit venenatis feugiat a eget sem. Nullam tortor felis, ultricies in tristique at, tempus scelerisque mi. Proin auctor nisl quis dui luctus porttitor egestas id neque. In commodo elit eget ipsum volutpat malesuada. Quisque varius massa convallis arcu venenatis id faucibus mi sollicitudin. Donec tincidunt sagittis turpis, convallis sodales mauris dignissim quis. Integer at erat justo, quis porta odio. Vivamus euismod, augue nec tristique hendrerit, eros velit cursus arcu, eget euismod libero ligula ac libero. Vivamus ipsum justo, molestie at tincidunt non, varius a leo.
-
-        "
+        android:text="@string/_info"
+        android:textStyle="italic"
+        android:typeface="serif"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <LinearLayout
@@ -19,12 +21,12 @@
         android:layout_height="wrap_content" >
 
         <Button
-            android:id="@+id/buttonCancel"
-            android:layout_width="wrap_content"
+            android:id="@+id/buttonInfoOK"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#000000"
-            android:text="@string/_cancel"
+            android:background="#9e9e9e"
+            android:text="@android:string/ok"
             android:textColor="#FFFFFF"
             android:textSize="21dp" />
 

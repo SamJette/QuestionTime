@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E3E3E3"
+
     android:orientation="vertical" >
 
     <LinearLayout
@@ -60,9 +60,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#E3E3E3"
+        
         android:orientation="vertical" >
-
+
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
@@ -70,7 +70,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:text="@string/jouwVraag"
-            android:textColor="#515151"
+            android:textColor="@color/darkGreyColor"
             android:textSize="21dp" />
 
         <EditText
@@ -78,23 +78,22 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:background="#F2F2F2"
+            android:background="@color/blueColor"
             android:ems="10"
             android:hint="@string/antwHint"
             android:imeOptions="actionDone"
             android:inputType="text"
             android:padding="20dp"
-            android:textColor="#515151"
+            android:textColor="#ffffff"
             android:textSize="21dp" />
 
         <!-- android:hint="INPUT TEXT" -->
     </LinearLayout>
-
+
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#E3E3E3"
         android:orientation="horizontal"
         android:paddingLeft="20dp"
         android:paddingRight="20dp" >
@@ -102,14 +101,14 @@
         <LinearLayout
             android:layout_width="20dp"
             android:layout_height="match_parent"
-            android:background="#9e9e9e" >
+            android:background="@color/greyColor" >
         </LinearLayout>
 
         <RadioButton
             android:id="@+id/radioJaNee"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:background="#9e9e9e"
+            android:background="@color/greyColor"
             android:checked="true"
             android:gravity="center|center_horizontal"
             android:paddingLeft="20dp"
@@ -126,14 +125,14 @@
             android:layout_width="20dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
-            android:background="#9e9e9e" >
+            android:background="@color/greyColor" >
         </LinearLayout>
 
         <RadioButton
             android:id="@+id/radioMeerKeuzeVraag"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:background="#9e9e9e"
+            android:background="@color/greyColor"
             android:gravity="center|center_horizontal"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
@@ -149,14 +148,14 @@
             android:layout_width="20dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
-            android:background="#9e9e9e" >
+            android:background="@color/greyColor" >
         </LinearLayout>
 
         <RadioButton
             android:id="@+id/radioInvulTextVraag"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:background="#9e9e9e"
+            android:background="@color/greyColor"
             android:gravity="center|center_horizontal"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
@@ -168,28 +167,27 @@
             android:textColor="#FFFFFF"
             android:textSize="21dp" />
     </RadioGroup>
-
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:background="#E3E3E3"
         android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:background="#E3E3E3" >
+            android:layout_marginBottom="2dp" >
 
             <Button
                 android:id="@+id/buttonJa"
                 android:layout_width="50dp"
                 android:layout_height="48dp"
+                android:layout_gravity="center"
                 android:layout_marginRight="2dp"
-                android:background="#F2F2F2"
+                android:background="@color/blueColor"
                 android:text="@string/one"
-                android:textColor="#515151"
+                android:textColor="@color/whiteColor"
                 android:textSize="21dp"
                 android:visibility="visible" />
 
@@ -198,21 +196,21 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="2.54"
-                android:background="#F2F2F2"
+                android:background="@drawable/question_d_antw_bckgr"
                 android:gravity="center"
                 android:inputType="text"
                 android:text="@string/JA"
-                android:textColor="#515151"
+                android:textColor="@color/blueColor"
                 android:textSize="21dp"
                 android:visibility="visible" />
 
             <CheckBox
                 android:id="@+id/checkBoxJa"
-                android:layout_width="48dp"
+                android:layout_width="33dp"
                 android:layout_height="48dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="2dp"
-                android:background="#F2F2F2"
+                android:background="@drawable/question_d_antw_bckgr"
                 android:checked="true"
                 android:onClick="myCheckListener"
                 android:visibility="visible" />
@@ -221,17 +219,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:background="#E3E3E3" >
+            android:layout_marginBottom="2dp" >
 
             <Button
                 android:id="@+id/buttonNee"
                 android:layout_width="50dp"
                 android:layout_height="48dp"
+                android:layout_gravity="center"
                 android:layout_marginRight="2dp"
-                android:background="#F2F2F2"
+                android:background="@color/greyColor"
                 android:text="@string/two"
-                android:textColor="#515151"
+                android:textColor="@color/whiteColor"
                 android:textSize="21dp"
                 android:visibility="visible" />
 
@@ -240,21 +238,21 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="2.54"
-                android:background="#F2F2F2"
+                android:background="@drawable/question_d_antw_bckgr_gray"
                 android:gravity="center"
                 android:inputType="text"
                 android:text="@string/NEE"
-                android:textColor="#515151"
+                android:textColor="@color/blueColor"
                 android:textSize="21dp"
                 android:visibility="visible" />
 
             <CheckBox
                 android:id="@+id/checkBoxNee"
-                android:layout_width="48dp"
+                android:layout_width="33dp"
                 android:layout_height="48dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="2dp"
-                android:background="#F2F2F2"
+                android:background="@drawable/question_d_antw_bckgr_gray"
                 android:onClick="myCheckListener"
                 android:visibility="visible" />
         </LinearLayout>
@@ -262,17 +260,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:background="#E3E3E3" >
+            android:layout_marginBottom="2dp" >
 
             <Button
                 android:id="@+id/button3"
                 android:layout_width="50dp"
                 android:layout_height="48dp"
+                android:layout_gravity="center"
                 android:layout_marginRight="2dp"
-                android:background="#F2F2F2"
+                android:background="@color/blueColor"
                 android:text="@string/three"
-                android:textColor="#515151"
+                android:textColor="@color/whiteColor"
                 android:textSize="21dp"
                 android:visibility="invisible" />
 
@@ -281,21 +279,21 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="2.54"
-                android:background="#F2F2F2"
+                android:background="@drawable/question_d_antw_bckgr"
                 android:gravity="center"
                 android:inputType="text"
                 android:text="@string/three"
-                android:textColor="#515151"
+                android:textColor="@color/blueColor"
                 android:textSize="21dp"
                 android:visibility="invisible" />
 
             <CheckBox
                 android:id="@+id/checkBox3"
-                android:layout_width="48dp"
+                android:layout_width="33dp"
                 android:layout_height="48dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="2dp"
-                android:background="#F2F2F2"
+                android:background="@drawable/question_d_antw_bckgr"
                 android:onClick="myCheckListener"
                 android:visibility="invisible" />
         </LinearLayout>
@@ -303,17 +301,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:background="#E3E3E3" >
+            android:layout_marginBottom="2dp" >
 
             <Button
                 android:id="@+id/button4"
                 android:layout_width="50dp"
                 android:layout_height="48dp"
+                android:layout_gravity="center"
                 android:layout_marginRight="2dp"
-                android:background="#F2F2F2"
+                android:background="@color/greyColor"
                 android:text="@string/four"
-                android:textColor="#515151"
+                android:textColor="@color/whiteColor"
                 android:textSize="21dp"
                 android:visibility="invisible" />
 
@@ -322,21 +320,21 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="2.54"
-                android:background="#F2F2F2"
+                android:background="@drawable/question_d_antw_bckgr_gray"
                 android:gravity="center"
                 android:inputType="text"
                 android:text="@string/four"
-                android:textColor="#515151"
+                android:textColor="@color/blueColor"
                 android:textSize="21dp"
                 android:visibility="invisible" />
 
             <CheckBox
                 android:id="@+id/checkBox4"
-                android:layout_width="48dp"
+                android:layout_width="33dp"
                 android:layout_height="48dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="2dp"
-                android:background="#F2F2F2"
+                android:background="@drawable/question_d_antw_bckgr_gray"
                 android:onClick="myCheckListener"
                 android:visibility="invisible" />
         </LinearLayout>
@@ -344,17 +342,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:background="#E3E3E3" >
+            android:layout_marginBottom="2dp" >
 
             <Button
                 android:id="@+id/button5"
                 android:layout_width="50dp"
                 android:layout_height="48dp"
+                android:layout_gravity="center"
                 android:layout_marginRight="2dp"
-                android:background="#F2F2F2"
+                android:background="@color/blueColor"
                 android:text="@string/five"
-                android:textColor="#515151"
+                android:textColor="@color/whiteColor"
                 android:textSize="21dp"
                 android:visibility="invisible" />
 
@@ -363,21 +361,21 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="2.54"
-                android:background="#F2F2F2"
+                android:background="@drawable/question_d_antw_bckgr"
                 android:gravity="center"
                 android:inputType="text"
                 android:text="@string/five"
-                android:textColor="#515151"
+                android:textColor="@color/blueColor"
                 android:textSize="21dp"
                 android:visibility="invisible" />
 
             <CheckBox
                 android:id="@+id/checkBox5"
-                android:layout_width="48dp"
+                android:layout_width="33dp"
                 android:layout_height="48dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="2dp"
-                android:background="#F2F2F2"
+                android:background="@drawable/question_d_antw_bckgr"
                 android:onClick="myCheckListener"
                 android:visibility="invisible" />
         </LinearLayout>

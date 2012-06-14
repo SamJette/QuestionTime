@@ -28,11 +28,13 @@ import android.view.View;
 import android.view.View.OnCreateContextMenuListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
 import android.widget.SimpleAdapter;
 import android.widget.TabHost;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -58,8 +60,6 @@ public class QuestionTab extends Activity {
 	public Question aQuestion;
 	public ArrayList<Question> questions = new ArrayList<Question>();
 
-	/** @param savedInstanceState */
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -71,7 +71,7 @@ public class QuestionTab extends Activity {
 
 	}
 
-	/** @param refresh the question list via the menu */
+	/** method to refresh the question list via the menu **/
 
 	public void refreshQuestionList() {
 
@@ -79,7 +79,7 @@ public class QuestionTab extends Activity {
 
 	}
 
-	/** @param refresh the question list via the button */
+	/** method to refresh the question list via the button **/
 
 	public void refreshQuestionList(View v) {
 
@@ -91,7 +91,7 @@ public class QuestionTab extends Activity {
 	}
 
 	public void questionListing() {
-		RestClient.get("questions.xml", null, new AsyncHttpResponseHandler() {
+		RestClient.get("questions?format=xml", null, new AsyncHttpResponseHandler() {
 
 			private ProgressDialog dialog;
 
@@ -156,7 +156,7 @@ public class QuestionTab extends Activity {
 
 					map.put(KEY_QUESTION, temp.questionText);
 
-					// map.put(KEY_ID, temp.ID);
+					map.put(KEY_ID, temp.ID);
 
 					listItem.add(map);
 				}
@@ -165,9 +165,8 @@ public class QuestionTab extends Activity {
 
 				SimpleAdapter adapter = new SimpleAdapter(QuestionTab.this,
 						listItem, R.layout.list_item_question, new String[] {
-								KEY_QUESTION, KEY_ID },
-						new int[] { R.id.vragenTextTextView });
-
+								KEY_QUESTION, KEY_ID }, new int[] {
+								R.id.vragenTextTextView, R.id.buttonPush });
 				myListview.setAdapter(adapter);
 
 				/** to create a Context Menu for the "long press" **/
@@ -188,26 +187,39 @@ public class QuestionTab extends Activity {
 
 				myListview.setOnItemClickListener(new OnItemClickListener() {
 
-					/** @param click on a row */
-					
+					/** click on a row **/
 					public void onItemClick(AdapterView<?> arg0, View view,
 							int position, long arg3) {
 
-						// Log.w("TAG", "onItemClick clicked position :"+
-						// position);
+						Log.w("TAG", "onItemClick clicked position :"
+								+ position + "arg3 = " + arg3);
+
+						TextView tv = ((TextView) view
+								.findViewById(R.id.vragenTextTextView));
+
+						Button pushButton = ((Button) findViewById(R.id.buttonPush));
+						if (pushButton.isClickable() == true) {
+							Log.d("PUSH", "push button");
+						}
+
+						String questionText = tv.getText().toString();
+
+						String IDString = null;
+
+						for (Question q : questions) {
+							if ((q.questionText).equals(questionText)) {
+								QuestionSingleton.q = q;
+								IDString = q.ID;
+							}
+						}
 
 						Intent intent = new Intent(getParent(),
 								QuestionDetails.class);
 
-						intent.putExtra(KEY_QUESTION,
-								questions.get(position).questionText);
-						// Log.d("demo","question text="+
-						// questions.get(position).questionText);
+						Log.d("questionText onItemClick", questionText);
+						intent.putExtra(KEY_QUESTION, questionText);
 
-						/* to retrieve the id of the question */
-
-						intent.putExtra(KEY_ID,
-								questions.get(position).ID.toString());
+						intent.putExtra(KEY_ID, IDString);
 
 						TabGroupActivity parentactivity = (TabGroupActivity) getParent();
 						parentactivity.startChildActivity("VragenDetails",
@@ -217,8 +229,7 @@ public class QuestionTab extends Activity {
 
 				});
 
-				/** @param searchview */
-				
+				/** code for the searchview **/
 				myListview.setTextFilterEnabled(true);
 
 				mySearchView.setOnQueryTextListener(new OnQueryTextListener() {
@@ -259,8 +270,7 @@ public class QuestionTab extends Activity {
 		questionListing();
 	}
 
-	/** @param Context Item is selected */
-	
+	/** one of the Context Item is selected **/
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 
@@ -302,8 +312,7 @@ public class QuestionTab extends Activity {
 		return super.onContextItemSelected(item);
 	}
 
-	/** @param onClick - button "Add Question" */
-	
+	/** onClick - button "Add Question" **/
 	public void onAddClick(View v) {
 		// Intent i = new Intent(VragenTab.this, VragenDetails.class);
 		// startActivityForResult(i, ACTIVITY_DETAIL);
@@ -323,12 +332,62 @@ public class QuestionTab extends Activity {
 		super.onActivityResult(requestCode, resultCode, intent);
 	}
 
-	/** @param push button clicker */
+	/** the push button clicker **/
 
 	public void onPushButtonClick(View v) {
-		Toast.makeText(getApplicationContext(), "Push the question",
-				Toast.LENGTH_LONG).show();
+
+		Button pushButton = ((Button) v.findViewById(R.id.buttonPush));
+
+		Toast.makeText(getApplicationContext(),
+				"Push the question" + pushButton.getText(), Toast.LENGTH_LONG)
+				.show();
 		// Push(MenuItem item);
+
+		RequestParams params = new RequestParams();
+
+		// String id = "" + item.getItemId();// Als we weten welke vraag het is
+		String id = "" + pushButton.getText();
+
+		params.put("question[ispushed]", "1");
+		// params.put("_method", "put");
+
+		RestClient.put("qpush/" + id, params, new AsyncHttpResponseHandler() {
+			private ProgressDialog dialog;
+			private String response;
+
+			@Override
+			public void onStart() {
+
+				dialog = ProgressDialog.show(getParent(), "Loading",
+						"Data loading", true, true, new OnCancelListener() {
+							public void onCancel(DialogInterface dialog) {
+								dialog.dismiss();
+							}
+						});
+				onSuccess("ok");// force a success
+			}
+
+			@Override
+			public void onSuccess(String response) {
+				if (this.dialog.isShowing())
+					this.dialog.dismiss();
+
+				Log.d("demo", "pushed");
+				Log.d("response", response);
+
+				MainActivity activity = (MainActivity) getParent().getParent();
+				TabHost host = activity.getTabHost();
+				host.setCurrentTab(2);
+
+				/*
+				 * Intent intent = new Intent(getParent(), ResultTab.class);
+				 * TabGroupActivity parentactivity = (TabGroupActivity)
+				 * getParent(); parentactivity.startChildActivity("ResultTab",
+				 * intent);
+				 */
+
+			}
+		});
 
 	}
 

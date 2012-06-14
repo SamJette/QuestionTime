@@ -305,8 +305,6 @@ public class MainActivity extends TabActivity {
 							}
 						});
 			}
-			
-			/** @param response */
 
 			@Override
 			public void onSuccess(JSONObject response) {

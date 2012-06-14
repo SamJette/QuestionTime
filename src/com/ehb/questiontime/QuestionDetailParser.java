@@ -8,14 +8,14 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class QuestionDetailParser extends DefaultHandler {
 
-	/** public ArrayList<Question> questions */
+	// public ArrayList<Question> questions;
 	public Question tempQuestion;
 	public Answer tempAnswer;
 	public ArrayList<Answer> answers;
 
 	public StringBuilder builder;
 
-	/** XML node keys */
+	/** XML node keys **/
 	static final String KEY_DATA = "data";
 	static final String KEY_ANSWERS = "Answers";
 
@@ -70,9 +70,7 @@ public class QuestionDetailParser extends DefaultHandler {
 		} else if (localName.equalsIgnoreCase(KEY_updatedat)) {
 			tempQuestion.updateDate = builder.toString();
 		}
-		
-		/** @param finished reading "question text" tag
-		 *  assign it to the temp question */
+		/** finished reading "question text" tag assign it to the temp question **/
 
 	}
 

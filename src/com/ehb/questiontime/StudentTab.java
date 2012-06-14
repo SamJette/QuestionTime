@@ -76,7 +76,7 @@ public class StudentTab extends Activity {
 	}
 
 	public void studentListing() {
-		RestClient.get("students.xml", null, new AsyncHttpResponseHandler() {
+		RestClient.get("students?format=xml", null, new AsyncHttpResponseHandler() {
 			private ProgressDialog dialog;
 
 			@Override

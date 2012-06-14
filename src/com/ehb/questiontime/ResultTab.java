@@ -13,6 +13,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
+import android.content.res.Resources.NotFoundException;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,6 +40,7 @@ public class ResultTab extends Activity {
 	static final String KEY_POINTS2 = "POINTS2";
 
 	static final String KEY_ANSWER = "ANSWERTEXT";
+	static final String KEY_STUDENTANSWER = "STUDENTANSWER";
 	static final String KEY_SCORE2 = "SCORE2";
 
 	Student aStudent;
@@ -72,7 +74,7 @@ public class ResultTab extends Activity {
 
 	public void getResults() {
 
-		RestClient.get("results.json", null, new JsonHttpResponseHandler() {
+		RestClient.get("results?format=json", null, new JsonHttpResponseHandler() {
 
 			private ProgressDialog dialog;
 			private JSONArray _data = null;
@@ -110,12 +112,13 @@ public class ResultTab extends Activity {
 						// System.out.println(tmp.getString(1));
 						// System.out.println(tmp.getString(2));
 
-						map.put(KEY_FIRSTNAME, tmp.getString(1));
-						map.put(KEY_ISJUIST, tmp.getString(2));
-						map.put(KEY_SCORE, tmp.getString(2));
-						map.put(KEY_SCORE2, tmp.getString(2));
+						map.put(KEY_FIRSTNAME, tmp.getString(2));
+						map.put(KEY_NAME, tmp.getString(3));
+						map.put(KEY_ISJUIST, tmp.getString(4));
+						map.put(KEY_SCORE, tmp.getString(4));
+						map.put(KEY_SCORE2, tmp.getString(4));
 
-						String[] tmpArray = tmp.getString(2).split("/");
+						String[] tmpArray = tmp.getString(4).split("/");
 						double num = Double.parseDouble(tmpArray[0]);
 						double denom = Double.parseDouble(tmpArray[1]);
 						double quot = 0.0;
@@ -147,9 +150,9 @@ public class ResultTab extends Activity {
 						groupData.add(map);
 						// Log.d("groupData", groupData.toString());
 
-						RestClient.get("results/" + tmp.getString(0) + ".json",
+						RestClient.get("results/" + tmp.getString(0) + "?format=json",
 								null, new JsonHttpResponseHandler() {
-									private JSONArray _data = null;
+									private JSONArray _data2 = null;
 
 									@Override
 									public void onStart() {
@@ -158,7 +161,7 @@ public class ResultTab extends Activity {
 									@Override
 									public void onSuccess(JSONObject response) {
 										try {
-											_data = response
+											_data2 = response
 													.getJSONArray("DATA");
 										} catch (JSONException e) {
 											// TODO Auto-generated catch block
@@ -166,68 +169,81 @@ public class ResultTab extends Activity {
 										}
 										// System.out.println(_data);
 										ArrayList<Map<String, Object>> children = new ArrayList<Map<String, Object>>();
-
-										for (int i = 0; i < _data.length(); i++) {
-											try {
-												JSONArray tmp = _data
-														.getJSONArray(i);
-												HashMap<String, Object> map = new HashMap<String, Object>();
-
-												// System.out.println(tmp.getString(1));
-												// System.out.println(tmp.getString(2));
-												// System.out.println(tmp.getString(3));
-
+										
+										
+										
+										
+										for (int i = 0; i < _data2.length(); i++) {
+											JSONArray temp = null;
+											HashMap<String, Object> map = new HashMap<String, Object>();
+												
+												try {
+													temp = _data2
+															.getJSONArray(i);
+													Log.d("temp", temp.toString());
+												} catch (JSONException e2) {
+													// TODO Auto-generated catch block
+													e2.printStackTrace();
+												}
+																							
 												// change image if student is
 												// online or not
 
-												if (tmp.getString(3)
-														.equalsIgnoreCase("0")) {
-													map.put(KEY_POINTS,
-															getResources()
-																	.getDrawable(
-																			R.color.redColor));
-													map.put(KEY_POINTS2,
-															getResources()
-																	.getDrawable(
-																			R.color.redColor));
+												try {
+													if (temp.getString(4)
+															.equalsIgnoreCase("0")) {
+														map.put(KEY_POINTS,
+																getResources()
+																		.getDrawable(
+																				R.color.redColor));
+														
+														map.put(KEY_POINTS2,
+																getResources()
+																		.getDrawable(
+																				R.color.redColor));
 
-												} else {
-													map.put(KEY_POINTS,
-															getResources()
-																	.getDrawable(
-																			R.color.greenColor));
-													map.put(KEY_POINTS2,
-															getResources()
-																	.getDrawable(
-																			R.color.greenColor));
+													} else {
+														map.put(KEY_POINTS,
+																getResources()
+																		.getDrawable(
+																				R.color.greenColor));
+																												
+														map.put(KEY_POINTS2,
+																getResources()
+																		.getDrawable(
+																				R.color.greenColor));
 
+													}
+													map.put(KEY_STUDENTANSWER, temp.getString(3));
+												} catch (NotFoundException e1) {
+													// TODO Auto-generated catch block
+													e1.printStackTrace();
+												} catch (JSONException e1) {
+													// TODO Auto-generated catch block
+													e1.printStackTrace();
 												}
 
-												// map.put(KEY_QUESTIONTEXT,tmp.getString(1));
-												map.put(KEY_ANSWER,
-														tmp.getString(2));
-
-												children.add(map);
 
 												// Temp Question Title Anderson
 												questionTopBar = (TextView) findViewById(R.id.questionResults);
-												questionTopBar.setText(tmp
-														.getString(1)
-														+ ' '
-														+ ':'
-														+ ' '
-														+ tmp.getString(4));
+												try {
+													questionTopBar.setText(temp
+															.getString(1)
+															+ ' '
+															+ ':'
+															+ ' '
+															+ temp.getString(2));
+												} catch (JSONException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
+												}
 
-											} catch (JSONException e) {
-												// TODO Auto-generated catch
-												// block
-												e.printStackTrace();
-											}
+											children.add(map);
+											Log.d("children", children.toString());
 										}
-										childData.add(children);
-
-										// Log.d("childData",
-										// childData.toString());
+										
+											Log.d("childdata", childData.toString());
+										 childData.add(children);
 									}
 
 								});
@@ -256,7 +272,7 @@ public class ResultTab extends Activity {
 		this, groupData, R.layout.list_item_results_students, new String[] {
 				KEY_SCORE, KEY_FIRSTNAME, KEY_NAME, KEY_ISJUIST, KEY_SCORE2 },
 				new int[] {}, childData, R.layout.list_item_results_results,
-				new String[] { KEY_POINTS, KEY_ANSWER, KEY_POINTS2 },
+				new String[] { KEY_POINTS, KEY_STUDENTANSWER, KEY_POINTS2 },
 				new int[] {}) {
 
 			@Override
@@ -292,6 +308,7 @@ public class ResultTab extends Activity {
 						R.layout.list_item_results_students, null, false);
 			}
 
+			
 			@Override
 			public View getChildView(int groupPosition, int childPosition,
 					boolean isLastChild, View convertView, ViewGroup parent) {
@@ -304,10 +321,10 @@ public class ResultTab extends Activity {
 								groupPosition, childPosition)).get(KEY_POINTS));
 				((TextView) v.findViewById(R.id.answerTextTextView))
 						.setText((String) ((Map<String, Object>) getChild(
-								groupPosition, childPosition)).get(KEY_ANSWER));
+								groupPosition, childPosition)).get(KEY_STUDENTANSWER));
 				((ImageView) v.findViewById(R.id.score2))
 						.setBackgroundDrawable((Drawable) ((Map<String, Object>) getChild(
-								groupPosition, childPosition)).get(KEY_POINTS2));
+							groupPosition, childPosition)).get(KEY_POINTS2));
 
 				return v;
 			}

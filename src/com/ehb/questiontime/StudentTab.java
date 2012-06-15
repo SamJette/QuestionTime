@@ -76,108 +76,117 @@ public class StudentTab extends Activity {
 	}
 
 	public void studentListing() {
-		RestClient.get("students?format=xml", null, new AsyncHttpResponseHandler() {
-			private ProgressDialog dialog;
+		RestClient.get("students?format=xml", null,
+				new AsyncHttpResponseHandler() {
+					private ProgressDialog dialog;
 
-			@Override
-			public void onStart() {
-				dialog = ProgressDialog.show(StudentTab.this, "Loading",
-						"Data loading", true, true, new OnCancelListener() {
-							public void onCancel(DialogInterface dialog) {
-								dialog.dismiss();
-							}
-						});
-			}
-
-			@Override
-			public void onSuccess(String response) {
-				if (this.dialog.isShowing())
-					this.dialog.dismiss();
-
-				ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
-
-				// create an instance of our parser
-				StudentParser parser = new StudentParser();
-
-				SAXParserFactory factory = SAXParserFactory.newInstance();
-				SAXParser sp = null;
-				try {
-					sp = factory.newSAXParser();
-				} catch (ParserConfigurationException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (SAXException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
-				XMLReader reader = null;
-				try {
-					reader = sp.getXMLReader();
-				} catch (SAXException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
-				// add our own parser to the xml reader and start parsing
-				// the
-				// file
-				reader.setContentHandler(parser);
-				try {
-					Xml.parse(response, parser);
-				} catch (SAXException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				students = parser.students;
-				// Log.d("demo", "Students in the getStudents()= " +
-				// students);
-
-				for (int i = 0; i < students.size(); i++) {
-					Student temp = students.get(i);
-
-					HashMap<String, Object> map = new HashMap<String, Object>();
-
-					map.put(KEY_FIRSTNAME, temp.firstName);
-					map.put(KEY_NAME, temp.name);
-					map.put(KEY_EMAIL, temp.email);
-					map.put(KEY_ISONLINE, temp.isOnLine);
-
-					// change image if student is online or not
-					Log.d("demo", "is on line= " + temp.isOnLine);
-					if (temp.isOnLine.equalsIgnoreCase("1")) {
-						map.put(KEY_IMAGE_ISONLINE, R.color.greenColor);
-					} else {
-						map.put(KEY_IMAGE_ISONLINE, R.color.darkGreyColor);
+					@Override
+					public void onStart() {
+						dialog = ProgressDialog.show(StudentTab.this,
+								"Loading", "Data loading", true, true,
+								new OnCancelListener() {
+									public void onCancel(DialogInterface dialog) {
+										dialog.dismiss();
+									}
+								});
 					}
 
-					listItem.add(map);
-				}
+					@Override
+					public void onSuccess(String response) {
+						if (this.dialog.isShowing())
+							this.dialog.dismiss();
 
-				myListView = (ListView) findViewById(R.id.listViewTabLeerlingen);
+						ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
 
-				SimpleAdapter adapter = new SimpleAdapter(StudentTab.this,
-						listItem, R.layout.list_item_student, new String[] {
-								KEY_FIRSTNAME, KEY_NAME, KEY_IMAGE_ISONLINE },
-						new int[] { R.id.firstNameTextView,
-								R.id.lastNameTextView, R.id.logo });
-				myListView.setAdapter(adapter);
+						// create an instance of our parser
+						StudentParser parser = new StudentParser();
 
-				myListView.setOnItemClickListener(new OnItemClickListener() {
+						SAXParserFactory factory = SAXParserFactory
+								.newInstance();
+						SAXParser sp = null;
+						try {
+							sp = factory.newSAXParser();
+						} catch (ParserConfigurationException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (SAXException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 
-					public void onItemClick(AdapterView<?> arg0, View arg1,
-							int arg2, long arg3) {
-						// Student temp = students.get(arg2);
+						XMLReader reader = null;
+						try {
+							reader = sp.getXMLReader();
+						} catch (SAXException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 
-						aStudent = students.get(arg2);
-						showDialog(STUDENT_DIALOG);
+						// add our own parser to the xml reader and start
+						// parsing
+						// the
+						// file
+						reader.setContentHandler(parser);
+						try {
+							Xml.parse(response, parser);
+						} catch (SAXException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						students = parser.students;
+						// Log.d("demo", "Students in the getStudents()= " +
+						// students);
 
+						for (int i = 0; i < students.size(); i++) {
+							Student temp = students.get(i);
+
+							HashMap<String, Object> map = new HashMap<String, Object>();
+
+							map.put(KEY_FIRSTNAME, temp.firstName);
+							map.put(KEY_NAME, temp.name);
+							map.put(KEY_EMAIL, temp.email);
+							map.put(KEY_ISONLINE, temp.isOnLine);
+
+							// change image if student is online or not
+							Log.d("demo", "is on line= " + temp.isOnLine);
+							if (temp.isOnLine.equalsIgnoreCase("1")) {
+								map.put(KEY_IMAGE_ISONLINE, R.color.greenColor);
+							} else {
+								map.put(KEY_IMAGE_ISONLINE,
+										R.color.darkGreyColor);
+							}
+
+							listItem.add(map);
+						}
+
+						myListView = (ListView) findViewById(R.id.listViewTabLeerlingen);
+
+						SimpleAdapter adapter = new SimpleAdapter(
+								StudentTab.this, listItem,
+								R.layout.list_item_student, new String[] {
+										KEY_FIRSTNAME, KEY_NAME,
+										KEY_IMAGE_ISONLINE }, new int[] {
+										R.id.firstNameTextView,
+										R.id.lastNameTextView, R.id.logo });
+						myListView.setAdapter(adapter);
+
+						myListView
+								.setOnItemClickListener(new OnItemClickListener() {
+
+									public void onItemClick(
+											AdapterView<?> arg0, View arg1,
+											int arg2, long arg3) {
+										// Student temp = students.get(arg2);
+
+										aStudent = students.get(arg2);
+										showDialog(STUDENT_DIALOG);
+
+									}
+								});
+
+						System.out.println(response);
 					}
 				});
-
-				System.out.println(response);
-			}
-		});
 	}
 
 	/** dialog onItemClick **/
@@ -201,15 +210,16 @@ public class StudentTab extends Activity {
 	public void onPrepareDialog(int id, Dialog dialog) {
 		switch (id) {
 		case (STUDENT_DIALOG):
-			String studentText = "Email: " + aStudent.email + "\n"
-					+ "Password: " + aStudent.password + "\n" + "IsOnLine: "
-					+ aStudent.isOnLine;
+			String studentText = "Email: " + aStudent.email + "\n" + "\n"
+					+ "Wachtwoord: " + aStudent.password;
 
 			AlertDialog studentDialog = (AlertDialog) dialog;
-			studentDialog.setTitle(aStudent.name);
+			studentDialog.setTitle(aStudent.firstName + "  " + aStudent.name);
 			TextView tv = (TextView) studentDialog
 					.findViewById(R.id.studentDetailsTextViewInDialog);
 			tv.setText(studentText);
+			tv.setTextSize(21);
+			tv.setPadding(10, 10, 10, 15);
 
 			break;
 		}

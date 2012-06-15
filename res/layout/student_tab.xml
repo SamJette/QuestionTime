@@ -45,7 +45,7 @@
         android:id="@+id/listViewTabLeerlingen"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:divider="#d1d1d1"
+        android:divider="#cccccc"
         android:dividerHeight="0dp"
         android:listSelector="@drawable/list_selector" >
     </ListView>

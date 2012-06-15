@@ -112,8 +112,8 @@ public class MainActivity extends TabActivity {
 		txtTab.setPadding(20, 0, 20, 0);
 		txtTab.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
 		txtTab.setBackgroundResource(R.drawable.list_tab_selector);
-		txtTab.setTypeface(Typeface.DEFAULT_BOLD);
-		txtTab.setTextSize(21);
+		txtTab.setTypeface(Typeface.DEFAULT);
+		txtTab.setTextSize(23);
 		txtTab.setShadowLayer(1, 1, 1, Color.DKGRAY);
 		txtTab.setText(myTabTitle);
 		return txtTab;
@@ -166,16 +166,20 @@ public class MainActivity extends TabActivity {
 		final AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
 		helpBuilder.setTitle(R.string._loginscreen_title);
 		helpBuilder.setMessage(R.string._login_message);
-		helpBuilder.setIcon(R.drawable.key_stroke);
+		helpBuilder.setIcon(R.drawable.login_key);
 
 		final TextView LabelName = new TextView(this);
-		LabelName.setWidth(100);
+		LabelName.setWidth(120);
 		LabelName.setText(R.string._email);
+		LabelName.setTextSize(19);
+		LabelName.setTextColor(Color.WHITE);
 
 		final EditText inputName = new EditText(this);
 		inputName.setSingleLine();
-		inputName.setWidth(200);
+		inputName.setWidth(280);
 		inputName.setInputType(InputType.TYPE_CLASS_TEXT);
+		inputName.setTextSize(19);
+		inputName.setTextColor(Color.WHITE);
 
 		String emailLogin = settings.getString("teacher[email]", null);
 		if (emailLogin == null)
@@ -184,13 +188,17 @@ public class MainActivity extends TabActivity {
 			inputName.setText(emailLogin);
 
 		final TextView LabelClass = new TextView(this);
-		LabelClass.setWidth(100);
+		LabelClass.setWidth(120);
 		LabelClass.setText(R.string._class);
+		LabelClass.setTextSize(19);
+		LabelClass.setTextColor(Color.WHITE);
 
 		final EditText inputClass = new EditText(this);
 		inputClass.setSingleLine();
-		inputClass.setWidth(200);
+		inputClass.setWidth(280);
 		inputClass.setInputType(InputType.TYPE_CLASS_TEXT);
+		inputClass.setTextSize(19);
+		inputClass.setTextColor(Color.WHITE);
 
 		String classId = settings.getString("teacher[classid]", null);
 		if (classId == null)
@@ -199,12 +207,14 @@ public class MainActivity extends TabActivity {
 			inputClass.setText(classId);
 
 		final TextView LabelPass = new TextView(this);
-		LabelPass.setWidth(100);
+		LabelPass.setWidth(120);
 		LabelPass.setText(R.string._password);
+		LabelPass.setTextSize(19);
+		LabelPass.setTextColor(Color.WHITE);
 
 		final EditText inputPass = new EditText(this);
 		inputPass.setSingleLine();
-		inputPass.setWidth(200);
+		inputPass.setWidth(280);
 		inputPass.setInputType(InputType.TYPE_CLASS_TEXT
 				| InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
@@ -221,8 +231,8 @@ public class MainActivity extends TabActivity {
 
 		LinearLayout layout = new LinearLayout(this);
 		layout.setOrientation(LinearLayout.VERTICAL);
-		layout.setGravity(Gravity.CENTER_HORIZONTAL);
-		layout.setPadding(10, 5, 0, 5);
+		layout.setGravity(Gravity.LEFT);
+		layout.setPadding(17, 5, 0, 10);
 
 		LinearLayout layoutUser = new LinearLayout(this);
 
@@ -294,7 +304,7 @@ public class MainActivity extends TabActivity {
 
 		helpDialog.show();
 
-		helpDialog.getWindow().setLayout(450, 430);
+		helpDialog.getWindow().setLayout(465, 430);
 		/**
 		 * Controlling width and height
 		 */

@@ -416,6 +416,8 @@ public class QuestionTab extends Activity {
 				Log.d("demo", "pushed");
 				Log.d("response", response);
 
+				onPushStart();
+
 				MainActivity activity = (MainActivity) getParent().getParent();
 				TabHost host = activity.getTabHost();
 				host.setCurrentTab(2);
@@ -429,6 +431,33 @@ public class QuestionTab extends Activity {
 
 			}
 		});
+
+	}
+
+	public void onPushStart() {
+
+		RestClient.get("websocket?key=start", null,
+				new AsyncHttpResponseHandler() {
+
+					private ProgressDialog dialog;
+
+					@Override
+					public void onStart() {
+						dialog = ProgressDialog.show(getParent(), "Loading",
+								"Data loading", true, true,
+								new OnCancelListener() {
+									public void onCancel(DialogInterface dialog) {
+										dialog.dismiss();
+									}
+								});
+					}
+
+					@Override
+					public void onSuccess(String response) {
+						if (this.dialog.isShowing())
+							this.dialog.dismiss();
+					}
+				});
 
 	}
 

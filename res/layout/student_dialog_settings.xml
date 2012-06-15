@@ -3,33 +3,43 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:padding="10dp" >
+     >
     
-    
-
     <TextView
-        android:id="@+id/studentName"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:textSize="25sp" />
-    
-        <TextView
         android:id="@+id/studentEmail"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
         android:autoLink="all"
-        android:textSize="25sp" />
-    
-    
-    <EditText 
-        android:id="@+id/studentPassword"
-                android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:inputType="textPassword"
-        android:textSize="25sp"
-        
-        
-        />
+        android:textSize="21sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp" >
+
+        <TextView
+            android:id="@+id/passwordLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"            
+            android:text="@string/password_settings"
+            android:textSize="21sp" />
+
+        <EditText
+            android:id="@+id/studentPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="15dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:textSize="21sp" >
+
+            <requestFocus />
+        </EditText>
+
+    </LinearLayout>
     
         <LinearLayout
         android:layout_width="fill_parent"
@@ -40,20 +50,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#000000"
+            android:background="@drawable/transparent_pixel"
             android:text="@string/_cancel"
             android:textColor="#FFFFFF"
-            android:textSize="21dp" />
+            android:textSize="17dp" />
 
         <Button
             android:id="@+id/buttonBewaren"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#000000"
+            android:background="@drawable/transparent_pixel"
             android:text="@string/bewaren"
             android:textColor="#FFFFFF"
-            android:textSize="21dp" />
+            android:textSize="17dp" />
     </LinearLayout>
     
 

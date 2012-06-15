@@ -15,7 +15,7 @@
             android:id="@+id/firstNameText"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@drawable/list_student_bckgr"
+            
             android:gravity="center"
             android:paddingLeft="15dp"
             android:text="@string/firstname"
@@ -27,7 +27,7 @@
             android:id="@+id/lastNameText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/list_student_bckgr"
+            
             android:gravity="left|center"
             android:paddingLeft="15dp"
             android:text="@string/name"

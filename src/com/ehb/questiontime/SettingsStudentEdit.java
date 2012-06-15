@@ -67,99 +67,106 @@ public class SettingsStudentEdit extends Activity {
 	}
 
 	public void studentListing() {
-		RestClient.get("students?format=xml", null, new AsyncHttpResponseHandler() {
-			private ProgressDialog dialog;
+		RestClient.get("students?format=xml", null,
+				new AsyncHttpResponseHandler() {
+					private ProgressDialog dialog;
 
-			@Override
-			public void onStart() {
-				dialog = ProgressDialog.show(getParent(), "Loading",
-						"Data loading", true, true, new OnCancelListener() {
-							public void onCancel(DialogInterface dialog) {
-								dialog.dismiss();
-							}
-						});
-			}
+					@Override
+					public void onStart() {
+						dialog = ProgressDialog.show(getParent(), "Loading",
+								"Data loading", true, true,
+								new OnCancelListener() {
+									public void onCancel(DialogInterface dialog) {
+										dialog.dismiss();
+									}
+								});
+					}
 
-			@Override
-			public void onSuccess(String response) {
-				if (this.dialog.isShowing())
-					this.dialog.dismiss();
+					@Override
+					public void onSuccess(String response) {
+						if (this.dialog.isShowing())
+							this.dialog.dismiss();
 
-				ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
+						ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
 
-				// create an instance of our parser
-				StudentParser parser = new StudentParser();
+						// create an instance of our parser
+						StudentParser parser = new StudentParser();
 
-				SAXParserFactory factory = SAXParserFactory.newInstance();
-				SAXParser sp = null;
-				try {
-					sp = factory.newSAXParser();
-				} catch (ParserConfigurationException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (SAXException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+						SAXParserFactory factory = SAXParserFactory
+								.newInstance();
+						SAXParser sp = null;
+						try {
+							sp = factory.newSAXParser();
+						} catch (ParserConfigurationException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (SAXException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 
-				XMLReader reader = null;
-				try {
-					reader = sp.getXMLReader();
-				} catch (SAXException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+						XMLReader reader = null;
+						try {
+							reader = sp.getXMLReader();
+						} catch (SAXException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 
-				// add our own parser to the xml reader and start parsing
-				// the
-				// file
-				reader.setContentHandler(parser);
-				try {
-					Xml.parse(response, parser);
-				} catch (SAXException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				students = parser.students;
-				// Log.d("demo", "Students in the getStudents()= " +
-				// students);
+						// add our own parser to the xml reader and start
+						// parsing
+						// the
+						// file
+						reader.setContentHandler(parser);
+						try {
+							Xml.parse(response, parser);
+						} catch (SAXException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						students = parser.students;
+						// Log.d("demo", "Students in the getStudents()= " +
+						// students);
 
-				for (int i = 0; i < students.size(); i++) {
-					Student temp = students.get(i);
+						for (int i = 0; i < students.size(); i++) {
+							Student temp = students.get(i);
 
-					HashMap<String, Object> map = new HashMap<String, Object>();
+							HashMap<String, Object> map = new HashMap<String, Object>();
 
-					map.put(KEY_FIRSTNAME, temp.firstName);
-					map.put(KEY_NAME, temp.name);
-					map.put(KEY_EMAIL, temp.email);
+							map.put(KEY_FIRSTNAME, temp.firstName);
+							map.put(KEY_NAME, temp.name);
+							map.put(KEY_EMAIL, temp.email);
 
-					listItem.add(map);
-				}
+							listItem.add(map);
+						}
 
-				myListView = (ListView) findViewById(R.id.listViewSettingsLeerlingen);
+						myListView = (ListView) findViewById(R.id.listViewSettingsLeerlingen);
 
-				SimpleAdapter adapter = new SimpleAdapter(
-						SettingsStudentEdit.this, listItem,
-						R.layout.list_item_student_settings, new String[] {
-								KEY_FIRSTNAME, KEY_NAME }, new int[] {
-								R.id.firstNameText, R.id.lastNameText });
-				myListView.setAdapter(adapter);
+						SimpleAdapter adapter = new SimpleAdapter(
+								SettingsStudentEdit.this, listItem,
+								R.layout.list_item_student_settings,
+								new String[] { KEY_FIRSTNAME, KEY_NAME },
+								new int[] { R.id.firstNameText,
+										R.id.lastNameText });
+						myListView.setAdapter(adapter);
 
-				myListView.setOnItemClickListener(new OnItemClickListener() {
+						myListView
+								.setOnItemClickListener(new OnItemClickListener() {
 
-					public void onItemClick(AdapterView<?> arg0, View arg1,
-							int arg2, long arg3) {
-						// Student temp = students.get(arg2);
+									public void onItemClick(
+											AdapterView<?> arg0, View arg1,
+											int arg2, long arg3) {
+										// Student temp = students.get(arg2);
 
-						aStudent = students.get(arg2);
-						showDialog(STUDENT_DIALOG);
+										aStudent = students.get(arg2);
+										showDialog(STUDENT_DIALOG);
 
+									}
+								});
+
+						// System.out.println(response);
 					}
 				});
-
-				// System.out.println(response);
-			}
-		});
 	}
 
 	/** dialog onItemClick **/
@@ -190,14 +197,11 @@ public class SettingsStudentEdit extends Activity {
 		case (STUDENT_DIALOG):
 
 			final AlertDialog studentDialog = (AlertDialog) dialog;
-			studentDialog.setTitle(aStudent.name);
-			TextView tv = (TextView) studentDialog
-					.findViewById(R.id.studentName);
-			tv.setText("Name : " + aStudent.name);
+			studentDialog.setTitle(aStudent.firstName + "  " + aStudent.name);
 
 			TextView mailTv = (TextView) studentDialog
 					.findViewById(R.id.studentEmail);
-			mailTv.setText("EMail : " + aStudent.email);
+			mailTv.setText("Email: " + aStudent.email);
 
 			EditText editPass = (EditText) studentDialog
 					.findViewById(R.id.studentPassword);

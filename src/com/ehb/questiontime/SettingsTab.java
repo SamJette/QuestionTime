@@ -70,7 +70,7 @@ public class SettingsTab extends Activity implements OnClickListener {
 
 			dialog.setContentView(R.layout.server_dialog);
 
-			// dialog.setTitle("Serveradres instellen.");
+			dialog.setTitle("Serveradres instellen.");
 
 			dialog.setCancelable(false);
 
@@ -181,7 +181,7 @@ public class SettingsTab extends Activity implements OnClickListener {
 			final Dialog dialog2 = new Dialog(getParent());
 
 			dialog2.setContentView(R.layout.logout_dialog);
-			dialog2.setTitle("Bent u zeker ? afmelden ? ");
+			dialog2.setTitle("Weet u zeker dat u wilt afmelden?");
 			dialog2.setCancelable(false);
 
 			Button buttonBewaren2 = (Button) dialog2

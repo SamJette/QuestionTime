@@ -2,7 +2,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center"
-            android:background="#000000"
     android:orientation="vertical" >
 
     <EditText
@@ -12,7 +11,8 @@
         android:layout_margin="20dp"
         android:freezesText="false"
         android:gravity="center"
-        android:hint="serveradres"
+        android:text="@string/serverURL"
+        android:hint="@string/serverHint"
         android:inputType="textEmailAddress"
         android:textSize="21dp" >
     </EditText>
@@ -25,21 +25,21 @@
             android:id="@+id/buttonCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#000000"
+            android:layout_weight="1"            
             android:text="@string/_cancel"
             android:textColor="#FFFFFF"
-            android:textSize="21dp" />
+            android:textSize="17dp"
+            android:background="@drawable/transparent_pixel" />
 
         <Button
             android:id="@+id/buttonBewaren"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#000000"
+            android:layout_weight="1"            
             android:text="@string/bewaren"
             android:textColor="#FFFFFF"
-            android:textSize="21dp" />
+            android:textSize="17dp"
+            android:background="@drawable/transparent_pixel" />
     </LinearLayout>
 
 </LinearLayout>

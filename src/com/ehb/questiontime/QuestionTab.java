@@ -328,14 +328,14 @@ public class QuestionTab extends Activity {
 					// here you can add functions
 				}
 			});
-			alertDialog.setButton2("Cancel",
+			alertDialog.setButton2("Annuleren",
 					new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
 							return;
 						}
 					});
 
-			alertDialog.setIcon(R.drawable.logo_test2);
+			// alertDialog.setIcon(R.drawable.logo_test2);
 			alertDialog.show();
 			// Toast.makeText(getApplicationContext(), "Delete the question",
 			// Toast.LENGTH_LONG).show();

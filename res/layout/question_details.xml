@@ -62,7 +62,8 @@
         android:layout_height="wrap_content"
         
         android:orientation="vertical" >
-
+
+
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
@@ -89,7 +90,8 @@
 
         <!-- android:hint="INPUT TEXT" -->
     </LinearLayout>
-
+
+
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="fill_parent"
@@ -112,14 +114,10 @@
             android:checked="true"
             android:gravity="center|center_horizontal"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:shadowColor="#515151"
-            android:shadowDx="1"
-            android:shadowDy="1"
-            android:shadowRadius="2"
+            android:paddingRight="40dp"            
             android:text="@string/jaNeeVraag"
-            android:textColor="#FFFFFF"
-            android:textSize="21dp" />
+            android:textColor="@color/darkGreyColor"
+            android:textSize="21dp"/>
 
         <LinearLayout
             android:layout_width="20dp"
@@ -135,13 +133,9 @@
             android:background="@color/greyColor"
             android:gravity="center|center_horizontal"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:shadowColor="#515151"
-            android:shadowDx="1"
-            android:shadowDy="1"
-            android:shadowRadius="2"
+            android:paddingRight="40dp"           
             android:text="@string/meerKeuzeVraag"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/darkGreyColor"
             android:textSize="21dp" />
 
         <LinearLayout
@@ -158,16 +152,13 @@
             android:background="@color/greyColor"
             android:gravity="center|center_horizontal"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:shadowColor="#515151"
-            android:shadowDx="1"
-            android:shadowDy="1"
-            android:shadowRadius="2"
+            android:paddingRight="40dp"            
             android:text="@string/invulTextVraag"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/darkGreyColor"
             android:textSize="21dp" />
     </RadioGroup>
-
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -200,7 +191,7 @@
                 android:gravity="center"
                 android:inputType="text"
                 android:text="@string/JA"
-                android:textColor="@color/blueColor"
+                android:textColor="@color/darkGreyColor"
                 android:textSize="21dp"
                 android:visibility="visible" />
 
@@ -229,7 +220,7 @@
                 android:layout_marginRight="2dp"
                 android:background="@color/greyColor"
                 android:text="@string/two"
-                android:textColor="@color/whiteColor"
+                android:textColor="@color/darkGreyColor"
                 android:textSize="21dp"
                 android:visibility="visible" />
 
@@ -242,7 +233,7 @@
                 android:gravity="center"
                 android:inputType="text"
                 android:text="@string/NEE"
-                android:textColor="@color/blueColor"
+                android:textColor="@color/darkGreyColor"
                 android:textSize="21dp"
                 android:visibility="visible" />
 
@@ -283,7 +274,7 @@
                 android:gravity="center"
                 android:inputType="text"
                 android:text="@string/three"
-                android:textColor="@color/blueColor"
+                android:textColor="@color/darkGreyColor"
                 android:textSize="21dp"
                 android:visibility="invisible" />
 
@@ -311,7 +302,7 @@
                 android:layout_marginRight="2dp"
                 android:background="@color/greyColor"
                 android:text="@string/four"
-                android:textColor="@color/whiteColor"
+                android:textColor="@color/darkGreyColor"
                 android:textSize="21dp"
                 android:visibility="invisible" />
 
@@ -324,7 +315,7 @@
                 android:gravity="center"
                 android:inputType="text"
                 android:text="@string/four"
-                android:textColor="@color/blueColor"
+                android:textColor="@color/darkGreyColor"
                 android:textSize="21dp"
                 android:visibility="invisible" />
 
@@ -365,7 +356,7 @@
                 android:gravity="center"
                 android:inputType="text"
                 android:text="@string/five"
-                android:textColor="@color/blueColor"
+                android:textColor="@color/darkGreyColor"
                 android:textSize="21dp"
                 android:visibility="invisible" />
 

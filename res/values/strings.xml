@@ -46,9 +46,9 @@
 	<string name="JA">JA</string>
 	<string name="NEE">NEE</string>
 	<string name="jouwVraag">Jouw vraag:</string>
-	<string name="invulTextVraag">Open vraag ?</string>
-	<string name="meerKeuzeVraag">Meer keuze vraag ?</string>
-	<string name="jaNeeVraag">Ja/Nee vraag ?</string>
+	<string name="invulTextVraag">Invulvraag</string>
+	<string name="meerKeuzeVraag">Meerkeuzevraag</string>
+	<string name="jaNeeVraag">Ja/Nee-vraag</string>
 	<string name="eenVraag">Een vraag ?</string>
 	<string name="firstname">Voornaam</string>
 	<string name="name">Naam</string>
@@ -63,6 +63,10 @@
 	<string name="antwHint">Typ hier uw vraag.</string>
 		<string name="_info">Deze mobiele applicatie kadert in het eindproject van de cursus Mobiele Applicatie Ontwikkelaar 2011-2012\nen is ontwikkeld door Patricia Meeremans, Kristof Polleunis, Anderson Muela en Collin Koolenbrander. \n\nHierbij bedanken wij Cevora, VDAB, Erasmushogeschool Brussel en de gemeente Jette voor de goede samenwerking.
 \n\nTechnische vereisten:\n\n - Android 3.0 (minimum) -\n\n © 2012 - Question Time</string>
-	
+			<string name="loginOK">Aanmelden</string>
+		<string name="serverHint">Typ hier uw serveradres.</string>
+		<string name="serverURL">http://questiontime.server.be/</string>
+		<string name="password_settings">Wachtwoord: </string>
+		
 
 </resources>

@@ -2,15 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="48dp"
-    android:background="#F2F2F2"
+    android:background="@color/lightGrey"
     android:orientation="horizontal" >
 
     <ImageView
         android:id="@+id/score1"
         android:layout_width="39dp"
         android:layout_height="48dp"
-        android:background="@color/redColor"
-        android:contentDescription="Image correct or false"
+        android:background="@color/red"
+        android:contentDescription="@string/image_correct_or_false"
         />
 
     <TextView
@@ -21,7 +21,7 @@
         android:paddingLeft="15dp"
         android:paddingRight="8dp"
         android:text="@string/resultAnswer"
-        android:textColor="#515151"
+        android:textColor="@color/darkGrey"
         android:textSize="21dp" />
 
     <TextView
@@ -33,15 +33,15 @@
         android:gravity="center|left"
         android:paddingRight="15dp"
         android:text="@string/NEE"
-        android:textColor="#515151"
+        android:textColor="@color/darkGrey"
         android:textSize="21dp" />
 
     <ImageView
         android:id="@+id/score2"
         android:layout_width="16dp"
         android:layout_height="48dp"
-        android:background="@color/redColor"
-        android:contentDescription="Image correct or false"
+        android:background="@color/red"
+        android:contentDescription="@string/image_correct_or_false"
         />
 
 </LinearLayout>

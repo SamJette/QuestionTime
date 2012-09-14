@@ -17,6 +17,7 @@ public class QuestionAdapter extends ArrayAdapter<Question> {
 	// final LayoutInflater layoutInflater = (LayoutInflater)
 	// this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
+	@SuppressWarnings("unused")
 	private final Activity activity;
 	private final int resource;
 	private LayoutInflater inflater = null;

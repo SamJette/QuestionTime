@@ -67,6 +67,9 @@
 		<string name="serverHint">Typ hier uw serveradres.</string>
 		<string name="serverURL">http://questiontime.server.be/</string>
 		<string name="password_settings">Wachtwoord: </string>
+		<string name="online_or_not">Image if student is online or not</string>
+		<string name="info_dialog">info dialog</string>
+		<string name="image_correct_or_false">Image correct or false</string>
 		
 
 </resources>

@@ -271,14 +271,16 @@ public class MainActivity extends TabActivity {
 						params.put("teacher[email]", inputUserTxt);
 						params.put("teacher[password]", inputPasswordTxt);
 						params.put("teacher[classid]", inputClassTxt);
-
+						params.put("format", "json");
+						
 						SharedPreferences settings = getSharedPreferences(
 								PREFS_NAME, 0);
 						SharedPreferences.Editor editor = settings.edit();
 						editor.putString("teacher[email]", inputUserTxt);
 						editor.putString("teacher[password]", inputPasswordTxt);
 						editor.putString("teacher[classid]", inputClassTxt);
-
+						editor.putString("format", "json");
+						
 						editor.commit();
 
 						try {
@@ -315,9 +317,13 @@ public class MainActivity extends TabActivity {
 		RestClient.post("", params, new JsonHttpResponseHandler() {
 			private ProgressDialog dialog;
 			private String _id;
+			@SuppressWarnings("unused")
 			private String _classid;
+			@SuppressWarnings("unused")
 			private String _email;
 			private String _allowed = null;
+			@SuppressWarnings("unused")
+			private String _format = "json";
 
 			@Override
 			public void onStart() {

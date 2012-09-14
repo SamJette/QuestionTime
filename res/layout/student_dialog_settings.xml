@@ -52,7 +52,7 @@
             android:layout_weight="1"
             android:background="@drawable/transparent_pixel"
             android:text="@string/_cancel"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="17dp" />
 
         <Button
@@ -62,7 +62,7 @@
             android:layout_weight="1"
             android:background="@drawable/transparent_pixel"
             android:text="@string/bewaren"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="17dp" />
     </LinearLayout>
     

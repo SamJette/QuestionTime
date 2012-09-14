@@ -150,10 +150,10 @@ public class StudentTab extends Activity {
 							// change image if student is online or not
 							Log.d("demo", "is on line= " + temp.isOnLine);
 							if (temp.isOnLine.equalsIgnoreCase("1")) {
-								map.put(KEY_IMAGE_ISONLINE, R.color.greenColor);
+								map.put(KEY_IMAGE_ISONLINE, R.color.green);
 							} else {
 								map.put(KEY_IMAGE_ISONLINE,
-										R.color.darkGreyColor);
+										R.color.darkGrey);
 							}
 
 							listItem.add(map);

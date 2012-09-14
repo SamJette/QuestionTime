@@ -156,18 +156,18 @@ public class ResultTab extends Activity {
 									quot = num / denom;
 								if (quot == 1.0) {
 									map.put(KEY_SCORE, getResources()
-											.getDrawable(R.color.greenColor));
+											.getDrawable(R.color.green));
 									map.put(KEY_SCORE2, getResources()
-											.getDrawable(R.color.greenColor));
+											.getDrawable(R.color.green));
 
 								} else if (quot >= 0.5 && quot <= 0.7) {
 									map.put(KEY_SCORE, getResources()
-											.getDrawable(R.color.orangeColor));
+											.getDrawable(R.color.orange));
 								} else {
 									map.put(KEY_SCORE, getResources()
-											.getDrawable(R.color.redColor));
+											.getDrawable(R.color.red));
 									map.put(KEY_SCORE2, getResources()
-											.getDrawable(R.color.redColor));
+											.getDrawable(R.color.red));
 
 								}
 								Log.d("score", "" + quot);
@@ -225,23 +225,23 @@ public class ResultTab extends Activity {
 															map.put(KEY_POINTS,
 																	getResources()
 																			.getDrawable(
-																					R.color.redColor));
+																					R.color.red));
 
 															map.put(KEY_POINTS2,
 																	getResources()
 																			.getDrawable(
-																					R.color.redColor));
+																					R.color.red));
 
 														} else {
 															map.put(KEY_POINTS,
 																	getResources()
 																			.getDrawable(
-																					R.color.greenColor));
+																					R.color.green));
 
 															map.put(KEY_POINTS2,
 																	getResources()
 																			.getDrawable(
-																					R.color.greenColor));
+																					R.color.green));
 
 														}
 														map.put(KEY_STUDENTANSWER,

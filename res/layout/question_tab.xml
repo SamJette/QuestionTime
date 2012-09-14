@@ -8,25 +8,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="#9e9e9e"
+        android:background="@color/grey"
         android:gravity="right" >
 
         <Button
             android:id="@+id/buttonAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#9e9e9e"
+            android:background="@color/grey"
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:onClick="onAddClick"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:shadowColor="#515151"
+            android:shadowColor="@color/darkGrey"
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="2"
             android:text="@string/add"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="21dp" />
 
         <Button
@@ -34,18 +34,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:background="#9e9e9e"
+            android:background="@color/grey"
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:onClick="onRefresh"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:shadowColor="#515151"
+            android:shadowColor="@color/darkGrey"
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="2"
             android:text="@string/refresh"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="21dp" />
 
         <SearchView
@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_gravity="right"
-            android:background="#9e9e9e"
+            android:background="@color/grey"
             android:visibility="visible" >
         </SearchView>
     </LinearLayout>
@@ -70,7 +70,7 @@
         android:id="@+id/listViewTabVragen"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:divider="#cccccc"
+        android:divider="@color/plainGrey"
         android:dividerHeight="1dp"
         android:listSelector="@drawable/list_selector" >
     </ListView>

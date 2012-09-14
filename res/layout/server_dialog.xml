@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"            
             android:text="@string/_cancel"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="17dp"
             android:background="@drawable/transparent_pixel" />
 
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"            
             android:text="@string/bewaren"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="17dp"
             android:background="@drawable/transparent_pixel" />
     </LinearLayout>
